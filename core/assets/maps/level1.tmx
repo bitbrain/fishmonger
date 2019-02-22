@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="18" height="9" tilewidth="32" tileheight="32" infinite="0" nextobjectid="3">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer name="base" width="18" height="9">
+  <data encoding="base64" compression="zlib">
+   eJxTYGBgUKADZgRiLSTMRKR6JjS92kBsjITlCZgBU6+JRS8MiwIxDx5zuIFYHIdeZKxJwF/I7kG3H918fGYpoukVg2IeqFvF0MzDFUbcaHrJVUMNDACdnhSe
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="1" name="PLAYER" type="PLAYER" x="431.333" y="80.6667">
+   <point/>
+  </object>
+ </objectgroup>
+</map>

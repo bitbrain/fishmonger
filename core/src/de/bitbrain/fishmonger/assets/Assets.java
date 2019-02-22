@@ -3,7 +3,7 @@ package de.bitbrain.fishmonger.assets;
 public interface Assets {
 
    interface Textures {
-
+      String PLAYER = "textures/player.png";
    }
 
    interface Sounds {
@@ -20,5 +20,9 @@ public interface Assets {
 
    interface Fonts {
 
+   }
+
+   interface TiledMaps {
+      String LEVEL_1 = "maps/level1.tmx";
    }
 }
