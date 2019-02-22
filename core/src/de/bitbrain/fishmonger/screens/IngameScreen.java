@@ -68,7 +68,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
 
    private void setupRenderer(GameContext context) {
       final Texture playerTexture = SharedAssetManager.getInstance().get(Assets.Textures.PLAYER);
-      AnimationSpriteSheet playerSheet = new AnimationSpriteSheet(playerTexture, 32);
+      AnimationSpriteSheet playerSheet = new AnimationSpriteSheet(playerTexture, 16);
 
       context.getRenderManager().register("PLAYER", new AnimationRenderer(playerSheet,
             AnimationConfig.builder()
@@ -85,12 +85,12 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    }
 
    private void configurePlayer(GameContext context, GameObject player) {
-      player.setDimensions(32f, 32f);
+      player.setDimensions(16f, 16f);
       float correctX = (float) (Math.floor(player.getLeft() / context.getTiledMapManager().getAPI().getCellWidth()) * context.getTiledMapManager().getAPI().getCellWidth());
       float correctY = (float) (Math.floor(player.getTop() / context.getTiledMapManager().getAPI().getCellHeight()) * context.getTiledMapManager().getAPI().getCellHeight());
       player.setPosition(correctX, correctY);
       context.getGameCamera().setStickToWorldBounds(true);
-      context.getGameCamera().setDefaultZoomFactor(0.2f);
+      context.getGameCamera().setDefaultZoomFactor(0.1f);
       context.getGameCamera().setZoomScalingFactor(0.0000001f);
       context.getGameCamera().setTrackingTarget(player);
       context.getGameCamera().setTargetTrackingSpeed(0.05f);

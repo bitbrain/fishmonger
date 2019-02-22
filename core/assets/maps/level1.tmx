@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="18" height="9" tilewidth="32" tileheight="32" infinite="0" nextobjectid="3">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="2">
  <tileset firstgid="1" source="tileset.tsx"/>
- <layer name="base" width="18" height="9">
+ <layer name="base" width="32" height="18">
   <data encoding="base64" compression="zlib">
-   eJxTYGBgUKADZgRiLSTMRKR6JjS92kBsjITlCZgBU6+JRS8MiwIxDx5zuIFYHIdeZKxJwF/I7kG3H918fGYpoukVg2IeqFvF0MzDFUbcaHrJVUMNDACdnhSe
+   eJy1lLESgCAMQ1EXdVEXddH//0wZ9K7HpRBKHd5WmgBtzhDCmTBGJsEMalAdqkU1ElnbRfrI3aB/vT16pRfS13RlzwF4LfVmYDxa7vWxR1bA4eCd0d6Uv1sKHqRvi9ecdm5+Pl15tuQVoc1sTr/lvZiZte75Hx7Q/ljezOqByS4PfbS72v5a/swbLetqc6fVA5N1LRnhnS8L0U9qorOsj1K2ablmyUNEbU4w2p76aa9c/QP9MR/V
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="PLAYER" type="PLAYER" x="431.333" y="80.6667">
+  <object id="1" name="PLAYER" type="PLAYER" x="150.25" y="49">
    <point/>
   </object>
  </objectgroup>
