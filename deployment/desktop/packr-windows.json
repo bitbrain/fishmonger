@@ -1,0 +1,20 @@
+{
+  "platform": "windows32",
+  "executable": "fishmonger",
+  "jdk": "",
+  "classpath": [
+    "fishmonger.jar"
+  ],
+  "removelibs": [
+    "fishmonger.jar"
+  ],
+  "mainclass": "de.bitbrain.fishmonger.desktop.DesktopLauncher",
+  "vmargs": [
+    "Xmx1G"
+  ],
+  "resources": [
+    "core/assets"
+  ],
+  "minimizejre": "soft",
+  "output": ""
+}

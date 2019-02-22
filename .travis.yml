@@ -1,0 +1,30 @@
+language: android
+jdk:
+  - openjdk8
+
+android:
+  components:
+    # The BuildTools version used by your project
+    - build-tools-26.0.2
+
+    # The SDK version used to compile your project
+    - android-26
+
+before_cache:
+  - rm -f $HOME/.gradle/caches/modules-2/modules-2.lock
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+script:
+  chmod +x gradlew && ./gradlew desktop:dist
+
+after_script:
+  chmod +x deployment/desktop/deploy.sh && ./deployment/desktop/deploy.sh
+
+branches:
+  only:
+    - release
+  except:
+    - master
