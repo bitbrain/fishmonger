@@ -10,8 +10,8 @@ public interface Assets {
 
    }
 
-   interface Music {
-
+   interface Musics {
+      String OVERWORLD = "music/overworld.ogg";
    }
 
    interface Particles {

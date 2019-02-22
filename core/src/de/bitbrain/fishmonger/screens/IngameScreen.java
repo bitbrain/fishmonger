@@ -1,5 +1,6 @@
 package de.bitbrain.fishmonger.screens;
 
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -36,6 +37,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
 
    @Override
    protected void onCreate(GameContext context) {
+      context.getAudioManager().playMusic(Assets.Musics.OVERWORLD);
       setBackgroundColor(Colors.BACKGROUND);
       setupWorld(context);
       setupInput(context);

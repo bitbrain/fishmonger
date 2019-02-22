@@ -21,6 +21,9 @@
    <property name="collision" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="3" terrain="0,0,0,0" probability="0.4"/>
+ <tile id="4" terrain="0,0,0,0" probability="0.4"/>
+ <tile id="5" terrain="0,0,0,0" probability="0.4"/>
  <tile id="7" terrain="1,0,1,0">
   <properties>
    <property name="collision" type="bool" value="true"/>
@@ -32,6 +35,9 @@
    <property name="collision" type="bool" value="true"/>
   </properties>
  </tile>
+ <tile id="10" terrain="0,0,0,0" probability="0.4"/>
+ <tile id="11" terrain="0,0,0,0" probability="0.4"/>
+ <tile id="12" terrain="0,0,0,0" probability="0.4"/>
  <tile id="14" terrain="1,0,1,1">
   <properties>
    <property name="collision" type="bool" value="true"/>
