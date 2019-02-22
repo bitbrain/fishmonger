@@ -17,7 +17,7 @@ prepare_butler() {
 prepare_packr() {
     echo "Preparing packr..."
     download_if_not_exist https://libgdx.badlogicgames.com/ci/packr/packr.jar packr.jar
-    cp desktop/build/libs/desktop-1.0.jar scape.jar
+    cp desktop/build/libs/desktop-1.0.jar fishmonger.jar
 }
 
 # platform = $1
