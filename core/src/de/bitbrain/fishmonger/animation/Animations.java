@@ -56,17 +56,12 @@ public class Animations {
          public Object getAnimationType(GameObject object) {
             return object.getAttribute(Orientation.class);
          }
-      }, new Enabler<GameObject>() {
-         @Override
-         public boolean isEnabledFor(GameObject target) {
-            return target.getOffsetX() != 0 || target.getOffsetY() != 0;
-         }
-      }).offset(0f, 4f));
+      }, new PlayerAnimationEnabler()).offset(0f, 4f));
       context.getRenderManager().register("GIER", new AnimationRenderer(playerSheet,
             AnimationConfig.builder()
                   .registerFrames(Orientation.DOWN, AnimationFrames.builder()
                         .resetIndex(0)
-                        .duration(0.4f)
+                        .duration(0.2f)
                         .origin(0, 4)
                         .direction(AnimationFrames.Direction.HORIZONTAL)
                         .playMode(Animation.PlayMode.LOOP_PINGPONG)
@@ -74,7 +69,7 @@ public class Animations {
                         .build())
                   .registerFrames(Orientation.UP, AnimationFrames.builder()
                         .resetIndex(0)
-                        .duration(0.4f)
+                        .duration(0.2f)
                         .origin(0, 5)
                         .direction(AnimationFrames.Direction.HORIZONTAL)
                         .playMode(Animation.PlayMode.LOOP_PINGPONG)
@@ -82,7 +77,7 @@ public class Animations {
                         .build())
                   .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
                         .resetIndex(0)
-                        .duration(0.4f)
+                        .duration(0.2f)
                         .origin(0, 6)
                         .direction(AnimationFrames.Direction.HORIZONTAL)
                         .playMode(Animation.PlayMode.LOOP_PINGPONG)
@@ -90,7 +85,7 @@ public class Animations {
                         .build())
                   .registerFrames(Orientation.LEFT, AnimationFrames.builder()
                         .resetIndex(0)
-                        .duration(0.4f)
+                        .duration(0.2f)
                         .origin(0, 7)
                         .direction(AnimationFrames.Direction.HORIZONTAL)
                         .playMode(Animation.PlayMode.LOOP_PINGPONG)
