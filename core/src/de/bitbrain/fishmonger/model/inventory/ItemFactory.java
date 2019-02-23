@@ -6,14 +6,14 @@ import de.bitbrain.fishmonger.model.FishType;
 public class ItemFactory {
 
    public static Item retrieveFromGameObject(GameObject object) {
-      FishType fishType = (FishType)object.getAttribute(FishType.class);
-      if (fishType != null) {
+      if (object.getType() instanceof FishType) {
+         FishType type = (FishType) object.getType();
          return new Item(
-               fishType.toString(),
-               fishType.getAsset(),
-               fishType.getName(),
-               fishType.getDescription(),
-               fishType.getValue()
+               type.toString(),
+               type.getAsset(),
+               type.getName(),
+               type.getDescription(),
+               type.getValue()
          );
       }
       return null;
