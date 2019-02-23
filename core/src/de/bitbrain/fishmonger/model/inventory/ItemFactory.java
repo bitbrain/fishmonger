@@ -1,4 +1,4 @@
-package de.bitbrain.fishmonger.inventory;
+package de.bitbrain.fishmonger.model.inventory;
 
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.model.FishType;

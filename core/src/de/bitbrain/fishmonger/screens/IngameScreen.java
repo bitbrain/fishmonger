@@ -18,14 +18,16 @@ import de.bitbrain.braingdx.util.Enabler;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
 import de.bitbrain.fishmonger.FishMongerGame;
+import de.bitbrain.fishmonger.animation.GierAnimationEnabler;
 import de.bitbrain.fishmonger.assets.Assets;
+import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
 import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
 import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
-import de.bitbrain.fishmonger.inventory.Inventory;
-import de.bitbrain.fishmonger.inventory.Item;
-import de.bitbrain.fishmonger.inventory.ItemFactory;
+import de.bitbrain.fishmonger.model.inventory.Inventory;
+import de.bitbrain.fishmonger.model.inventory.Item;
+import de.bitbrain.fishmonger.model.inventory.ItemFactory;
 import de.bitbrain.fishmonger.model.FishType;
 import de.bitbrain.fishmonger.ui.InventoryUI;
 
@@ -89,6 +91,9 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
          if ("PLAYER".equals(o.getType())) {
             configurePlayer(context, o);
          }
+         if ("GIER".equals(o.getType())) {
+            configureGier(context, o);
+         }
       }
    }
 
@@ -99,7 +104,6 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private void setupRenderer(GameContext context) {
       final Texture playerTexture = SharedAssetManager.getInstance().get(Assets.Textures.PLAYER);
       AnimationSpriteSheet playerSheet = new AnimationSpriteSheet(playerTexture, 16);
-
       context.getRenderManager().register("PLAYER", new AnimationRenderer(playerSheet,
             AnimationConfig.builder()
                   .registerFrames(Orientation.DOWN, AnimationFrames.builder()
@@ -146,6 +150,49 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
             return target.getOffsetX() > 0 || target.getOffsetY() > 0;
          }
       }).offset(0f, 4f));
+      final Texture gierTexture = SharedAssetManager.getInstance().get(Assets.Textures.GIER);
+      AnimationSpriteSheet gierSheet = new AnimationSpriteSheet(gierTexture, 16);
+      context.getRenderManager().register("GIER", new AnimationRenderer(gierSheet,
+            AnimationConfig.builder()
+                  .registerFrames(Orientation.DOWN, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 0)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.UP, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 1)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 2)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.LEFT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 3)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .build()
+            , new AnimationTypeResolver<GameObject>() {
+         @Override
+         public Object getAnimationType(GameObject object) {
+            return object.getAttribute(Orientation.class);
+         }
+      }, new GierAnimationEnabler()).offset(0f, 4f));
    }
 
    private void configurePlayer(GameContext context, GameObject player) {
@@ -166,6 +213,17 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
             .interval(0.15f)
             .rasterSize(context.getTiledMapManager().getAPI().getCellWidth(), context.getTiledMapManager().getAPI().getCellHeight());
       context.getBehaviorManager().apply(behavior, player);
+      context.getBehaviorManager().apply(new SellToGierBehavior(inventory), player);
+   }
+
+   private void configureGier(GameContext context, GameObject gier) {
+      gier.setDimensions(16f, 8f);
+      gier.setScaleY(2f);
+      float correctX = (float) (Math.floor(gier.getLeft() / context.getTiledMapManager().getAPI().getCellWidth()) * context.getTiledMapManager().getAPI().getCellWidth());
+      float correctY = (float) (Math.floor(gier.getTop() / context.getTiledMapManager().getAPI().getCellHeight()) * context.getTiledMapManager().getAPI().getCellHeight());
+      gier.setPosition(correctX, correctY);
+      gier.setOrigin(gier.getWidth() / 2f, gier.getHeight() / 2f);
+      gier.setAttribute(Orientation.class, Orientation.DOWN);
    }
 
    private void setupUI(GameContext context) {

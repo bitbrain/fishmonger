@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="8">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="9">
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="base" width="32" height="18">
   <data encoding="base64" compression="zlib">
@@ -17,6 +17,12 @@
    <point/>
   </object>
   <object id="6" name="FISH SPAWN" type="FISH" x="91" y="59.75">
+   <point/>
+  </object>
+  <object id="8" name="GIER" type="GIER" x="100.5" y="22.25">
+   <properties>
+    <property name="collision" type="bool" value="true"/>
+   </properties>
    <point/>
   </object>
  </objectgroup>

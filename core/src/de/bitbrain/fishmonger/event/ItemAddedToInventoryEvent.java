@@ -1,7 +1,7 @@
 package de.bitbrain.fishmonger.event;
 
 import de.bitbrain.braingdx.event.GameEvent;
-import de.bitbrain.fishmonger.inventory.Item;
+import de.bitbrain.fishmonger.model.inventory.Item;
 
 public class ItemAddedToInventoryEvent implements GameEvent {
 
