@@ -14,6 +14,8 @@ import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.inventory.ItemFactory;
 
+import static de.bitbrain.braingdx.behavior.movement.Orientation.*;
+
 public class FishingRod {
 
    private final DeltaTimer throwTimer = new DeltaTimer();
@@ -72,11 +74,26 @@ public class FishingRod {
    }
 
    private void checkCurrentLocationForFish() {
+      if (!checkLane(false)) {
+         checkLane(true);
+      }
+   }
+
+   private boolean checkLane(boolean next) {
       TiledMapAPI api = context.getTiledMapManager().getAPI();
       Orientation orientation = (Orientation)player.getAttribute(Orientation.class);
       float x = player.getLeft() + currentLength * api.getCellWidth() * orientation.getXFactor();
       float y = player.getTop() + currentLength * api.getCellHeight() * orientation.getYFactor();
-      context.getEventManager().publish(new FishingRodEvents.MoveToLocationEvent(player, new Vector2(x, y)));
+      if (next) {
+         if (orientation == Orientation.DOWN || orientation == UP) {
+            x += player.getWidth() / 2f;
+         }
+         if (orientation == RIGHT || orientation == LEFT) {
+            y += player.getWidth() / 2f;
+         }
+      } else {
+         context.getEventManager().publish(new FishingRodEvents.MoveToLocationEvent(player, new Vector2(x, y)));
+      }
       int tileX = IndexCalculator.calculateIndex(x, api.getCellWidth());
       int tileY = IndexCalculator.calculateIndex(y, api.getCellHeight());
       GameObject object = api.getGameObjectAt(tileX, tileY, 0);
@@ -86,6 +103,8 @@ public class FishingRod {
          inventory.addItem(item);
          context.getGameWorld().remove(object);
          pullBack();
+         return true;
       }
+      return false;
    }
 }
