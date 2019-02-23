@@ -1,5 +1,6 @@
 package de.bitbrain.fishmonger.model.spawn;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import de.bitbrain.braingdx.GameContext;
@@ -37,7 +38,8 @@ public class Spawner {
             positionFree = !api.isCollision(targetX, targetY, 0);
          }
          fish.setPosition(targetX, targetY);
-         fish.setType(FishType.PIRANHA);
+
+         fish.setType(computeType());
          api.setLayerIndex(fish, 0);
          fish.setAttribute(Orientation.class, Orientation.DOWN);
 
@@ -54,6 +56,16 @@ public class Spawner {
          FishBehaviour behavior = new FishBehaviour(fish, pointer, player, context.getTiledMapManager(), context.getEventManager());
          behavior.setMinLength(2);
          context.getBehaviorManager().apply(behavior);
+      }
+   }
+
+   private FishType computeType() {
+      while (true) {
+         for (FishType t : FishType.values()) {
+            if (Math.random() < t.getProbability()) {
+              return t;
+            }
+         }
       }
    }
 }

@@ -153,6 +153,53 @@ public class Animations {
          public boolean isEnabledFor(GameObject target) {
             return target.getOffsetX() > 0 || target.getOffsetY() > 0;
          }
-      }).offset(0f, 4f));
+      }));
+      context.getRenderManager().register(FishType.MACKEREL, new AnimationRenderer(fishSheet,
+            AnimationConfig.builder()
+                  .registerFrames(Orientation.DOWN, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 4)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.UP, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 5)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 6)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.LEFT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 7)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_REVERSED)
+                        .frames(8)
+                        .build())
+                  .build()
+            , new AnimationTypeResolver<GameObject>() {
+         @Override
+         public Object getAnimationType(GameObject object) {
+            return object.getAttribute(Orientation.class);
+         }
+      }, new Enabler<GameObject>() {
+         @Override
+         public boolean isEnabledFor(GameObject target) {
+            return target.getOffsetX() > 0 || target.getOffsetY() > 0;
+         }
+      }));
+
    }
 }
