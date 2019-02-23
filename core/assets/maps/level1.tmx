@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="3">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="18" tilewidth="8" tileheight="8" infinite="0" nextobjectid="8">
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="base" width="32" height="18">
   <data encoding="base64" compression="zlib">
-   eJy1lcFygzAMRJXE5mpiuDb5gDQf0P7/h9UHvWHxGHBnyGEHBxyvpNXKk5mNBblgLvgpuBW8T0ZynlH4BueM/uTbJ2L4Kvj284NwPfz95L9n/37/UA3Id/T8iU3jeBU8D866FFwFPfVKknsQ/jq+Vu4136/UDM2uth9Tct1fnmtoaPTYyD05n/ZJtnVPBdEvNvJInvNdzvuPdrnimhys6Wfe132s+bHu4b54vbMtvskC8tXazJLrmd5t8dR1yb6vh7+3b2ND79GWHmR+aXw98+zIZ7VvYuNJreEkpsGOZ0mPd5ldnAfHIDxwEpf2yh5/sLV3t2JBg2hr3+NJ1SFKnD386LqnFz0YhZceC7LmHPZtzVLmmdYv2+Lbuhb4FXCXaOyTcLJvq7+ScOt/tc/26qZ3xtzB2ZrfaIV3tJ/ijhatOI58xN1Sz+66juiIvmfdw/AzO/HPHxxYQS8=
+   eJytlslqxDAQRJVEEsRRC5KcMjnN/P9HRgYVPNd4Bhx8aKyl1+pFjpRSDCqT6qBlUMN3Pc+TT9+Y9wtkMvYF96SGdZ+8kg9bLzvrPOWkK9tdmfd97rPF0NPWnw65Bd8G3x750s1+Q3xhuqQ7sK5TR4Nf2ewXrOmfY8Iz5SlDTnmpJpdNL+NiPAU6iIWfEy9i3cymx8faUx1Il/IWk1dnymmFTq83+tiNnzw93dfAz6CvA3QxHxSrcKiw39J9LhWvYv0Y9HuA3g33Z/XHmtIde36N/fug/U/gwJhY5/JP84Y1S7yP2nYcZEOY0g57hnEfxfuZ/QLymad+JyblRPvMgzD2vmfPysez7NOPS9r2OHuy2v466HXS28m5UL37G8AZqHy0f/ryAhnRLW3rnG+Xz1z2RuDsuqN3j27Qx1rnHAjYVtyaSaxVn1Hi6Wn79rC3yev/CB36A/r9X4NvPGe0v1GcK46hdPt74DNvXf8BPbYd1w==
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="1" name="PLAYER" type="PLAYER" x="150.25" y="49">
+  <object id="5" name="PLAYER" type="PLAYER" x="89" y="42.5">
+   <point/>
+  </object>
+  <object id="6" name="FISH SPAWN" type="FISH" x="91" y="59.75">
    <point/>
   </object>
  </objectgroup>
