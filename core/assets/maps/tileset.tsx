@@ -223,7 +223,7 @@
    <frame tileid="27" duration="600"/>
   </animation>
  </tile>
- <tile id="27" terrain=",,,0">
+ <tile id="27">
   <properties>
    <property name="collision" type="bool" value="false"/>
   </properties>
