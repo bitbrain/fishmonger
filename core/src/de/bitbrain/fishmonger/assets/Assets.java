@@ -22,7 +22,7 @@ public interface Assets {
    }
 
    interface Fonts {
-
+      String PIXELMIX = "fonts/pixelmix.ttf";
    }
 
    interface TiledMaps {

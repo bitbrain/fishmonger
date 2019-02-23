@@ -8,16 +8,18 @@ import de.bitbrain.fishmonger.i18n.Messages;
 
 public enum FishType {
 
-   PIRANHA(Assets.Textures.PIRANHA, Messages.FISH_PIRANHA_NAME, Messages.FISH_PIRANHA_DESCRIPTION);
+   PIRANHA(Assets.Textures.PIRANHA, Messages.FISH_PIRANHA_NAME, Messages.FISH_PIRANHA_DESCRIPTION, 200);
 
    private String assetId;
    private Messages name;
    private Messages description;
+   private int value;
 
-   FishType(String assetId, Messages name, Messages description) {
+   FishType(String assetId, Messages name, Messages description, int value) {
       this.assetId = assetId;
       this.name = name;
       this.description = description;
+      this.value = value;
    }
 
    public Texture getAsset() {
@@ -30,5 +32,9 @@ public enum FishType {
 
    public String getDescription() {
       return Bundle.get(description);
+   }
+
+   public int getValue() {
+      return value;
    }
 }

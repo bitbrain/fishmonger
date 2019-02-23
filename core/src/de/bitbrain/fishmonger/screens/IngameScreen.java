@@ -23,18 +23,24 @@ import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
+import de.bitbrain.fishmonger.event.handler.InventoryClearedHandler;
 import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
 import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
+import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.inventory.ItemFactory;
 import de.bitbrain.fishmonger.model.FishType;
+import de.bitbrain.fishmonger.ui.MoneyUI;
 import de.bitbrain.fishmonger.ui.InventoryUI;
+
+import static de.bitbrain.fishmonger.Colors.BACKGROUND;
 
 public class IngameScreen extends AbstractScreen<FishMongerGame> {
 
    private Inventory inventory;
    private GameContext context;
+   private Money money;
 
    public IngameScreen(FishMongerGame game) {
       super(game);
@@ -48,15 +54,18 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
 
    @Override
    protected void onCreate(GameContext context) {
+      setBackgroundColor(BACKGROUND);
       context.getAudioManager().playMusic(Assets.Musics.OVERWORLD);
 
       this.context = context;
+      this.money = new Money();
       this.inventory = new Inventory(context.getEventManager());
 
       setupWorld(context);
       setupInput(context);
       setupRenderer(context);
       setupUI(context);
+      setupEvents(context);
       setupShaders(context);
    }
 
@@ -231,5 +240,12 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
       context.getEventManager().register(inventoryUI.inventoryClearedEventListener, InventoryClearedEvent.class);
       context.getEventManager().register(inventoryUI.itemAddedToInventoryEventListener, ItemAddedToInventoryEvent.class);
       context.getStage().addActor(inventoryUI);
+      MoneyUI cashUI = new MoneyUI(money);
+      cashUI.setPosition(35f, Gdx.graphics.getHeight() - 100f);
+      context.getStage().addActor(cashUI);
+   }
+
+   private void setupEvents(GameContext context) {
+      context.getEventManager().register(new InventoryClearedHandler(money), InventoryClearedEvent.class);
    }
 }

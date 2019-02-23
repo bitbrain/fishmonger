@@ -12,7 +12,8 @@ public class ItemFactory {
                fishType.toString(),
                fishType.getAsset(),
                fishType.getName(),
-               fishType.getDescription()
+               fishType.getDescription(),
+               fishType.getValue()
          );
       }
       return null;
