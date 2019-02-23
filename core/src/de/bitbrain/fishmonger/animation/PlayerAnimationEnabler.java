@@ -8,8 +8,9 @@ public class PlayerAnimationEnabler implements Enabler<GameObject> {
    private boolean lastEnabled = false;
    @Override
    public boolean isEnabledFor(GameObject target) {
-      boolean enabled = target.getOffsetX() != 0 || target.getOffsetY() != 0 || lastEnabled;
+      boolean enabled = target.getOffsetX() != 0 || target.getOffsetY() != 0;
+      boolean result = (lastEnabled || enabled);
       lastEnabled = enabled;
-      return enabled;
+      return result && target.isActive();
    }
 }

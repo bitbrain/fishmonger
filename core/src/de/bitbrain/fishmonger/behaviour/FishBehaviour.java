@@ -31,7 +31,7 @@ public class FishBehaviour extends ChasingBehavior {
       super.update(s, delta);
       timer.update(delta);
       fleeTimer.update(delta);
-      if (fleeTimer.reached(FLEE_TIME) && GameObjectUtils.distanceBetween(this.source, player) < 18f) {
+      if (player != null && fleeTimer.reached(FLEE_TIME) && GameObjectUtils.distanceBetween(this.source, player) < 18f) {
          fleeTimer.reset();
          timer.reset();
          opposite.x = this.source.getLeft() - player.getLeft();
@@ -63,10 +63,10 @@ public class FishBehaviour extends ChasingBehavior {
          if (targetY < 0f) {
             targetY = 0f;
          }
-         if (targetX > tiledMapManager.getAPI().getWorldWidth()) {
+         if (targetX >= tiledMapManager.getAPI().getWorldWidth()) {
             targetX = tiledMapManager.getAPI().getWorldWidth() - source.getWidth();
          }
-         if (targetY > tiledMapManager.getAPI().getWorldHeight()) {
+         if (targetY >= tiledMapManager.getAPI().getWorldHeight()) {
             targetY = tiledMapManager.getAPI().getWorldHeight() - source.getHeight();
          }
          pointer.setPosition(targetX, targetY);
