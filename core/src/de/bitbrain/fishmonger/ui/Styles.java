@@ -31,6 +31,9 @@ public class Styles {
       FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
       param.color = Color.WHITE;
       param.size = size;
+      param.borderColor = Colors.BACKGROUND;
+      param.borderWidth = 6;
+      param.borderStraight = true;
       param.mono = true;
       return generator.generateFont(param);
    }
