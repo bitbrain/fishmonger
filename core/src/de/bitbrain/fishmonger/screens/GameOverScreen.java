@@ -17,6 +17,7 @@ import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
+import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
 
 import java.util.ArrayList;
@@ -28,11 +29,13 @@ public class GameOverScreen extends AbstractScreen {
 
    private final Money money;
    private final Inventory inventory;
+   private final List<Item> delivered;
 
-   public GameOverScreen(BrainGdxGame game, Money money, Inventory inventory) {
+   public GameOverScreen(BrainGdxGame game, Money money, Inventory inventory, List<Item> delivered) {
       super(game);
       this.money = money;
       this.inventory = inventory;
+      this.delivered = delivered;
    }
 
    @Override

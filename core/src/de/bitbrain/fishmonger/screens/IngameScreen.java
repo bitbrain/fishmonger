@@ -3,27 +3,22 @@ package de.bitbrain.fishmonger.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.controllers.Controllers;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.behavior.movement.RasteredMovementBehavior;
-import de.bitbrain.braingdx.graphics.animation.*;
 import de.bitbrain.braingdx.graphics.pipeline.layers.RenderPipeIds;
 import de.bitbrain.braingdx.input.OrientationMovementController;
 import de.bitbrain.braingdx.screens.AbstractScreen;
 import de.bitbrain.braingdx.tmx.TiledMapType;
 import de.bitbrain.braingdx.util.DeltaTimer;
-import de.bitbrain.braingdx.util.Enabler;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
 import de.bitbrain.fishmonger.Config;
 import de.bitbrain.fishmonger.FishMongerGame;
 import de.bitbrain.fishmonger.animation.Animations;
-import de.bitbrain.fishmonger.animation.GierAnimationEnabler;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
 import de.bitbrain.fishmonger.catching.FishingRod;
@@ -34,6 +29,7 @@ import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
 import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
+import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
 import de.bitbrain.fishmonger.rendering.RodRenderLayer;
 import de.bitbrain.fishmonger.ui.MoneyUI;
@@ -51,6 +47,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private GameContext context;
    private Money money;
    private List<Spawner> spawners = new ArrayList<Spawner>();
+   private List<Item> deliveredItems = new ArrayList<Item>();
    private GameObject player;
    private FishingRod rod;
    private DeltaTimer timer;
@@ -98,7 +95,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
       if (timer.reached(Config.GAME_DURATION_IN_SECONDS)) {
          player.setActive(false);
          gameOver = true;
-         context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory), 1f);
+         context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory, deliveredItems), 1f);
          return;
       }
       if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
@@ -167,7 +164,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
             .interval(0.15f)
             .rasterSize(context.getTiledMapManager().getAPI().getCellWidth(), context.getTiledMapManager().getAPI().getCellHeight());
       context.getBehaviorManager().apply(behavior, player);
-      context.getBehaviorManager().apply(new SellToGierBehavior(inventory), player);
+      context.getBehaviorManager().apply(new SellToGierBehavior(inventory, deliveredItems), player);
    }
 
    private void configureGier(GameContext context, GameObject gier) {
