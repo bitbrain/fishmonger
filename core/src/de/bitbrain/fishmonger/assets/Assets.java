@@ -5,8 +5,10 @@ public interface Assets {
    interface Textures {
       String PLAYER = "textures/player.png";
       String FISH = "textures/fish.png";
-      String PIRANHA = "textures/piranha.png";
       String PANEL = "textures/panel.9.png";
+
+      String PIRANHA = "textures/piranha.png";
+      String MACKEREL =  "textures/mackerel.png";
    }
 
    interface Sounds {
