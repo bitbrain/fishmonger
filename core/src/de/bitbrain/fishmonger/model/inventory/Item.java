@@ -4,16 +4,18 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Item {
 
-   private String id;
-   private Texture icon;
-   private String name;
-   private String description;
+   private final String id;
+   private final Texture icon;
+   private final  String name;
+   private final String description;
+   private final int value;
 
-   public Item(String id, Texture icon, String name, String description) {
+   public Item(String id, Texture icon, String name, String description, int value) {
       this.id = id;
       this.icon = icon;
       this.name = name;
       this.description = description;
+      this.value = value;
    }
 
    public String getId() {
@@ -30,6 +32,10 @@ public class Item {
 
    public String getDescription() {
       return description;
+   }
+
+   public int getValue() {
+      return value;
    }
 
    @Override
