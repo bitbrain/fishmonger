@@ -24,6 +24,7 @@ import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.animation.GierAnimationEnabler;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
+import de.bitbrain.fishmonger.catching.FishingRod;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
 import de.bitbrain.fishmonger.event.handler.InventoryClearedHandler;
@@ -31,11 +32,8 @@ import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
 import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
-import de.bitbrain.fishmonger.model.inventory.Item;
-import de.bitbrain.fishmonger.model.inventory.ItemFactory;
-import de.bitbrain.fishmonger.model.FishType;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
-import de.bitbrain.fishmonger.rendering.AStarRenderer;
+import de.bitbrain.fishmonger.rendering.RodRenderLayer;
 import de.bitbrain.fishmonger.ui.MoneyUI;
 import de.bitbrain.fishmonger.ui.InventoryUI;
 
@@ -51,6 +49,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private Money money;
    private List<Spawner> spawners = new ArrayList<Spawner>();
    private GameObject player;
+   private FishingRod rod;
 
    public IngameScreen(FishMongerGame game) {
       super(game);
@@ -77,15 +76,16 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
       setupUI(context);
       setupEvents(context);
       setupShaders(context);
+
+
+      this.rod = new FishingRod(player, inventory, context);
    }
 
    @Override
    protected void onUpdate(float delta) {
+      rod.update(delta);
       if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-         GameObject piranha = context.getGameWorld().addObject();
-         piranha.setType(FishType.PIRANHA);
-         Item item = ItemFactory.retrieveFromGameObject(piranha);
-         inventory.addItem(item);
+         rod.throwRod();
       }
       if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
          inventory.clearInventory();
@@ -130,6 +130,8 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private void setupRenderer(GameContext context) {
       Animations.setupPlayerAnimations(context);
       Animations.setupFishAnimations(context);
+
+      context.getRenderPipeline().putAfter(RenderPipeIds.LIGHTING, "rod", new RodRenderLayer(context.getEventManager(), player));
    }
 
    private void configurePlayer(GameContext context, GameObject player) {

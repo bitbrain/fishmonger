@@ -16,7 +16,7 @@
   <object id="5" name="PLAYER" type="PLAYER" x="75.75" y="29.5">
    <point/>
   </object>
-  <object id="8" name="GIER" type="GIER" x="100.5" y="22.25">
+  <object id="8" name="GIER" type="GIER" x="203" y="23.75">
    <properties>
     <property name="collision" type="bool" value="true"/>
    </properties>

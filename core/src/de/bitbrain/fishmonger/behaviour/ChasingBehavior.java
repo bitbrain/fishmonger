@@ -32,7 +32,9 @@ public class ChasingBehavior extends BehaviorAdapter {
             if (target != null) {
                 int sourceX = IndexCalculator.calculateIndex(source.getLeft(), tiledMapManager.getAPI().getCellWidth());
                 int sourceY = IndexCalculator.calculateIndex(source.getTop(), tiledMapManager.getAPI().getCellHeight());
-                path = tiledMapManager.getPathFinder().findPath(target, sourceX, sourceY);
+                if (target.getLeft() < tiledMapManager.getAPI().getWorldWidth() && target.getTop() < tiledMapManager.getAPI().getWorldHeight()) {
+                    path = tiledMapManager.getPathFinder().findPath(target, sourceX, sourceY);
+                }
             }
         }
     };

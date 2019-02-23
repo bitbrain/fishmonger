@@ -63,10 +63,10 @@ public class FishBehaviour extends ChasingBehavior {
          if (targetY < 0f) {
             targetY = 0f;
          }
-         if (targetX > tiledMapManager.getAPI().getWorldWidth()) {
+         if (targetX >= tiledMapManager.getAPI().getWorldWidth()) {
             targetX = tiledMapManager.getAPI().getWorldWidth() - source.getWidth();
          }
-         if (targetY > tiledMapManager.getAPI().getWorldHeight()) {
+         if (targetY >= tiledMapManager.getAPI().getWorldHeight()) {
             targetY = tiledMapManager.getAPI().getWorldHeight() - source.getHeight();
          }
          pointer.setPosition(targetX, targetY);
