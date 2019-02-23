@@ -31,7 +31,7 @@ public class FishBehaviour extends ChasingBehavior {
       super.update(s, delta);
       timer.update(delta);
       fleeTimer.update(delta);
-      if (fleeTimer.reached(FLEE_TIME) && GameObjectUtils.distanceBetween(this.source, player) < 18f) {
+      if (player != null && fleeTimer.reached(FLEE_TIME) && GameObjectUtils.distanceBetween(this.source, player) < 18f) {
          fleeTimer.reset();
          timer.reset();
          opposite.x = this.source.getLeft() - player.getLeft();

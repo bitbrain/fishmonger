@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="20" height="20" tilewidth="8" tileheight="8" infinite="0" nextobjectid="6">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer name="base" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJydVMsOwyAMY49WonSVpp02Tht/z1cuSIlmRUmhO1iBAsZJTHMIoTAyxGzMvbE1H13L6u7i7O998/R48V8cyfPInboGOD4Rzh1cBjU1rg+hEibCBrFh4bW3wWnlEXl/O3clrMwnPA03RhroJfK1MzPoEs6JYzJ4PH2opSq+lccp2P7D+Z3wYk2V9WHucs+T8Ai2B3R/hXOB+omuDbiO+Fk4Z5Uvcnme1VoF0alZ77zny8j9WLl+2NMRDr0Ww88rM9cxGXv3NGk+9LGlryjsvWvhQ42WvtH80TdWb0f/Mfq96Pfl5dbwBcWJM5A=
+  </data>
+ </layer>
+ <layer name="obst" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo4C2wIZOenABEyqpIUYPOebgAtQMA2qCwequUUB/AABuWwHB
+  </data>
+ </layer>
+ <objectgroup name="objects">
+  <object id="1" name="PLAYER" type="PLAYER" x="76.75" y="75.875">
+   <point/>
+  </object>
+  <object id="2" name="GIER" type="GIER" x="76.25" y="60.25">
+   <properties>
+    <property name="collision" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+  <object id="3" name="SPAWN" type="SPAWN" x="43.75" y="110.438" width="16" height="17.75">
+   <properties>
+    <property name="capacity" type="int" value="2"/>
+   </properties>
+  </object>
+  <object id="4" name="SPAWN" type="SPAWN" x="113" y="106.75" width="35" height="34.5">
+   <properties>
+    <property name="capacity" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="5" name="SPAWN" type="SPAWN" x="59.625" y="23.875" width="69.375" height="24.125">
+   <properties>
+    <property name="capacity" type="int" value="3"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer name="above" width="20" height="20">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFo2BwAR0qqSFGDznmjIJRMAogAABkvgCx
+  </data>
+ </layer>
+</map>

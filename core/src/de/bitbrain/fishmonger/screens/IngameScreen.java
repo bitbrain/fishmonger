@@ -16,9 +16,11 @@ import de.bitbrain.braingdx.graphics.pipeline.layers.RenderPipeIds;
 import de.bitbrain.braingdx.input.OrientationMovementController;
 import de.bitbrain.braingdx.screens.AbstractScreen;
 import de.bitbrain.braingdx.tmx.TiledMapType;
+import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.util.Enabler;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
+import de.bitbrain.fishmonger.Config;
 import de.bitbrain.fishmonger.FishMongerGame;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.animation.GierAnimationEnabler;
@@ -36,6 +38,7 @@ import de.bitbrain.fishmonger.model.spawn.Spawner;
 import de.bitbrain.fishmonger.rendering.RodRenderLayer;
 import de.bitbrain.fishmonger.ui.MoneyUI;
 import de.bitbrain.fishmonger.ui.InventoryUI;
+import de.bitbrain.fishmonger.ui.TimerUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +53,9 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private List<Spawner> spawners = new ArrayList<Spawner>();
    private GameObject player;
    private FishingRod rod;
+   private DeltaTimer timer;
+
+   private boolean gameOver = false;
 
    public IngameScreen(FishMongerGame game) {
       super(game);
@@ -66,6 +72,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
       setBackgroundColor(BACKGROUND);
       context.getAudioManager().playMusic(Assets.Musics.OVERWORLD);
 
+      this.timer = new DeltaTimer();
       this.context = context;
       this.money = new Money();
       this.inventory = new Inventory(context.getEventManager());
@@ -83,12 +90,19 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
 
    @Override
    protected void onUpdate(float delta) {
+      if (gameOver) {
+         return;
+      }
       rod.update(delta);
+      timer.update(delta);
+      if (timer.reached(Config.GAME_DURATION_IN_SECONDS)) {
+         player.setActive(false);
+         gameOver = true;
+         context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory), 1f);
+         return;
+      }
       if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
          rod.throwRod();
-      }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
-         inventory.clearInventory();
       }
       super.onUpdate(delta);
    }
@@ -171,9 +185,14 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
       context.getEventManager().register(inventoryUI.inventoryClearedEventListener, InventoryClearedEvent.class);
       context.getEventManager().register(inventoryUI.itemAddedToInventoryEventListener, ItemAddedToInventoryEvent.class);
       context.getStage().addActor(inventoryUI);
+
       MoneyUI cashUI = new MoneyUI(money);
       cashUI.setPosition(35f, Gdx.graphics.getHeight() - 100f);
       context.getStage().addActor(cashUI);
+
+      TimerUI timerUI = new TimerUI(timer);
+      timerUI.setBounds(Gdx.graphics.getWidth() - 35f - 400f, Gdx.graphics.getHeight() - 100f, 400f, 60f);
+      context.getStage().addActor(timerUI);
    }
 
    private void setupEvents(GameContext context) {

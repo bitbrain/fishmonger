@@ -31,5 +31,7 @@ public interface Assets {
 
    interface TiledMaps {
       String LEVEL_1 = "maps/level1.tmx";
+
+      String GAME_OVER = "maps/gameover.tmx";
    }
 }
