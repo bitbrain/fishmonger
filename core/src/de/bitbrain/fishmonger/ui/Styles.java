@@ -8,7 +8,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
-import de.bitbrain.braingdx.graphics.BitmapFontBaker;
 import de.bitbrain.braingdx.graphics.GraphicsFactory;
 import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.assets.Assets;
@@ -17,6 +16,9 @@ public class Styles {
 
    public static final ImageButton.ImageButtonStyle INVENTORY_ICON = new ImageButton.ImageButtonStyle();
    public static final Label.LabelStyle INGAME_CASH = new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_TOAST = new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_DIALOG =  new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
 
    public static void load() {
       INVENTORY_ICON.up = new NinePatchDrawable(
@@ -24,17 +26,32 @@ public class Styles {
       );
       INGAME_CASH.font = bake(Assets.Fonts.PIXELMIX, 60);
       INGAME_CASH.fontColor = Colors.FOREGROUND;
+
+      LABEL_TOAST.font = bake(Assets.Fonts.PIXELMIX, 60, true);
+      LABEL_TOAST.fontColor = Colors.FOREGROUND;
+
+      LABEL_DIALOG.font = bake(Assets.Fonts.PIXELMIX, 26);
+      LABEL_DIALOG.fontColor = Colors.FOREGROUND;
+
+      LABEL_DIALOG_TITLE.font = bake(Assets.Fonts.PIXELMIX, 30);
+      LABEL_DIALOG_TITLE.fontColor = Colors.FOREGROUND;
    }
 
-   private static BitmapFont bake(String fontPath, int size) {
+   private static BitmapFont bake(String fontPath, int size, boolean border) {
       FreeTypeFontGenerator generator = SharedAssetManager.getInstance().get(fontPath, FreeTypeFontGenerator.class);
       FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
       param.color = Color.WHITE;
       param.size = size;
-      param.borderColor = Colors.BACKGROUND;
-      param.borderWidth = 6;
-      param.borderStraight = true;
       param.mono = true;
+      if (border) {
+         param.borderStraight = true;
+         param.borderWidth = 10f;
+         param.borderColor = Colors.BORDER;
+      }
       return generator.generateFont(param);
+   }
+
+   private static BitmapFont bake(String fontPath, int size) {
+      return bake(fontPath, size, false);
    }
 }

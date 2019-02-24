@@ -6,6 +6,7 @@ import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.graphics.animation.*;
+import de.bitbrain.braingdx.ui.AnimationDrawable;
 import de.bitbrain.braingdx.util.Enabler;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.assets.Assets;
@@ -195,6 +196,25 @@ public class Animations {
             return target.getOffsetX() != 0 || target.getOffsetY() != 0;
          }
       }));
+
+   }
+
+   public static AnimationDrawable createGierAvatar() {
+      final Texture texture = SharedAssetManager.getInstance().get(Assets.Textures.AVATARS);
+      AnimationSpriteSheet avatarSheet = new AnimationSpriteSheet(texture, 32);
+      return new AnimationDrawable(avatarSheet,
+            AnimationConfig.builder()
+                  .registerFrames(AnimationDrawable.DEFAULT_FRAME_ID, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 0)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP)
+                        .frames(8)
+                        .build())
+                  .build()
+      );
+
 
    }
 }
