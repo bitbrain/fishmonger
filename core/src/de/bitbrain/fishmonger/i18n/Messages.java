@@ -2,6 +2,8 @@ package de.bitbrain.fishmonger.i18n;
 
 public enum Messages {
 
+   PLAYER_BALANCE("player.balance"),
+
    AND("and"),
 
    FISH_DELIVERY_EMPTY("fish.delivery.empty"),
