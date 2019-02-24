@@ -16,6 +16,9 @@ public interface Assets {
 
       String PIRANHA = "textures/piranha.png";
       String MACKEREL =  "textures/mackerel.png";
+
+      String HELP = "textures/help.png";
+      String QUESTION = "textures/question.png";
    }
 
    interface Sounds {

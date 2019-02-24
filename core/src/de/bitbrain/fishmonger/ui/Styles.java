@@ -3,11 +3,13 @@ package de.bitbrain.fishmonger.ui;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.graphics.GraphicsFactory;
 import de.bitbrain.fishmonger.Colors;
@@ -24,6 +26,7 @@ public class Styles {
    public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
    public static final TextButton.TextButtonStyle BUTTON_MENU = new TextButton.TextButtonStyle();
    public static final Label.LabelStyle LABEL_EARNINGS = new Label.LabelStyle();
+   public static ImageButton.ImageButtonStyle BUTTON_HELP = new ImageButton.ImageButtonStyle();
 
    public static void load() {
       INVENTORY_ICON.up = new NinePatchDrawable(
@@ -59,6 +62,12 @@ public class Styles {
       Texture defaultPatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class);
       BUTTON_MENU.checked = BUTTON_MENU.over;
       BUTTON_MENU.up = new NinePatchDrawable(GraphicsFactory.createNinePatch(defaultPatchTexture, 22));
+
+      Sprite sprite = new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.QUESTION, Texture.class));
+      BUTTON_HELP.imageUp = new SpriteDrawable(sprite);
+      BUTTON_HELP.over = new NinePatchDrawable(GraphicsFactory.createNinePatch(ninePatchTexture, 22));
+      BUTTON_HELP.checked = BUTTON_HELP.over;
+      BUTTON_HELP.up = new NinePatchDrawable(GraphicsFactory.createNinePatch(defaultPatchTexture, 22));
    }
 
    private static BitmapFont bake(String fontPath, int size, boolean border) {
