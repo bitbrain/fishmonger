@@ -164,7 +164,6 @@ public class GameOverScreen extends AbstractScreen {
    private void prepareGameOverDialog() {
       if (money.getAmount() == 0) {
          dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_EMPTY, Animations.createGierAvatar(), true);
-         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_EMPTY, Animations.createGierAvatar(), true);
          return;
       }
 
