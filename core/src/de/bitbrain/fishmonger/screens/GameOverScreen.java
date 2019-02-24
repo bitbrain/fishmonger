@@ -1,6 +1,7 @@
 package de.bitbrain.fishmonger.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import de.bitbrain.braingdx.BrainGdxGame;
@@ -44,6 +45,7 @@ public class GameOverScreen extends AbstractScreen {
 
    private boolean exiting = false, dialog = true;
    private DialogUI dialogUI;
+   private Music music;
 
    public GameOverScreen(BrainGdxGame game, Money money, Inventory inventory, List<Item> delivered) {
       super(game);
@@ -54,6 +56,10 @@ public class GameOverScreen extends AbstractScreen {
 
    @Override
    protected void onCreate(GameContext context) {
+      music = SharedAssetManager.getInstance().get(Assets.Musics.RICHARD_GIER, Music.class);
+      music.setLooping(true);
+      music.setVolume(0.4f);
+      music.play();
       this.dialogManager = new DialogManager();
       this.context = context;
 
@@ -78,8 +84,13 @@ public class GameOverScreen extends AbstractScreen {
       }
       super.onUpdate(delta);
       if (!dialog && dialogUI.hasFinishedDialoging()) {
-         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 1f);
+         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.5f);
          exiting = true;
+         this.music.stop();
+         Music music = SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class);
+         music.setLooping(true);
+         music.setVolume(0.4f);
+         music.play();
       }
    }
 

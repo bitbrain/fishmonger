@@ -3,6 +3,7 @@ package de.bitbrain.fishmonger.screens;
 import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenCallback;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -24,6 +25,11 @@ public class IntroScreen extends AbstractScreen<BrainGdxGame> {
 
    @Override
    protected void onCreate(final GameContext context) {
+      Music music = SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class);
+      music.setLooping(true);
+      music.setVolume(0.4f);
+      music.play();
+
       setBackgroundColor(Colors.BORDER);
       context.getScreenTransitions().in(0.5f);
       setupUI(context);

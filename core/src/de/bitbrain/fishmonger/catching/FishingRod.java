@@ -1,13 +1,16 @@
 package de.bitbrain.fishmonger.catching;
 
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import de.bitbrain.braingdx.GameContext;
+import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.tmx.IndexCalculator;
 import de.bitbrain.braingdx.tmx.TiledMapAPI;
 import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.Config;
+import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
@@ -43,8 +46,10 @@ public class FishingRod {
          throwTimer.reset();
          currentLength++;
          checkCurrentLocationForFish();
-         if (currentLength == Config.FISHING_ROD_RANGE) {
+         if (currentLength > Config.FISHING_ROD_RANGE) {
             pullBack();
+            Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.THROW_FAIL, Sound.class);
+            sound.play();
          }
       }
       if (pullingBack && throwTimer.reached(Config.FISHING_ROD_PULL_INTERVAL)) {
@@ -65,6 +70,8 @@ public class FishingRod {
 
    public void throwRod() {
       if (!throwing && !inventory.isFull()) {
+         Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.THROW, Sound.class);
+         sound.play();
          throwing = true;
          currentLength = 1;
          player.setActive(false);
@@ -109,6 +116,8 @@ public class FishingRod {
          inventory.addItem(item);
          context.getGameWorld().remove(object);
          pullBack();
+         Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.BITE, Sound.class);
+         sound.play();
          return true;
       }
       return false;

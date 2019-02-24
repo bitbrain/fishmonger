@@ -19,11 +19,18 @@ public interface Assets {
    }
 
    interface Sounds {
-
+      String COIN = "sfx/coin.ogg";
+      String BITE = "sfx/bite.ogg";
+      String THROW = "sfx/throw.ogg";
+      String THROW_FAIL = "sfx/throw_fail.ogg";
+      String GAME_OVER = "sfx/gameover.ogg";
    }
 
    interface Musics {
       String OVERWORLD = "music/overworld.ogg";
+      String OVERWORLD2 = "music/overworld2.ogg";
+      String MAIN_MENU = "music/mainmenu.ogg";
+      String RICHARD_GIER = "music/richardgier.ogg";
    }
 
    interface Particles {

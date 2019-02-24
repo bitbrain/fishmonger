@@ -2,6 +2,8 @@ package de.bitbrain.fishmonger.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
@@ -57,6 +59,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    private boolean gameOver = false;
    private DialogManager dialogManager;
    private String levelAssetId;
+   private Music music;
 
    public IngameScreen(BrainGdxGame game, String levelAssetId) {
       super(game);
@@ -67,12 +70,18 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    public void dispose() {
       super.dispose();
       Controllers.clearListeners();
+      music.stop();
    }
 
    @Override
    protected void onCreate(GameContext context) {
+      String musicAsset = Math.random() < 0.5f ? Assets.Musics.OVERWORLD : Assets.Musics.OVERWORLD2;
+      music = SharedAssetManager.getInstance().get(musicAsset, Music.class);
+      music.setLooping(true);
+      music.setVolume(0.4f);
+      music.play();
+      SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class).stop();
       setBackgroundColor(BACKGROUND);
-     // context.getAudioManager().playMusic(Assets.Musics.OVERWORLD);
 
       this.timer = new DeltaTimer();
       this.context = context;
@@ -103,6 +112,8 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
          gameOver = true;
          context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory, deliveredItems), 1f);
          Toast.getInstance().doToast(Bundle.get(Messages.TIME_EXPIRED));
+         Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.GAME_OVER, Sound.class);
+         sound.play();
          return;
       }
       if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {

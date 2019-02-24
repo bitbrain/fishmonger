@@ -1,5 +1,7 @@
 package de.bitbrain.fishmonger.screens;
 
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -9,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.screens.AbstractScreen;
+import de.bitbrain.braingdx.tweens.ActorTween;
 import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
@@ -41,6 +44,12 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       Label logo = new Label("Fishmongers", Styles.LABEL_LOGO);
       layout.add(logo).padBottom(100f).padTop(50f);
       layout.row();
+
+      Tween.to(logo, ActorTween.ALPHA, 1f)
+            .target(0.7f)
+            .repeatYoyo(Tween.INFINITY, 0f)
+            .ease(TweenEquations.easeInOutSine)
+            .start(context.getTweenManager());
 
       buttonMenu = new ButtonMenu(context.getTweenManager());
       buttonMenu.add(get(Messages.LEVEL_1_NAME), new ClickListener() {
