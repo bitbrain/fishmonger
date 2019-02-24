@@ -57,7 +57,7 @@ public class InventoryClearedHandler implements GameEventListener<InventoryClear
             }
          }
       }
-      return true;
+      return items.size() == Config.NUMBER_OF_INVENTORY_SLOTS;
    }
 
    private boolean isAllDifferent(List<Item> items) {
@@ -65,6 +65,6 @@ public class InventoryClearedHandler implements GameEventListener<InventoryClear
       for (Item item : items) {
          ids.add(item.getId());
       }
-      return items.size() == ids.size();
+      return items.size() == ids.size() && items.size() == Config.NUMBER_OF_INVENTORY_SLOTS;
    }
 }
