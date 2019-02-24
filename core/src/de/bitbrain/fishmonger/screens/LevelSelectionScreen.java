@@ -31,6 +31,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
    protected void onCreate(GameContext context) {
       setupUI(context);
       setBackgroundColor(Colors.BACKGROUND);
+      context.getScreenTransitions().in(0.4f);
    }
 
    void setupUI(final GameContext context) {

@@ -3,6 +3,8 @@ package de.bitbrain.fishmonger.assets;
 public interface Assets {
 
    interface Textures {
+      String MINIBEANSJAM_LOGO = "textures/minibeansjam.png";
+
       String PLAYER = "textures/player.png";
       String AVATARS = "textures/avatars.png";
       String FISH = "textures/fish.png";
