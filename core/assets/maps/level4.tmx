@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="26">
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" nextobjectid="26">
  <tileset firstgid="1" source="tileset.tsx"/>
- <layer id="1" name="base" width="64" height="64">
+ <layer name="base" width="64" height="64">
   <data encoding="base64" compression="zlib">
    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
   </data>
  </layer>
- <layer id="2" name="underplayer" width="64" height="64">
+ <layer name="underplayer" width="64" height="64">
   <data encoding="base64" compression="zlib">
    eJzt2UsKwzAMBNAcKsve/1yhi1IwTqwYyRqN520LQZ9RKOQ4RESk55NdQIIzuwBJY827MsLJstcd34lWLLPJ7gPh/YJQw46ys+eJqRck7Vx1qzza3fZu6Bz8XtmvH2WaA1s+UVSba3vPo/fazDMRee+pQs9vIWUZqZYexv3LnG8WVuQV/SYi6d7+UHKAUkcmlFyi7CK6Dq/no8xr1lPu3vQWmd+KM/asOWK2HvWh98igYvYlhrIgsh/dvWTYNXeo/0U966q424iamb+9rxBxK6j314rMC1sW73Zq6RMpD6u+0TBD2qfVTM13OamaH2s/Fffb87SnUY9Vd7ySZiQiXi7ErhH9
   </data>
  </layer>
- <objectgroup id="3" name="objects">
+ <objectgroup name="objects">
   <object id="5" name="PLAYER" type="PLAYER" x="79.7503" y="89.1667">
    <point/>
   </object>
@@ -21,12 +22,12 @@
    </properties>
    <point/>
   </object>
-  <object id="9" name="SPAWN" type="SPAWN" x="465.666" y="277.083" width="23.0833" height="47.875">
+  <object id="9" name="SPAWN" type="SPAWN" x="478.393" y="273.083" width="23.0833" height="47.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="12" name="SPAWN" type="SPAWN" x="333.792" y="190.063" width="14.4167" height="56.5417">
+  <object id="12" name="SPAWN" type="SPAWN" x="331.459" y="190.396" width="14.4167" height="56.5417">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
@@ -46,12 +47,12 @@
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="16" name="SPAWN" type="SPAWN" x="439.125" y="208.063" width="31.75" height="21.875">
+  <object id="16" name="SPAWN" type="SPAWN" x="460.034" y="202.79" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="17" name="SPAWN" type="SPAWN" x="217.458" y="321.396" width="60.75" height="21.875">
+  <object id="17" name="SPAWN" type="SPAWN" x="219.458" y="328.729" width="60.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
@@ -61,7 +62,7 @@
     <property name="capacity" type="int" value="1"/>
    </properties>
   </object>
-  <object id="19" name="SPAWN" type="SPAWN" x="276.959" y="247.729" width="32.75" height="29.875">
+  <object id="19" name="SPAWN" type="SPAWN" x="283.626" y="241.729" width="32.75" height="29.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
    </properties>
@@ -71,17 +72,17 @@
     <property name="capacity" type="int" value="5"/>
    </properties>
   </object>
-  <object id="21" name="SPAWN" type="SPAWN" x="255.292" y="414.729" width="25.4167" height="24.5417">
+  <object id="21" name="SPAWN" type="SPAWN" x="253.959" y="390.396" width="25.4167" height="24.5417">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="22" name="SPAWN" type="SPAWN" x="402.292" y="462.729" width="102.417" height="32.0417">
+  <object id="22" name="SPAWN" type="SPAWN" x="403.792" y="473.229" width="102.417" height="32.0417">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="23" name="SPAWN" type="SPAWN" x="167.791" y="242.563" width="56.75" height="21.875">
+  <object id="23" name="SPAWN" type="SPAWN" x="168.791" y="235.23" width="56.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
@@ -97,7 +98,7 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="4" name="overplayer" width="64" height="64">
+ <layer name="overplayer" width="64" height="64">
   <data encoding="base64" compression="zlib">
    eJzt1sENwzAMA8AM1P3n6yvosw1Sw1R4N4FE0UGOA4DTa/cAxNORZ3JXEiT0MGEG4DtvtUvDvRt2hBa/vOerb77xG9G4Mx/uz0kX1pMxifSSHf7VO/1dpyHbhh0BAMiU+i+aOtdkMr1nRX5u8jx3bprUh6RZppqY4cSZd2nIqmFHAGZ4A+75BYE=
   </data>

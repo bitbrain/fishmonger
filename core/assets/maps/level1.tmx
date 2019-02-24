@@ -22,24 +22,24 @@
    </properties>
    <point/>
   </object>
-  <object id="9" name="SPAWN" type="SPAWN" x="36" y="52.25" width="31.75" height="21.875">
+  <object id="9" name="SPAWN" type="SPAWN" x="53.5" y="50.75" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
    </properties>
   </object>
-  <object id="12" name="SPAWN" type="SPAWN" x="133.125" y="95.5625" width="31.75" height="21.875">
+  <object id="12" name="SPAWN" type="SPAWN" x="118.625" y="83.8125" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
    </properties>
   </object>
   <object id="13" name="SPAWN" type="SPAWN" x="114.125" y="49.0625" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="3"/>
+    <property name="capacity" type="int" value="6"/>
    </properties>
   </object>
-  <object id="14" name="SPAWN" type="SPAWN" x="50.125" y="92.0625" width="31.75" height="21.875">
+  <object id="14" name="SPAWN" type="SPAWN" x="57.375" y="84.5625" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="3"/>
+    <property name="capacity" type="int" value="6"/>
    </properties>
   </object>
  </objectgroup>
