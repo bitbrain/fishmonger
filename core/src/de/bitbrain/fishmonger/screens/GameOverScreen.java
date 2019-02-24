@@ -25,6 +25,7 @@ import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
 import de.bitbrain.fishmonger.ui.DialogManager;
 import de.bitbrain.fishmonger.ui.DialogUI;
+import de.bitbrain.fishmonger.ui.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,7 +78,7 @@ public class GameOverScreen extends AbstractScreen {
       }
       super.onUpdate(delta);
       if (!dialog && dialogUI.hasFinishedDialoging()) {
-         context.getScreenTransitions().out(new IngameScreen(getGame()), 1f);
+         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 1f);
          exiting = true;
       }
    }
@@ -146,6 +147,7 @@ public class GameOverScreen extends AbstractScreen {
       dialogUI.setWidth(width);
       dialogUI.setX(Gdx.graphics.getWidth() / 2f - width / 2f);
       context.getStage().addActor(dialogUI);
+      Toast.getInstance().init(context.getStage());
    }
 
    private void prepareGameOverDialog() {

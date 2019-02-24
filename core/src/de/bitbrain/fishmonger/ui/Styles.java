@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.NinePatchDrawable;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.graphics.GraphicsFactory;
@@ -19,6 +20,7 @@ public class Styles {
    public static final Label.LabelStyle LABEL_TOAST = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
+   public static final TextButton.TextButtonStyle BUTTON_MENU = new TextButton.TextButtonStyle();
 
    public static void load() {
       INVENTORY_ICON.up = new NinePatchDrawable(
@@ -35,6 +37,16 @@ public class Styles {
 
       LABEL_DIALOG_TITLE.font = bake(Assets.Fonts.PIXELMIX, 30);
       LABEL_DIALOG_TITLE.fontColor = Colors.FOREGROUND;
+
+      BUTTON_MENU.font = bake(Assets.Fonts.PIXELMIX, 36);
+      BUTTON_MENU.fontColor = Colors.BORDER;
+      BUTTON_MENU.overFontColor = Colors.FOREGROUND;
+      BUTTON_MENU.checkedFontColor = Colors.FOREGROUND;
+      Texture ninePatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL_MEDIUM, Texture.class);
+      BUTTON_MENU.over = new NinePatchDrawable(GraphicsFactory.createNinePatch(ninePatchTexture, 22));
+      Texture defaultPatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class);
+      BUTTON_MENU.checked = BUTTON_MENU.over;
+      BUTTON_MENU.up = new NinePatchDrawable(GraphicsFactory.createNinePatch(defaultPatchTexture, 22));
    }
 
    private static BitmapFont bake(String fontPath, int size, boolean border) {

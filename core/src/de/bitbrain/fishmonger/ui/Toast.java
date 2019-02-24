@@ -30,6 +30,7 @@ public class Toast {
 	}
 	
 	public void init(Stage stage) {
+		this.toast = null;
 		this.stage = stage;
 	}
 	

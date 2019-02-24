@@ -37,6 +37,11 @@ public enum Messages {
    TIME_EXPIRED("time.expired"),
    INVENTORY_FULL("inventory.full"),
 
+   LEVEL_1_NAME("level.1.name"),
+   LEVEL_2_NAME("level.2.name"),
+   LEVEL_3_NAME("level.3.name"),
+   LEVEL_4_NAME("level.4.name"),
+
    GAME_OVER_EMPTY("game.over.empty"),
    GAME_OVER_INTRODUCTION("game.over.introduction"),
    GAME_OVER_OVERVIEW("game.over.overview"),

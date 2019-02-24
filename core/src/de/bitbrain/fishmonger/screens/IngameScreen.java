@@ -56,9 +56,11 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
 
    private boolean gameOver = false;
    private DialogManager dialogManager;
+   private String levelAssetId;
 
-   public IngameScreen(BrainGdxGame game) {
+   public IngameScreen(BrainGdxGame game, String levelAssetId) {
       super(game);
+      this.levelAssetId = levelAssetId;
    }
 
    @Override
@@ -103,7 +105,11 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
          Toast.getInstance().doToast(Bundle.get(Messages.TIME_EXPIRED));
          return;
       }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+         gameOver = true;
+         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 1f);
+      }
+      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isTouched()) {
          rod.throwRod();
       }
       super.onUpdate(delta);
@@ -115,7 +121,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    }
 
    private void setupWorld(GameContext context) {
-      TiledMap level = SharedAssetManager.getInstance().get(Assets.TiledMaps.LEVEL_1, TiledMap.class);
+      TiledMap level = SharedAssetManager.getInstance().get(levelAssetId, TiledMap.class);
       context.getTiledMapManager().load(level, context.getGameCamera().getInternalCamera(), TiledMapType.ORTHOGONAL);
       context.getGameWorld().setBounds(new SimpleWorldBounds(
             context.getTiledMapManager().getAPI().getWorldWidth(),
