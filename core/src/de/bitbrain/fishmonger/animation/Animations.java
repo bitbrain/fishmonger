@@ -214,6 +214,98 @@ public class Animations {
             return target.getOffsetX() != 0 || target.getOffsetY() != 0;
          }
       }));
+      context.getRenderManager().register(FishType.GIANT_PIRANHA, new AnimationRenderer(fishSheet,
+            AnimationConfig.builder()
+                  .registerFrames(Orientation.DOWN, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 8)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.UP, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 9)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 10)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.LEFT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 11)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .build()
+            , new AnimationTypeResolver<GameObject>() {
+         @Override
+         public Object getAnimationType(GameObject object) {
+            return object.getAttribute(Orientation.class);
+         }
+      }, new Enabler<GameObject>() {
+         @Override
+         public boolean isEnabledFor(GameObject target) {
+            return target.getOffsetX() != 0 || target.getOffsetY() != 0;
+         }
+      }));
+      context.getRenderManager().register(FishType.EEL, new AnimationRenderer(fishSheet,
+            AnimationConfig.builder()
+                  .registerFrames(Orientation.DOWN, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 12)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.UP, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 13)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 14)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .registerFrames(Orientation.LEFT, AnimationFrames.builder()
+                        .resetIndex(0)
+                        .duration(0.1f)
+                        .origin(0, 15)
+                        .direction(AnimationFrames.Direction.HORIZONTAL)
+                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                        .frames(8)
+                        .build())
+                  .build()
+            , new AnimationTypeResolver<GameObject>() {
+         @Override
+         public Object getAnimationType(GameObject object) {
+            return object.getAttribute(Orientation.class);
+         }
+      }, new Enabler<GameObject>() {
+         @Override
+         public boolean isEnabledFor(GameObject target) {
+            return target.getOffsetX() != 0 || target.getOffsetY() != 0;
+         }
+      }));
 
    }
 
