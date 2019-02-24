@@ -1,546 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" nextobjectid="26">
- <tileset firstgid="1" name="tileset" tilewidth="8" tileheight="8" spacing="1" margin="1" tilecount="328" columns="8">
-  <image source="tileset.png" width="73" height="370"/>
-  <terraintypes>
-   <terrain name="GRASS" tile="9"/>
-   <terrain name="WATER" tile="26"/>
-   <terrain name="SAND" tile="129"/>
-   <terrain name="STEG AUF WASSER" tile="209"/>
-   <terrain name="STEG AUF GRASS" tile="257"/>
-   <terrain name="STEG AUF SAND" tile="209"/>
-  </terraintypes>
-  <tile id="0" terrain="1,1,1,0">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="0" duration="600"/>
-    <frame tileid="40" duration="600"/>
-    <frame tileid="41" duration="600"/>
-    <frame tileid="42" duration="600"/>
-    <frame tileid="41" duration="600"/>
-    <frame tileid="40" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="1" terrain="1,1,0,0">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="1" duration="600"/>
-    <frame tileid="88" duration="600"/>
-    <frame tileid="89" duration="600"/>
-    <frame tileid="90" duration="600"/>
-    <frame tileid="89" duration="600"/>
-    <frame tileid="88" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="2" terrain="1,1,0,1">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="2" duration="600"/>
-    <frame tileid="64" duration="600"/>
-    <frame tileid="65" duration="600"/>
-    <frame tileid="66" duration="600"/>
-    <frame tileid="65" duration="600"/>
-    <frame tileid="64" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="3" terrain="0,0,0,0" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="4" terrain="0,0,0,0" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="5" terrain="0,0,0,0" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="6">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="7">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="8" terrain="1,0,1,0">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="8" duration="600"/>
-    <frame tileid="48" duration="600"/>
-    <frame tileid="49" duration="600"/>
-    <frame tileid="50" duration="600"/>
-    <frame tileid="49" duration="600"/>
-    <frame tileid="48" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="9" terrain="0,0,0,0">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="10" terrain="0,1,0,1">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="10" duration="600"/>
-    <frame tileid="72" duration="600"/>
-    <frame tileid="73" duration="600"/>
-    <frame tileid="74" duration="600"/>
-    <frame tileid="73" duration="600"/>
-    <frame tileid="72" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="11" terrain="0,0,0,0" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="12" terrain="0,0,0,0" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="13" terrain="0,0,0,0" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="14">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="15">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="16" terrain="1,0,1,1" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="16" duration="600"/>
-    <frame tileid="56" duration="600"/>
-    <frame tileid="57" duration="600"/>
-    <frame tileid="58" duration="600"/>
-    <frame tileid="57" duration="600"/>
-    <frame tileid="56" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="17" terrain="0,0,1,1" probability="0.3">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="17" duration="600"/>
-    <frame tileid="96" duration="600"/>
-    <frame tileid="97" duration="600"/>
-    <frame tileid="98" duration="600"/>
-    <frame tileid="97" duration="600"/>
-    <frame tileid="96" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="18" terrain="0,1,1,1">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="18" duration="600"/>
-    <frame tileid="80" duration="600"/>
-    <frame tileid="81" duration="600"/>
-    <frame tileid="82" duration="600"/>
-    <frame tileid="81" duration="600"/>
-    <frame tileid="80" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="19">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="20">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="21">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="22">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="23">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="24" terrain="0,0,0,1">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="25" terrain="0,0,1,0">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="25" duration="600"/>
-    <frame tileid="112" duration="600"/>
-    <frame tileid="113" duration="600"/>
-    <frame tileid="114" duration="600"/>
-    <frame tileid="113" duration="600"/>
-    <frame tileid="112" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="26" terrain="1,1,1,1">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-   <animation>
-    <frame tileid="26" duration="600"/>
-    <frame tileid="27" duration="600"/>
-    <frame tileid="28" duration="600"/>
-    <frame tileid="29" duration="600"/>
-    <frame tileid="30" duration="600"/>
-    <frame tileid="29" duration="600"/>
-    <frame tileid="28" duration="600"/>
-    <frame tileid="27" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="27">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="28">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="29">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="30">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="31">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="32" terrain="0,1,0,0">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-   <animation>
-    <frame tileid="32" duration="600"/>
-    <frame tileid="104" duration="600"/>
-    <frame tileid="105" duration="600"/>
-    <frame tileid="106" duration="600"/>
-    <frame tileid="105" duration="600"/>
-    <frame tileid="104" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="33" terrain="1,0,0,0">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="34" terrain="1,1,1,1" probability="0.4">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-   <animation>
-    <frame tileid="34" duration="600"/>
-    <frame tileid="35" duration="600"/>
-    <frame tileid="36" duration="600"/>
-    <frame tileid="37" duration="600"/>
-    <frame tileid="36" duration="600"/>
-    <frame tileid="35" duration="600"/>
-   </animation>
-  </tile>
-  <tile id="35">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="36">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="37">
-   <properties>
-    <property name="collision" type="bool" value="false"/>
-   </properties>
-  </tile>
-  <tile id="38">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="39">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="40">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="41">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="42">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="48">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="49">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="50">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="51">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="56">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="57">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="58">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="64">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="65">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="66">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="72">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="73">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="74">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="80">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="81">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="82">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="88">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="89">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="90">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="96">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="97">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="98">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="104">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="105">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="106">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="112">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="113">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="114">
-   <properties>
-    <property name="collision" type="bool" value="true"/>
-   </properties>
-  </tile>
-  <tile id="120" terrain="1,1,1,2"/>
-  <tile id="121" terrain="1,1,2,2"/>
-  <tile id="122" terrain="1,1,2,1"/>
-  <tile id="128" terrain="1,2,1,2"/>
-  <tile id="129" terrain="2,2,2,2"/>
-  <tile id="130" terrain="2,1,2,1"/>
-  <tile id="136" terrain="1,2,1,1"/>
-  <tile id="137" terrain="2,2,1,1"/>
-  <tile id="138" terrain="2,1,1,1"/>
-  <tile id="144" terrain="2,2,2,1"/>
-  <tile id="145" terrain="2,2,1,2"/>
-  <tile id="152" terrain="2,1,2,2"/>
-  <tile id="153" terrain="1,2,2,2"/>
-  <tile id="160" terrain="2,2,2,0"/>
-  <tile id="161" terrain="2,2,0,0"/>
-  <tile id="162" terrain="2,2,0,2"/>
-  <tile id="168" terrain="2,0,2,0"/>
-  <tile id="169" terrain="0,0,0,0"/>
-  <tile id="170" terrain="0,2,0,2"/>
-  <tile id="176" terrain="2,0,2,2"/>
-  <tile id="177" terrain="0,0,2,2"/>
-  <tile id="178" terrain="0,2,2,2"/>
-  <tile id="184" terrain="0,0,0,2"/>
-  <tile id="185" terrain="0,0,2,0"/>
-  <tile id="192" terrain="0,2,0,0"/>
-  <tile id="193" terrain="2,0,0,0"/>
-  <tile id="200" terrain=",,,3"/>
-  <tile id="201" terrain=",,3,3"/>
-  <tile id="202" terrain=",,3,"/>
-  <tile id="208" terrain=",3,,3"/>
-  <tile id="209" terrain="3,3,3,3"/>
-  <tile id="210" terrain="3,,3,"/>
-  <tile id="224" terrain=",3,,"/>
-  <tile id="225" terrain="3,3,,"/>
-  <tile id="226" terrain="3,,,"/>
-  <tile id="232" terrain="3,3,3,"/>
-  <tile id="233" terrain="3,3,,3"/>
-  <tile id="240" terrain="3,,3,3"/>
-  <tile id="241" terrain=",3,3,3"/>
-  <tile id="248" terrain=",,,4"/>
-  <tile id="249" terrain=",,4,4"/>
-  <tile id="250" terrain=",,4,"/>
-  <tile id="256" terrain=",4,,4"/>
-  <tile id="257" terrain="4,4,4,4"/>
-  <tile id="258" terrain="4,,4,"/>
-  <tile id="264" terrain=",4,,"/>
-  <tile id="265" terrain="4,4,,"/>
-  <tile id="266" terrain="4,,,"/>
-  <tile id="272" terrain="4,4,4,"/>
-  <tile id="273" terrain="4,4,,4"/>
-  <tile id="280" terrain="4,,4,4"/>
-  <tile id="281" terrain=",4,4,4"/>
-  <tile id="288" terrain=",,,5"/>
-  <tile id="289" terrain=",,5,5"/>
-  <tile id="290" terrain=",,5,"/>
-  <tile id="296" terrain=",5,,5"/>
-  <tile id="297" terrain="5,5,5,5"/>
-  <tile id="298" terrain="5,,5,"/>
-  <tile id="304" terrain=",5,,"/>
-  <tile id="305" terrain="5,5,,"/>
-  <tile id="306" terrain="5,,,"/>
-  <tile id="312" terrain="5,5,5,"/>
-  <tile id="313" terrain="5,5,,5"/>
-  <tile id="320" terrain="5,,5,5"/>
-  <tile id="321" terrain=",5,5,5"/>
- </tileset>
- <layer name="base" width="64" height="64">
+<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" nextlayerid="6" nextobjectid="26">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer id="1" name="base" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   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
+   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
   </data>
  </layer>
- <layer name="underplayer" width="64" height="64">
+ <layer id="2" name="underplayer" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2lEOg0AIRVEX1c/uf12maYzG1Ngwg/DgngW0DD7oNHFZACCHd3QBCbyiC0Apljxtc6icRa/aO+4oay8V83OsueOzHrX1j95hlOL+mM0yR136VuGecoc9+r/KvYrOePT3Z/PJGj3ppfJ+AQB8sevz8rx3PXGn635vnDFbavPpVa9SlpRqvVPpLBbWPKvNLXxd5SFjTrrPfJSMWfA0krNuvcKOdxeQmffvJ/+x5lPdI17PrFsWrs7rnYvj52fpueosVKLyDKx1/sq6ypmx83g3LcsetBjJMPnXcM6ncl5HkFcA2a3gXA7h
+   eJzt2UsKwzAMBNAcKsve/1yhi1IwTqwYyRqN520LQZ9RKOQ4RESk55NdQIIzuwBJY827MsLJstcd34lWLLPJ7gPh/YJQw46ys+eJqRck7Vx1qzza3fZu6Bz8XtmvH2WaA1s+UVSba3vPo/fazDMRee+pQs9vIWUZqZYexv3LnG8WVuQV/SYi6d7+UHKAUkcmlFyi7CK6Dq/no8xr1lPu3vQWmd+KM/asOWK2HvWh98igYvYlhrIgsh/dvWTYNXeo/0U966q424iamb+9rxBxK6j314rMC1sW73Zq6RMpD6u+0TBD2qfVTM13OamaH2s/Fffb87SnUY9Vd7ySZiQiXi7ErhH9
   </data>
  </layer>
- <objectgroup name="objects">
+ <objectgroup id="3" name="objects">
   <object id="5" name="PLAYER" type="PLAYER" x="79.7503" y="89.1667">
    <point/>
   </object>
@@ -550,12 +21,12 @@
    </properties>
    <point/>
   </object>
-  <object id="9" name="SPAWN" type="SPAWN" x="485.666" y="358.583" width="23.0833" height="47.875">
+  <object id="9" name="SPAWN" type="SPAWN" x="465.666" y="277.083" width="23.0833" height="47.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="12" name="SPAWN" type="SPAWN" x="327.792" y="205.563" width="14.4167" height="56.5417">
+  <object id="12" name="SPAWN" type="SPAWN" x="333.792" y="190.063" width="14.4167" height="56.5417">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
@@ -580,17 +51,17 @@
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="17" name="SPAWN" type="SPAWN" x="145.458" y="309.396" width="60.75" height="21.875">
+  <object id="17" name="SPAWN" type="SPAWN" x="217.458" y="321.396" width="60.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="18" name="SPAWN" type="SPAWN" x="227.125" y="130.063" width="31.75" height="21.875">
+  <object id="18" name="SPAWN" type="SPAWN" x="225.625" y="126.063" width="40.75" height="34.375">
    <properties>
     <property name="capacity" type="int" value="1"/>
    </properties>
   </object>
-  <object id="19" name="SPAWN" type="SPAWN" x="272.459" y="255.729" width="31.75" height="21.875">
+  <object id="19" name="SPAWN" type="SPAWN" x="276.959" y="247.729" width="32.75" height="29.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
    </properties>
@@ -600,22 +71,22 @@
     <property name="capacity" type="int" value="5"/>
    </properties>
   </object>
-  <object id="21" name="SPAWN" type="SPAWN" x="247.792" y="414.729" width="25.4167" height="24.5417">
+  <object id="21" name="SPAWN" type="SPAWN" x="255.292" y="414.729" width="25.4167" height="24.5417">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="22" name="SPAWN" type="SPAWN" x="398.792" y="454.229" width="102.417" height="44.0417">
+  <object id="22" name="SPAWN" type="SPAWN" x="402.292" y="462.729" width="102.417" height="32.0417">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="23" name="SPAWN" type="SPAWN" x="152.291" y="233.563" width="31.75" height="21.875">
+  <object id="23" name="SPAWN" type="SPAWN" x="167.791" y="242.563" width="56.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="24" name="SPAWN" type="SPAWN" x="29.2913" y="312.063" width="31.75" height="21.875">
+  <object id="24" name="SPAWN" type="SPAWN" x="28.7913" y="253.063" width="31.75" height="53.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
@@ -626,9 +97,9 @@
    </properties>
   </object>
  </objectgroup>
- <layer name="overplayer" width="64" height="64">
+ <layer id="4" name="overplayer" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt1sENgCAQRUELsv/6vHshQYS/MNOAy/JMuC6AHPfqAdjKl54qt1h59jS9u6x4BxVnTmJ/jKKlPqft7bTzcp7Vja/+fiI7AQCY489314w3nXcjo1RqqdKsLTudBWjzzzODzuihG5JV7bPq3Ix3WgsJ502YAWbQ+l5G3qc2SPbuU68AJHoAHKAFrQ==
+   eJzt1sENwzAMA8AM1P3n6yvosw1Sw1R4N4FE0UGOA4DTa/cAxNORZ3JXEiT0MGEG4DtvtUvDvRt2hBa/vOerb77xG9G4Mx/uz0kX1pMxifSSHf7VO/1dpyHbhh0BAMiU+i+aOtdkMr1nRX5u8jx3bprUh6RZppqY4cSZd2nIqmFHAGZ4A+75BYE=
   </data>
  </layer>
 </map>
