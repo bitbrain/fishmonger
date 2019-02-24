@@ -24,10 +24,10 @@ public class Styles {
       INVENTORY_ICON.up = new NinePatchDrawable(
             GraphicsFactory.createNinePatch(SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class), 8)
       );
-      INGAME_CASH.font = bake(Assets.Fonts.PIXELMIX, 60);
+      INGAME_CASH.font = bake(Assets.Fonts.PIXELMIX, 60, true);
       INGAME_CASH.fontColor = Colors.FOREGROUND;
 
-      LABEL_TOAST.font = bake(Assets.Fonts.PIXELMIX, 60, true);
+      LABEL_TOAST.font = bake(Assets.Fonts.PIXELMIX, 40, true);
       LABEL_TOAST.fontColor = Colors.FOREGROUND;
 
       LABEL_DIALOG.font = bake(Assets.Fonts.PIXELMIX, 26);

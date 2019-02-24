@@ -26,6 +26,7 @@ import de.bitbrain.fishmonger.catching.FishingRod;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
 import de.bitbrain.fishmonger.event.handler.InventoryClearedHandler;
+import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
 import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
@@ -99,17 +100,11 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
          player.setActive(false);
          gameOver = true;
          context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory, deliveredItems), 1f);
+         Toast.getInstance().doToast(Bundle.get(Messages.TIME_EXPIRED));
          return;
       }
       if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
          rod.throwRod();
-      }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-         Toast.getInstance().doToast("you caught a fish!");
-      }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
-         dialogManager.addDialog("Richard Gier", Messages.FISH_PIRANHA_DESCRIPTION, createGierAvatar());
-         dialogManager.nextDialog();
       }
       super.onUpdate(delta);
    }

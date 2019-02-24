@@ -25,7 +25,11 @@ public enum Messages {
    FISH_PIRANHA_NAME("fish.piranha.name"),
    FISH_PIRANHA_DESCRIPTION("fish.piranha.description"),
    FISH_MACKEREL_NAME("fish.mackerel.name"),
-   FISH_MACKEREL_DESCRIPTION("fish.mackerel.description");
+   FISH_MACKEREL_DESCRIPTION("fish.mackerel.description"),
+
+   FISH_CAUGHT("fish.caught"),
+   TIME_EXPIRED("time.expired"),
+   INVENTORY_FULL("inventory.full");
 
    private final String key;
 

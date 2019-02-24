@@ -41,28 +41,20 @@ public class Toast {
 		if (this.toast != null) {
 			tweenManager.killTarget(this.toast);
 		}
-		toast = new Label(text, Styles.LABEL_TOAST) {
-			@Override
-			public void draw(Batch batch, float parentAlpha) {
-				super.draw(batch, parentAlpha);
-			}
-		};
+		if (toast == null) {
+			toast = new Label(text, Styles.LABEL_TOAST);
+			stage.addActor(toast);
+		}
 		toast.setAlignment(Align.center);
 		toast.setColor(Color.WHITE.cpy());
 		toast.setWidth(Gdx.graphics.getWidth());
 		toast.setHeight(Gdx.graphics.getHeight());
-		stage.addActor(toast);
+		toast.getColor().a = 1f;
+		toast.setText(text);
 		Tween.to(toast, ActorTween.ALPHA, 0.8f)
 		     .delay(0.3f)
-			 .target(0f)
+			  .target(0f)
 		     .ease(TweenEquations.easeInQuad)
-		     .setCallbackTriggers(TweenCallback.COMPLETE)
-		     .setCallback(new TweenCallback() {
-				@Override
-				public void onEvent(int arg0, BaseTween<?> arg1) {
-					stage.getActors().removeValue(toast, true);
-				}
-		     })
 		     .start(tweenManager);
 	}
 }

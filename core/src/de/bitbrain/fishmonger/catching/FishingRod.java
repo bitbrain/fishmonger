@@ -9,10 +9,13 @@ import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.Config;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
+import de.bitbrain.fishmonger.i18n.Bundle;
+import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.model.FishType;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.inventory.ItemFactory;
+import de.bitbrain.fishmonger.ui.Toast;
 
 import static de.bitbrain.braingdx.behavior.movement.Orientation.*;
 
@@ -66,6 +69,8 @@ public class FishingRod {
          currentLength = 1;
          player.setActive(false);
          context.getEventManager().publish(new FishingRodEvents.ThrowRodEvent());
+      } else if (inventory.isFull()) {
+         Toast.getInstance().doToast(Bundle.get(Messages.INVENTORY_FULL));
       }
    }
 
@@ -99,6 +104,7 @@ public class FishingRod {
       GameObject object = api.getGameObjectAt(tileX, tileY, 0);
       if (object != null && object.getType() instanceof FishType) {
          Item item = ItemFactory.retrieveFromGameObject(object);
+         Toast.getInstance().doToast(Bundle.get(Messages.FISH_CAUGHT, item.getName()));
          context.getEventManager().publish(new FishingRodEvents.FishCatchedEvent(player, new Vector2(x, y), item));
          inventory.addItem(item);
          context.getGameWorld().remove(object);
