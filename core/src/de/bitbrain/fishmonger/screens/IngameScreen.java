@@ -97,7 +97,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       setupShaders(context);
 
 
-      this.rod = new FishingRod(player, inventory, context);
+      this.rod = new FishingRod(player, inventory, context, dialogManager);
    }
 
    @Override

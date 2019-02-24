@@ -1,5 +1,9 @@
 package de.bitbrain.fishmonger.catching;
 
+import aurelienribon.tweenengine.BaseTween;
+import aurelienribon.tweenengine.Tween;
+import aurelienribon.tweenengine.TweenCallback;
+import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.math.Vector2;
 import de.bitbrain.braingdx.GameContext;
@@ -7,9 +11,12 @@ import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.tmx.IndexCalculator;
 import de.bitbrain.braingdx.tmx.TiledMapAPI;
+import de.bitbrain.braingdx.tweens.GameObjectTween;
+import de.bitbrain.braingdx.tweens.SharedTweenManager;
 import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.Config;
+import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
 import de.bitbrain.fishmonger.i18n.Bundle;
@@ -18,6 +25,7 @@ import de.bitbrain.fishmonger.model.FishType;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.inventory.ItemFactory;
+import de.bitbrain.fishmonger.ui.DialogManager;
 import de.bitbrain.fishmonger.ui.Toast;
 
 import static de.bitbrain.braingdx.behavior.movement.Orientation.*;
@@ -31,13 +39,15 @@ public class FishingRod {
    private boolean throwing = false;
    private boolean pullingBack = false;
    private final Inventory inventory;
+   private final DialogManager dialogManager;
 
    private int currentLength;
 
-   public FishingRod(GameObject player, Inventory inventory, GameContext context) {
+   public FishingRod(GameObject player, Inventory inventory, GameContext context, DialogManager dialogManager) {
       this.player = player;
       this.context = context;
       this.inventory = inventory;
+      this.dialogManager = dialogManager;
    }
 
    public void update(float delta) {
@@ -108,17 +118,40 @@ public class FishingRod {
       }
       int tileX = IndexCalculator.calculateIndex(x, api.getCellWidth());
       int tileY = IndexCalculator.calculateIndex(y, api.getCellHeight());
-      GameObject object = api.getGameObjectAt(tileX, tileY, 0);
-      if (object != null && object.getType() instanceof FishType) {
-         Item item = ItemFactory.retrieveFromGameObject(object);
-         Toast.getInstance().doToast(Bundle.get(Messages.FISH_CAUGHT, item.getName()));
-         context.getEventManager().publish(new FishingRodEvents.FishCatchedEvent(player, new Vector2(x, y), item));
-         inventory.addItem(item);
-         context.getGameWorld().remove(object);
-         pullBack();
-         Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.BITE, Sound.class);
-         sound.play();
-         return true;
+      for (int i = 0; i < 3; ++i) {
+         final GameObject object = api.getGameObjectAt(tileX, tileY, i);
+         if (object != null && object.getType() instanceof FishType) {
+            Item item = ItemFactory.retrieveFromGameObject(object);
+            Toast.getInstance().doToast(Bundle.get(Messages.FISH_CAUGHT, item.getName()));
+            context.getEventManager().publish(new FishingRodEvents.FishCatchedEvent(player, new Vector2(x, y), item));
+            inventory.addItem(item);
+            context.getGameWorld().remove(object);
+            pullBack();
+            Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.BITE, Sound.class);
+            sound.play();
+            return true;
+         } else if (object != null && "GIER".equals(object.getType())) {
+            dialogManager.addDialog("Richard Gier", Messages.ANGRY_RICHARD, Animations.createGierAvatar(), true);
+            SharedTweenManager.getInstance().killTarget(object, GameObjectTween.OFFSET_Y);
+            Tween.to(object, GameObjectTween.OFFSET_Y, 0.2f)
+                  .ease(TweenEquations.easeOutCubic)
+                  .target(8f)
+                  .setCallbackTriggers(TweenCallback.COMPLETE)
+                  .setCallback(new TweenCallback() {
+                     @Override
+                     public void onEvent(int type, BaseTween<?> source) {
+                        Tween.to(object, GameObjectTween.OFFSET_Y, 0.2f)
+                              .ease(TweenEquations.easeOutBounce)
+                              .target(0f)
+                              .start(SharedTweenManager.getInstance());
+                     }
+                  })
+                  .start(SharedTweenManager.getInstance());
+            dialogManager.nextDialog();
+            pullBack();
+            Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.BITE, Sound.class);
+            sound.play();
+         }
       }
       return false;
    }
