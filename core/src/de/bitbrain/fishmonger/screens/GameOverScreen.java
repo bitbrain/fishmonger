@@ -16,7 +16,9 @@ import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
+import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.model.FishType;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
@@ -25,7 +27,9 @@ import de.bitbrain.fishmonger.ui.DialogManager;
 import de.bitbrain.fishmonger.ui.DialogUI;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static de.bitbrain.fishmonger.Colors.BACKGROUND;
 
@@ -35,6 +39,10 @@ public class GameOverScreen extends AbstractScreen {
    private final Inventory inventory;
    private final List<Item> delivered;
    private DialogManager dialogManager;
+   private GameContext context;
+
+   private boolean exiting = false, dialog = true;
+   private DialogUI dialogUI;
 
    public GameOverScreen(BrainGdxGame game, Money money, Inventory inventory, List<Item> delivered) {
       super(game);
@@ -46,6 +54,7 @@ public class GameOverScreen extends AbstractScreen {
    @Override
    protected void onCreate(GameContext context) {
       this.dialogManager = new DialogManager();
+      this.context = context;
 
       prepareGameOverDialog();
 
@@ -57,6 +66,22 @@ public class GameOverScreen extends AbstractScreen {
       dialogManager.nextDialog();
    }
 
+   @Override
+   protected void onUpdate(float delta) {
+      if (dialog) {
+         dialog = false;
+         return;
+      }
+      if (exiting) {
+         return;
+      }
+      super.onUpdate(delta);
+      if (!dialog && dialogUI.hasFinishedDialoging()) {
+         context.getScreenTransitions().out(new IngameScreen(getGame()), 1f);
+         exiting = true;
+      }
+   }
+
    private void setupWorld(GameContext context) {
       TiledMap level = SharedAssetManager.getInstance().get(Assets.TiledMaps.GAME_OVER, TiledMap.class);
       context.getTiledMapManager().load(level, context.getGameCamera().getInternalCamera(), TiledMapType.ORTHOGONAL);
@@ -65,11 +90,9 @@ public class GameOverScreen extends AbstractScreen {
             context.getTiledMapManager().getAPI().getWorldHeight())
       );
       List<Spawner> spawners = new ArrayList<Spawner>();
-      GameObject player = null;
       for (GameObject o : context.getGameWorld()) {
          if ("PLAYER".equals(o.getType())) {
             configurePlayer(context, o);
-            player = o;
          }
          if ("GIER".equals(o.getType())) {
             configureGier(context, o);
@@ -117,7 +140,7 @@ public class GameOverScreen extends AbstractScreen {
    }
 
    private void setupUI(GameContext context) {
-      DialogUI dialogUI = new DialogUI(dialogManager);
+      dialogUI = new DialogUI(dialogManager);
       float width = Gdx.graphics.getWidth() / 2f;
       dialogUI.setHeight(130f);
       dialogUI.setWidth(width);
@@ -127,17 +150,55 @@ public class GameOverScreen extends AbstractScreen {
 
    private void prepareGameOverDialog() {
       if (money.getAmount() == 0) {
-         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_EMPTY, Animations.createGierAvatar());
+         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_EMPTY, Animations.createGierAvatar(), true);
+         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_EMPTY, Animations.createGierAvatar(), true);
          return;
       }
 
-      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_INTRODUCTION, Animations.createGierAvatar());
+      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_INTRODUCTION, Animations.createGierAvatar(), true);
 
-      String asdf = "asdf";
+      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_OVERVIEW, Animations.createGierAvatar(), true, constructFishString());
 
-      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_OVERVIEW, Animations.createGierAvatar(), asdf);
+      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_RESULT, Animations.createGierAvatar(), true, money.getAmount());
 
      // dialogManager.addDialog("Richard Gier", , Animations.createGierAvatar());
 
+
+      if (delivered.size() > 10) {
+         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_SUFFICIENT, Animations.createGierAvatar(), true);
+      } else {
+         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_INSUFFICIENT_CASH, Animations.createGierAvatar(), true);
+      }
+   }
+
+   private String constructFishString() {
+      Map<String, Item> items = new HashMap<String, Item>();
+      Map<String, Integer> amounts = new HashMap<String, Integer>();
+      for (Item item : delivered) {
+         items.put(item.getId(), item);
+         Integer amount = amounts.get(item.getId());
+         if (amount == null) {
+            amounts.put(item.getId(), 1);
+         } else {
+            amounts.put(item.getId(), amount + 1);
+         }
+      }
+      StringBuilder fishString = new StringBuilder();
+
+      int counter = 0;
+      for (Map.Entry<String, Integer> entry : amounts.entrySet()) {
+         counter++;
+         int amount = entry.getValue();
+         Item item = items.get(entry.getKey());
+         String name = amount != 1 ? item.getPluralName() : item.getName();
+         if (amounts.size() > 1 && counter == amounts.size()) {
+            fishString.append(" ").append(Bundle.get(Messages.AND)).append(" ");
+         } else if (counter > 1) {
+            fishString.append(" ");
+         }
+         fishString.append(amount).append(" ").append(name);
+      }
+
+      return fishString.toString();
    }
 }

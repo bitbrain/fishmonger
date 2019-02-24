@@ -6,6 +6,7 @@ import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
@@ -41,9 +42,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static de.bitbrain.fishmonger.Colors.BACKGROUND;
-import static de.bitbrain.fishmonger.animation.Animations.createGierAvatar;
 
-public class IngameScreen extends AbstractScreen<FishMongerGame> {
+public class IngameScreen extends AbstractScreen<BrainGdxGame> {
 
    private Inventory inventory;
    private GameContext context;
@@ -57,7 +57,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private boolean gameOver = false;
    private DialogManager dialogManager;
 
-   public IngameScreen(FishMongerGame game) {
+   public IngameScreen(BrainGdxGame game) {
       super(game);
    }
 

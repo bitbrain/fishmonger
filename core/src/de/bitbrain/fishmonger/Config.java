@@ -10,5 +10,5 @@ public interface Config {
    float FISHING_ROD_THROW_INTERVAL = 0.1f;
    float FISHING_ROD_PULL_INTERVAL = 0.03f;
 
-   float GAME_DURATION_IN_SECONDS = 300f;
+   float GAME_DURATION_IN_SECONDS = 60f;
 }

@@ -1,6 +1,7 @@
 package de.bitbrain.fishmonger.ui;
 
 import aurelienribon.tweenengine.*;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.NinePatch;
@@ -41,6 +42,8 @@ public class DialogUI extends Actor {
 
    private final DeltaTimer autoCloseTimer = new DeltaTimer();
 
+   private boolean finishedDialoging = false;
+
    static {
       Tween.registerAccessor(ValueProvider.class, new ValueTween());
    }
@@ -54,17 +57,24 @@ public class DialogUI extends Actor {
       titleBackground =  GraphicsFactory.createNinePatch(labelNinePatchTexture, 15);
    }
 
+   public boolean hasFinishedDialoging() {
+      return !dialogManager.hasDialogs() && finishedDialoging;
+   }
+
    @Override
    public void act(float delta) {
       if (!currentlyClosing && dialog != null && dialog.isAutoClose()) {
          autoCloseTimer.update(delta);
       }
-      if (autoCloseTimer.reached(AUTO_CLOSE_DURATION) && dialog != null && dialog.isAutoClose()) {
+      if (!currentlyClosing && autoCloseTimer.reached(AUTO_CLOSE_DURATION) && dialog != null && dialog.isAutoClose()) {
          autoCloseTimer.reset();
          dialogManager.nextDialog();
          unsetDialog(dialog, new TweenCallback() {
             @Override
             public void onEvent(int arg0, BaseTween<?> arg1) {
+               if (dialogManager.getCurrentDialog() == null) {
+                  finishedDialoging = true;
+               }
                setDialog(dialogManager.getCurrentDialog());
             }
          });
@@ -91,6 +101,7 @@ public class DialogUI extends Actor {
 
    @Override
    public void draw(Batch batch, float parentAlpha) {
+      batch.setColor(Color.WHITE.cpy());
       parentAlpha *= getColor().a;
       if (dialog != null) {
          dialogBackground.draw(batch, getX(), getY(), getWidth() - MARGIN * 2f, getHeight());
@@ -135,9 +146,8 @@ public class DialogUI extends Actor {
          Tween.to(offsetProvider, ValueTween.VALUE, 0.5f)
                .target(getFadeOutYPosition())
                .ease(TweenEquations.easeInCubic)
-               .setCallbackTriggers(TweenCallback.COMPLETE)
-               .setCallback(finishCallback)
                .start(tweenManager);
+         Tween.call(finishCallback).delay(0.5f).start(tweenManager);
       } else {
          finishCallback.onEvent(0, null);
       }
@@ -146,7 +156,6 @@ public class DialogUI extends Actor {
    private void setDialog(Dialog dialog) {
       currentlyClosing = false;
       if (dialog != null) {
-
          this.dialog = dialog;
          this.text = new Label(dialog.getText(), Styles.LABEL_DIALOG);
          this.title = new Label(dialog.getTitle(), Styles.LABEL_DIALOG_TITLE);

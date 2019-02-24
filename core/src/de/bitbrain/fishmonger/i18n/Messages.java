@@ -2,6 +2,8 @@ package de.bitbrain.fishmonger.i18n;
 
 public enum Messages {
 
+   AND("and"),
+
    FISH_DELIVERY_EMPTY("fish.delivery.empty"),
 
    FISH_DELIVERY_01("fish.delivery.1"),
