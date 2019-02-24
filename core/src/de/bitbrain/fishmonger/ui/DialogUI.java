@@ -15,7 +15,6 @@ import de.bitbrain.braingdx.tweens.ValueTween;
 import de.bitbrain.braingdx.ui.AnimationDrawable;
 import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.util.ValueProvider;
-import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.ui.dialog.Dialog;
 
@@ -50,9 +49,9 @@ public class DialogUI extends Actor {
       this.dialogManager = dialogManager;
       // Create a nice background so font is readable
       Texture buttonNinePatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class);
-      Texture labelNinePatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class);
-      dialogBackground = GraphicsFactory.createNinePatch(buttonNinePatchTexture, 20, Colors.FOREGROUND);
-      titleBackground =  GraphicsFactory.createNinePatch(labelNinePatchTexture, 15, Colors.FOREGROUND);
+      Texture labelNinePatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL_DARK, Texture.class);
+      dialogBackground = GraphicsFactory.createNinePatch(buttonNinePatchTexture, 20);
+      titleBackground =  GraphicsFactory.createNinePatch(labelNinePatchTexture, 15);
    }
 
    @Override
@@ -93,13 +92,6 @@ public class DialogUI extends Actor {
    @Override
    public void draw(Batch batch, float parentAlpha) {
       parentAlpha *= getColor().a;
-      if (title != null) {
-         title.setX(getTitleX());
-         title.setY(getTitleY());
-         titleBackground.getColor().a = title.getColor().a;
-         titleBackground.draw(batch, getTitleBackgroundX(), getTitleBackgroundY(), getTitleBackgroundWidth(), getTitleBackgroundHeight());
-         title.draw(batch, 1f);
-      }
       if (dialog != null) {
          dialogBackground.draw(batch, getX(), getY(), getWidth() - MARGIN * 2f, getHeight());
          AnimationDrawable avatar = dialog.getAvatar();
@@ -114,6 +106,13 @@ public class DialogUI extends Actor {
       if (text != null) {
          text.setPosition(getX() + 30f, getY() + getHeight() - text.getHeight() - INNER_PADDING_Y);
          text.draw(batch, parentAlpha);
+      }
+      if (title != null) {
+         title.setX(getTitleX());
+         title.setY(getTitleY());
+         titleBackground.getColor().a = title.getColor().a;
+         titleBackground.draw(batch, getTitleBackgroundX(), getTitleBackgroundY(), getTitleBackgroundWidth(), getTitleBackgroundHeight());
+         title.draw(batch, 1f);
       }
    }
 
@@ -185,7 +184,7 @@ public class DialogUI extends Actor {
    }
 
    private float getTitleBackgroundY() {
-      return title.getY() - (TITLE_PADDING / 2f) - 6;
+      return title.getY() - (TITLE_PADDING / 2f);
    }
 
    private float getTitleBackgroundWidth() {

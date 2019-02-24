@@ -1,5 +1,6 @@
 package de.bitbrain.fishmonger.screens;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import de.bitbrain.braingdx.BrainGdxGame;
@@ -15,10 +16,13 @@ import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
+import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
+import de.bitbrain.fishmonger.ui.DialogManager;
+import de.bitbrain.fishmonger.ui.DialogUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,6 +34,7 @@ public class GameOverScreen extends AbstractScreen {
    private final Money money;
    private final Inventory inventory;
    private final List<Item> delivered;
+   private DialogManager dialogManager;
 
    public GameOverScreen(BrainGdxGame game, Money money, Inventory inventory, List<Item> delivered) {
       super(game);
@@ -40,9 +45,16 @@ public class GameOverScreen extends AbstractScreen {
 
    @Override
    protected void onCreate(GameContext context) {
+      this.dialogManager = new DialogManager();
+
+      prepareGameOverDialog();
+
       setBackgroundColor(BACKGROUND);
       setupWorld(context);
       setupRenderer(context);
+      setupUI(context);
+
+      dialogManager.nextDialog();
    }
 
    private void setupWorld(GameContext context) {
@@ -102,5 +114,30 @@ public class GameOverScreen extends AbstractScreen {
       gier.setPosition(correctX, correctY);
       gier.setOrigin(gier.getWidth() / 2f, gier.getHeight() / 2f);
       gier.setAttribute(Orientation.class, Orientation.DOWN);
+   }
+
+   private void setupUI(GameContext context) {
+      DialogUI dialogUI = new DialogUI(dialogManager);
+      float width = Gdx.graphics.getWidth() / 2f;
+      dialogUI.setHeight(130f);
+      dialogUI.setWidth(width);
+      dialogUI.setX(Gdx.graphics.getWidth() / 2f - width / 2f);
+      context.getStage().addActor(dialogUI);
+   }
+
+   private void prepareGameOverDialog() {
+      if (money.getAmount() == 0) {
+         dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_EMPTY, Animations.createGierAvatar());
+         return;
+      }
+
+      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_INTRODUCTION, Animations.createGierAvatar());
+
+      String asdf = "asdf";
+
+      dialogManager.addDialog("Richard Gier", Messages.GAME_OVER_OVERVIEW, Animations.createGierAvatar(), asdf);
+
+     // dialogManager.addDialog("Richard Gier", , Animations.createGierAvatar());
+
    }
 }

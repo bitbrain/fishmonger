@@ -4,7 +4,7 @@
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="base" width="20" height="20">
   <data encoding="base64" compression="zlib">
-   eJydVMsOwyAMY49WonSVpp02Tht/z1cuSIlmRUmhO1iBAsZJTHMIoTAyxGzMvbE1H13L6u7i7O998/R48V8cyfPInboGOD4Rzh1cBjU1rg+hEibCBrFh4bW3wWnlEXl/O3clrMwnPA03RhroJfK1MzPoEs6JYzJ4PH2opSq+lccp2P7D+Z3wYk2V9WHucs+T8Ai2B3R/hXOB+omuDbiO+Fk4Z5Uvcnme1VoF0alZ77zny8j9WLl+2NMRDr0Ww88rM9cxGXv3NGk+9LGlryjsvWvhQ42WvtH80TdWb0f/Mfq96Pfl5dbwBcWJM5A=
+   eJydU9EOwyAIdJuazKo/4NPWv/crpwmXXCim7R4IinDcQducc7tYI9+M++ps3a++NdV7X+SfxVZ8Vv5fu6PzTk89Az4/hj1P7HWR08T6DuvDwrBKflqSt4+Bael4S/6s88Oy4AFnWhHbLuyS8WZNJF7ADOI3A2fFj7l0hZflvLnj96fnjNlV8VFpR58gM9T1yI+UW4kD5gde0I6ZVqnN6m5x4T6sF/FAPbvUeWN/1g4YPyqcQHXgWiQelS/y7hVPzAT8vZw9cYFnvYixvkR5+AZwT4SvNWcV428I+J1yeEbQxHtmbYl6eJWj98XxYuyI9SV3nGekHP7XgZ0Jm/fHPZlLpfcfR9Q+0g==
   </data>
  </layer>
  <layer name="obst" width="20" height="20">
@@ -22,17 +22,17 @@
    </properties>
    <point/>
   </object>
-  <object id="3" name="SPAWN" type="SPAWN" x="43.75" y="110.438" width="16" height="17.75">
+  <object id="3" name="SPAWN" type="SPAWN" x="11.25" y="57.188" width="16" height="17.75">
    <properties>
     <property name="capacity" type="int" value="2"/>
    </properties>
   </object>
-  <object id="4" name="SPAWN" type="SPAWN" x="113" y="106.75" width="35" height="34.5">
+  <object id="4" name="SPAWN" type="SPAWN" x="131.75" y="50.75" width="23.25" height="25.75">
    <properties>
     <property name="capacity" type="int" value="1"/>
    </properties>
   </object>
-  <object id="5" name="SPAWN" type="SPAWN" x="59.625" y="23.875" width="69.375" height="24.125">
+  <object id="5" name="SPAWN" type="SPAWN" x="51.125" y="10.375" width="69.375" height="24.125">
    <properties>
     <property name="capacity" type="int" value="3"/>
    </properties>

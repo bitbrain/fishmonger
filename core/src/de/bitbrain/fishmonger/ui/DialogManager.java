@@ -27,6 +27,10 @@ public class DialogManager {
       addDialog(title, message, avatar, Color.WHITE, false);
    }
 
+   public void addDialog(String title, Messages message, AnimationDrawable avatar, Object args) {
+      addDialog(title, message, avatar, Color.WHITE, false, args);
+   }
+
    public void addDialog(String title, Messages message, AnimationDrawable avatar, Color color) {
       dialogs.add(new Dialog(title, message, avatar, color, false));
    }
@@ -35,8 +39,16 @@ public class DialogManager {
       addDialog(title, message, avatar, Color.WHITE, autoClose);
    }
 
+   public void addDialog(String title, Messages message, AnimationDrawable avatar, boolean autoClose, Object ... args) {
+      addDialog(title, message, avatar, Color.WHITE, autoClose, args);
+   }
+
    public void addDialog(String title, Messages message, AnimationDrawable avatar, Color color, boolean autoClose) {
       dialogs.add(new Dialog(title, message, avatar, color, autoClose));
+   }
+
+   public void addDialog(String title, Messages message, AnimationDrawable avatar, Color color, boolean autoClose, Object ... args) {
+      dialogs.add(new Dialog(title, message, avatar, color, autoClose, args));
    }
 
    public void addListener(DialogManagerListener listener) {

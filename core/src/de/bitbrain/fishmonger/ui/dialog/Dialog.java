@@ -9,16 +9,18 @@ public class Dialog {
 	
 	private final AnimationDrawable avatar;
 	private final Messages message;
+	private final Object[] args;
 	private final String title;
 	private final Color color;
 	private final boolean autoClose;
 	
-	public Dialog(String title, Messages message, AnimationDrawable avatar, Color color, boolean autoClose) {
+	public Dialog(String title, Messages message, AnimationDrawable avatar, Color color, boolean autoClose, Object ... args) {
 		this.message = message;
 		this.title = title;
 		this.avatar = avatar;
 		this.color = color;
 		this.autoClose = autoClose;
+		this.args = args;
 	}
 	
 	public Color getColor() {
@@ -34,7 +36,7 @@ public class Dialog {
 	}
 
 	public String getText() {
-		return Bundle.get(message);
+		return Bundle.get(message, args);
 	}
 
 	public boolean isAutoClose() {

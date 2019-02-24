@@ -5,6 +5,7 @@ import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.GameObjectUtils;
 import de.bitbrain.fishmonger.Config;
 import de.bitbrain.fishmonger.animation.Animations;
+import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.ui.DialogManager;
@@ -35,9 +36,14 @@ public class SellToGierBehavior extends BehaviorAdapter {
       }
       if (!sold && GameObjectUtils.distanceBetween(source, target) < Config.MINIMUM_SELL_RANGE) {
          sold = true;
-         delivered.addAll(inventory.clearInventory());
-         dialogManager.addDialog("Richard Gier", DialogPool.getRandomDeliveryMessage(), Animations.createGierAvatar(), true);
-         dialogManager.nextDialog();
+         if (inventory.isEmpty()) {
+            dialogManager.addDialog("Richard Gier", Messages.FISH_DELIVERY_EMPTY, Animations.createGierAvatar(), true);
+            dialogManager.nextDialog();
+         } else {
+            delivered.addAll(inventory.clearInventory());
+            dialogManager.addDialog("Richard Gier", DialogPool.getRandomDeliveryMessage(), Animations.createGierAvatar(), true);
+            dialogManager.nextDialog();
+         }
       }
       if (sold && GameObjectUtils.distanceBetween(source, target) >= Config.SOLD_RANGE) {
          sold = false;

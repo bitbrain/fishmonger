@@ -30,6 +30,10 @@ public class Inventory {
       return true;
    }
 
+   public boolean isEmpty() {
+      return items.isEmpty();
+   }
+
    public List<Item> getItems() {
       return items;
    }

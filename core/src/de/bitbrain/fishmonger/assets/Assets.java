@@ -7,6 +7,8 @@ public interface Assets {
       String AVATARS = "textures/avatars.png";
       String FISH = "textures/fish.png";
       String PANEL = "textures/panel.9.png";
+      String PANEL_MEDIUM = "textures/panel-medium.9.png";
+      String PANEL_DARK = "textures/panel-dark.9.png";
 
       String HOOK = "textures/hook.png";
 

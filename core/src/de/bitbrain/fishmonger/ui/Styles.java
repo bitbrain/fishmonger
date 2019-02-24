@@ -31,7 +31,7 @@ public class Styles {
       LABEL_TOAST.fontColor = Colors.FOREGROUND;
 
       LABEL_DIALOG.font = bake(Assets.Fonts.PIXELMIX, 26);
-      LABEL_DIALOG.fontColor = Colors.FOREGROUND;
+      LABEL_DIALOG.fontColor = Colors.BORDER;
 
       LABEL_DIALOG_TITLE.font = bake(Assets.Fonts.PIXELMIX, 30);
       LABEL_DIALOG_TITLE.fontColor = Colors.FOREGROUND;
