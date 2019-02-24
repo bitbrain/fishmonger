@@ -33,6 +33,7 @@ public class InventoryUI extends Table {
          if (button == null) {
             return;
          }
+         button.setStyle(Styles.INVENTORY_ICON_OCCUPIED);
          Sprite sprite = new Sprite(event.getItem().getIcon());
          Image image = new Image(sprite);
          image.setOrigin(Align.center);

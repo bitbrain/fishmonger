@@ -18,6 +18,7 @@ import de.bitbrain.fishmonger.assets.Assets;
 public class Styles {
 
    public static final ImageButton.ImageButtonStyle INVENTORY_ICON = new ImageButton.ImageButtonStyle();
+   public static final ImageButton.ImageButtonStyle INVENTORY_ICON_OCCUPIED = new ImageButton.ImageButtonStyle();
    public static final Label.LabelStyle INGAME_CASH = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_TOAST = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_CREDITS =  new Label.LabelStyle();
@@ -31,6 +32,9 @@ public class Styles {
    public static void load() {
       INVENTORY_ICON.up = new NinePatchDrawable(
             GraphicsFactory.createNinePatch(SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class), 8)
+      );
+      INVENTORY_ICON_OCCUPIED.up = new NinePatchDrawable(
+            GraphicsFactory.createNinePatch(SharedAssetManager.getInstance().get(Assets.Textures.PANEL_MEDIUM, Texture.class), 8)
       );
       INGAME_CASH.font = bake(Assets.Fonts.PIXELMIX, 60, true);
       INGAME_CASH.fontColor = Colors.FOREGROUND;
