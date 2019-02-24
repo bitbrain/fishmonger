@@ -3,7 +3,7 @@
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer id="5" name="base" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJzjZWBg4AViVihmA2IuIOZBokHiLFB1MJoXKs+GpIcXjc2FhQ3Sz4dkNh9UjBUqxookBzMbl1kgvTuBeBMFeDMQNw0AngjEXRTgbiBWBmJpJBrGRuZLY1GDi69Mhn5CarHJ4zODHHvwqSHFbmL46GGML8zw6SNFjhx1xGIAb282Cw==
+   eJzFkDEOgCAMRRmEgVgu4OhNGT2Kmzrp6SzJJ2lIRdTB4aXl8/ublIwxxFjgGM/0oia9gy9Xwr8TM1T0XunTfBDZAZqFZsVfzr7KyrPJM4MedWdW5hA7Q6ETeo2Nicxyo8efmT4ygLFgUBiVXvNqvlpezd+yp+Z5srvlLW9V3q1lZ+22XzPecALnYTp1
   </data>
  </layer>
  <layer id="6" name="underplayer" width="16" height="16">
@@ -21,7 +21,7 @@
    </properties>
    <point/>
   </object>
-  <object id="9" name="SPAWN" type="SPAWN" x="24.3636" y="56.25" width="87.3864" height="21.875">
+  <object id="9" name="SPAWN" type="SPAWN" x="16.1818" y="64.0682" width="95.3864" height="21.875">
    <properties>
     <property name="capacity" type="int" value="5"/>
    </properties>

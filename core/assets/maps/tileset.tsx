@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="tileset" tilewidth="8" tileheight="8" spacing="1" margin="1" tilecount="328" columns="8">
+<tileset version="1.2" tiledversion="1.2.2" name="tileset" tilewidth="8" tileheight="8" spacing="1" margin="1" tilecount="328" columns="8">
  <image source="tileset.png" width="73" height="370"/>
  <terraintypes>
   <terrain name="GRASS" tile="9"/>
   <terrain name="WATER" tile="26"/>
-  <terrain name="SAND" tile="129"/>
+  <terrain name="SAND" tile="129">
+   <properties>
+    <property name="collision" type="bool" value="true"/>
+   </properties>
+  </terrain>
  </terraintypes>
  <tile id="0" terrain="1,1,1,0">
   <properties>
