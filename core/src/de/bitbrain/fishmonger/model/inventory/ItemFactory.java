@@ -12,6 +12,7 @@ public class ItemFactory {
                type.toString(),
                type.getAsset(),
                type.getName(),
+               type.getPluralName(),
                type.getDescription(),
                type.getValue()
          );

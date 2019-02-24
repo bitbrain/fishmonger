@@ -7,13 +7,15 @@ public class Item {
    private final String id;
    private final Texture icon;
    private final  String name;
+   private final String pluralName;
    private final String description;
    private final int value;
 
-   public Item(String id, Texture icon, String name, String description, int value) {
+   public Item(String id, Texture icon, String name, String pluralName, String description, int value) {
       this.id = id;
       this.icon = icon;
       this.name = name;
+      this.pluralName = pluralName;
       this.description = description;
       this.value = value;
    }
@@ -28,6 +30,10 @@ public class Item {
 
    public String getName() {
       return name;
+   }
+
+   public String getPluralName() {
+      return pluralName;
    }
 
    public String getDescription() {
@@ -47,4 +53,6 @@ public class Item {
             ", description='" + description + '\'' +
             '}';
    }
+
+
 }

@@ -2,9 +2,13 @@ package de.bitbrain.fishmonger.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
@@ -25,6 +29,8 @@ import de.bitbrain.fishmonger.catching.FishingRod;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
 import de.bitbrain.fishmonger.event.handler.InventoryClearedHandler;
+import de.bitbrain.fishmonger.i18n.Bundle;
+import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
 import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
 import de.bitbrain.fishmonger.model.Money;
@@ -32,16 +38,14 @@ import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
 import de.bitbrain.fishmonger.rendering.RodRenderLayer;
-import de.bitbrain.fishmonger.ui.MoneyUI;
-import de.bitbrain.fishmonger.ui.InventoryUI;
-import de.bitbrain.fishmonger.ui.TimerUI;
+import de.bitbrain.fishmonger.ui.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static de.bitbrain.fishmonger.Colors.BACKGROUND;
 
-public class IngameScreen extends AbstractScreen<FishMongerGame> {
+public class IngameScreen extends AbstractScreen<BrainGdxGame> {
 
    private Inventory inventory;
    private GameContext context;
@@ -53,26 +57,37 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    private DeltaTimer timer;
 
    private boolean gameOver = false;
+   private DialogManager dialogManager;
+   private String levelAssetId;
+   private Music music;
 
-   public IngameScreen(FishMongerGame game) {
+   public IngameScreen(BrainGdxGame game, String levelAssetId) {
       super(game);
+      this.levelAssetId = levelAssetId;
    }
 
    @Override
    public void dispose() {
       super.dispose();
       Controllers.clearListeners();
+      music.stop();
    }
 
    @Override
    protected void onCreate(GameContext context) {
+      String musicAsset = Math.random() < 0.5f ? Assets.Musics.OVERWORLD : Assets.Musics.OVERWORLD2;
+      music = SharedAssetManager.getInstance().get(musicAsset, Music.class);
+      music.setLooping(true);
+      music.setVolume(0.4f);
+      music.play();
+      SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class).stop();
       setBackgroundColor(BACKGROUND);
-      context.getAudioManager().playMusic(Assets.Musics.OVERWORLD);
 
       this.timer = new DeltaTimer();
       this.context = context;
       this.money = new Money();
       this.inventory = new Inventory(context.getEventManager());
+      this.dialogManager = new DialogManager();
 
       setupWorld(context);
       setupInput(context);
@@ -96,9 +111,16 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
          player.setActive(false);
          gameOver = true;
          context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory, deliveredItems), 1f);
+         Toast.getInstance().doToast(Bundle.get(Messages.TIME_EXPIRED));
+         Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.GAME_OVER, Sound.class);
+         sound.play();
          return;
       }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+         gameOver = true;
+         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 1f);
+      }
+      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isTouched()) {
          rod.throwRod();
       }
       super.onUpdate(delta);
@@ -110,7 +132,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
    }
 
    private void setupWorld(GameContext context) {
-      TiledMap level = SharedAssetManager.getInstance().get(Assets.TiledMaps.LEVEL_1, TiledMap.class);
+      TiledMap level = SharedAssetManager.getInstance().get(levelAssetId, TiledMap.class);
       context.getTiledMapManager().load(level, context.getGameCamera().getInternalCamera(), TiledMapType.ORTHOGONAL);
       context.getGameWorld().setBounds(new SimpleWorldBounds(
             context.getTiledMapManager().getAPI().getWorldWidth(),
@@ -164,7 +186,7 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
             .interval(0.15f)
             .rasterSize(context.getTiledMapManager().getAPI().getCellWidth(), context.getTiledMapManager().getAPI().getCellHeight());
       context.getBehaviorManager().apply(behavior, player);
-      context.getBehaviorManager().apply(new SellToGierBehavior(inventory, deliveredItems), player);
+      context.getBehaviorManager().apply(new SellToGierBehavior(inventory, deliveredItems, dialogManager), player);
    }
 
    private void configureGier(GameContext context, GameObject gier) {
@@ -187,9 +209,18 @@ public class IngameScreen extends AbstractScreen<FishMongerGame> {
       cashUI.setPosition(35f, Gdx.graphics.getHeight() - 100f);
       context.getStage().addActor(cashUI);
 
+      Toast.getInstance().init(context.getStage());
+
       TimerUI timerUI = new TimerUI(timer);
       timerUI.setBounds(Gdx.graphics.getWidth() - 35f - 400f, Gdx.graphics.getHeight() - 100f, 400f, 60f);
       context.getStage().addActor(timerUI);
+
+      DialogUI dialogUI = new DialogUI(dialogManager);
+      float width = Gdx.graphics.getWidth() / 2f;
+      dialogUI.setHeight(130f);
+      dialogUI.setWidth(width);
+      dialogUI.setX(Gdx.graphics.getWidth() / 2f - width / 2f);
+      context.getStage().addActor(dialogUI);
    }
 
    private void setupEvents(GameContext context) {

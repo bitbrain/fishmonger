@@ -22,6 +22,19 @@ public final class Bundle {
       Gdx.app.log("INFO", "Done loading translation bundles.");
    }
 
+   public static String get(Messages key, Object ... args) {
+      return get(key.getKey(), args);
+   }
+
+   public static String get(String key, Object ... args) {
+      try {
+         return translations.format(key, args);
+      } catch (MissingResourceException ex) {
+         Gdx.app.error("Translations", "Unable to resolve translation for key=" + key + " and locale=" + translations.getLocale());
+         return key;
+      }
+   }
+
    public static String get(Messages key) {
       return get(key.getKey());
    }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" nextlayerid="14" nextobjectid="23">
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" nextobjectid="23">
  <tileset firstgid="1" name="tileset" tilewidth="8" tileheight="8" spacing="1" margin="1" tilecount="328" columns="8">
   <image source="tileset.png" width="73" height="370"/>
   <terraintypes>
@@ -529,17 +530,17 @@
   <tile id="320" terrain="5,,5,5"/>
   <tile id="321" terrain=",5,5,5"/>
  </tileset>
- <layer id="11" name="base" width="32" height="32">
+ <layer name="base" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJydl91u5SAMhOk2iXTSgLTbq22ves7b85RLJUb9MgXC9sIK/7bHg3FiCCEWWatsRfYiB76f40tdp2+s8zv2LOivmKccaKe6VvujtfdGe6n7dNZic2udT7W/mA8pnO1J2Lfje8C2ni3J9B/wL9pZOjuivdUzDti1mP4VbdrnmHBMcVqwT3HZbN+Ccz8lQ+RjNts5n4F3rudljHvcGRP6J7+cf+TR3yJ/GvJmNqq9hjM+itdmcYvmp3iZqx256n4t8ijyXkXt3x2bFAdiJf30mZw4sFZ4SPf7pDyqTcRFZ0oXOdWLv/B+DWd/H4ZDT4TLG84U16VP9vhdauE98nfUFxaKKzlBzDXew7sV+ytbWvEQBim0ef7yA5857naqfwtnrqWG7lz1X/n6GMz1OHIzPcz1uoMt/0c+zd6HpyL38JWXdL+YA2WT+3/FgRkMbuGcj5Wn+JYoDi+h7fNsDFprFXvmZ3JeOanHv//B26WHvef6HL77TxxaYy0seryT38x7fBt7/Lvyv2ej5x++n8x1fKt4/0Z+zvJewrunt411Cmujq/s30jfiv+Lcyzsz/s/odd3kn9efrE9kw0eRX0WeJ3Re8UK+877t1mfsZd9W7XgOY25fcZG+K+dk9P3tZ20mLEY4XAl9l07VycRgw5oV83kQjxEWT3XPHX6ncMae/ymqDVSX8X0QLrN2CHPyyut38tD5x69sIVdlR0/u4SvP+j8J6063wf8P/J7w7WC8orWXxnqvx92WzebJV45zD+3QnoQ2dSasZ3zpo/+7ab1zJ+M82kAfWjj6fXdRHaRzOd7ay3/WtTHn47Fxxj8kpnro
   </data>
  </layer>
- <layer id="12" name="underplayer" width="32" height="32">
+ <layer name="underplayer" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJzllrEWABAIRX2U0f9/l4UNh47q0l0YKq96g5R4lHZmQY5W/CrnROcq/rTOLSSz2KH3I9mnB3R9mmh5gAxl3xFnT8PSC56+o3mNpseTKLPIk7sXBA2ReMXnv/3Hrd8bzY+++119Fn3c9N+sVgUFEAdx
   </data>
  </layer>
- <objectgroup id="3" name="objects">
+ <objectgroup name="objects">
   <object id="5" name="PLAYER" type="PLAYER" x="160.084" y="45.1663">
    <point/>
   </object>
@@ -585,7 +586,7 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="13" name="overplayer" width="32" height="32">
+ <layer name="overplayer" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJzt0jsKACAMRMEcKPc/n5WNEFESdMU3lWCKzccs5pM/Jbs5o/pX+l019qPen3o+1GLf6E7eAneHn3nwvkUhA/RwFznML6dyfqq7aB4VAu0=
   </data>

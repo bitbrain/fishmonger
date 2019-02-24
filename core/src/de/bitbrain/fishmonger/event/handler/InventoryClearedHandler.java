@@ -4,6 +4,7 @@ import de.bitbrain.braingdx.event.GameEventListener;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Item;
+import de.bitbrain.fishmonger.ui.Toast;
 
 import java.util.List;
 
@@ -17,7 +18,9 @@ public class InventoryClearedHandler implements GameEventListener<InventoryClear
 
    @Override
    public void onEvent(InventoryClearedEvent event) {
-      money.addAmount(calculateTotalValue(event.getItems()));
+      int totalAmount = calculateTotalValue(event.getItems());
+      money.addAmount(totalAmount);
+      Toast.getInstance().doToast("+" + totalAmount + "$");
    }
 
    private int calculateTotalValue(List<Item> items) {

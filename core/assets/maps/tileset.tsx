@@ -463,30 +463,154 @@
    <property name="collision" type="bool" value="true"/>
   </properties>
  </tile>
- <tile id="120" terrain="1,1,1,2"/>
- <tile id="121" terrain="1,1,2,2"/>
- <tile id="122" terrain="1,1,2,1"/>
- <tile id="128" terrain="1,2,1,2"/>
- <tile id="129" terrain="2,2,2,2"/>
- <tile id="130" terrain="2,1,2,1"/>
- <tile id="136" terrain="1,2,1,1"/>
- <tile id="137" terrain="2,2,1,1"/>
- <tile id="138" terrain="2,1,1,1"/>
- <tile id="144" terrain="2,2,2,1"/>
- <tile id="145" terrain="2,2,1,2"/>
- <tile id="152" terrain="2,1,2,2"/>
- <tile id="153" terrain="1,2,2,2"/>
- <tile id="160" terrain="2,2,2,0"/>
- <tile id="161" terrain="2,2,0,0"/>
- <tile id="162" terrain="2,2,0,2"/>
- <tile id="168" terrain="2,0,2,0"/>
- <tile id="169" terrain="0,0,0,0"/>
- <tile id="170" terrain="0,2,0,2"/>
- <tile id="176" terrain="2,0,2,2"/>
- <tile id="177" terrain="0,0,2,2"/>
- <tile id="178" terrain="0,2,2,2"/>
- <tile id="184" terrain="0,0,0,2"/>
- <tile id="185" terrain="0,0,2,0"/>
- <tile id="192" terrain="0,2,0,0"/>
- <tile id="193" terrain="2,0,0,0"/>
+ <tile id="120" terrain="1,1,1,2">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="121" terrain="1,1,2,2">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="122" terrain="1,1,2,1">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="128" terrain="1,2,1,2">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="129" terrain="2,2,2,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="130" terrain="2,1,2,1">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="136" terrain="1,2,1,1">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="137" terrain="2,2,1,1">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="138" terrain="2,1,1,1">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="144" terrain="2,2,2,1">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="145" terrain="2,2,1,2">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="146">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="152" terrain="2,1,2,2">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="153" terrain="1,2,2,2">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="154">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="160" terrain="2,2,2,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="161" terrain="2,2,0,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="162" terrain="2,2,0,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="168" terrain="2,0,2,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="169" terrain="0,0,0,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="170" terrain="0,2,0,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="176" terrain="2,0,2,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="177" terrain="0,0,2,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="178" terrain="0,2,2,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="184" terrain="0,0,0,2">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="185" terrain="0,0,2,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="186">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
+ <tile id="192" terrain="0,2,0,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="193" terrain="2,0,0,0">
+  <properties>
+   <property name="collision" type="bool" value="false"/>
+  </properties>
+ </tile>
+ <tile id="194">
+  <properties>
+   <property name="collision" type="bool" value="true"/>
+  </properties>
+ </tile>
 </tileset>
