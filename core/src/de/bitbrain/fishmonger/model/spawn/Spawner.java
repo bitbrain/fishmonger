@@ -1,6 +1,5 @@
 package de.bitbrain.fishmonger.model.spawn;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.math.Vector2;
 import de.bitbrain.braingdx.GameContext;

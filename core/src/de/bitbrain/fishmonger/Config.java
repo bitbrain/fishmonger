@@ -6,6 +6,8 @@ public interface Config {
    String TOTAL_MONEY = "money.total";
 
    int NUMBER_OF_INVENTORY_SLOTS = 4;
+   int BONUS_DIFFERENCE_MULTIPLICATOR = 4;
+   int BONUS_SAME_MULTIPLICATOR = 2;
    float MINIMUM_SELL_RANGE = 22f;
    float SOLD_RANGE = 32f;
 

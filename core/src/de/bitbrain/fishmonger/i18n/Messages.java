@@ -57,7 +57,11 @@ public enum Messages {
    GAME_OVER_INSUFFICIENT_CASH("game.over.insufficient"),
    GAME_OVER_SUFFICIENT("game.over.sufficient"),
 
-   ANGRY_RICHARD("angry.richard");
+   ANGRY_RICHARD("angry.richard"),
+
+   HELP_BONUS_1("help.bonus.1"),
+   HELP_BONUS_2("help.bonus.2");
+
    private final String key;
 
    Messages(String key) {
