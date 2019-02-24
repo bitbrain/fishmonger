@@ -23,6 +23,7 @@ public class Styles {
    public static final Label.LabelStyle LABEL_DIALOG =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
    public static final TextButton.TextButtonStyle BUTTON_MENU = new TextButton.TextButtonStyle();
+   public static final Label.LabelStyle LABEL_EARNINGS = new Label.LabelStyle();
 
    public static void load() {
       INVENTORY_ICON.up = new NinePatchDrawable(
@@ -37,6 +38,9 @@ public class Styles {
       LABEL_CREDITS.font = bake(Assets.Fonts.PIXELMIX, 14, true);
       LABEL_CREDITS.fontColor = Colors.FOREGROUND;
 
+      LABEL_EARNINGS.font = bake(Assets.Fonts.PIXELMIX, 20, false);
+      LABEL_EARNINGS.fontColor = Colors.FOREGROUND;
+
       LABEL_LOGO.font = bake(Assets.Fonts.PIXELMIX, 50, true);
       LABEL_LOGO.fontColor = Colors.FOREGROUND;
 
@@ -46,7 +50,7 @@ public class Styles {
       LABEL_DIALOG_TITLE.font = bake(Assets.Fonts.PIXELMIX, 30);
       LABEL_DIALOG_TITLE.fontColor = Colors.FOREGROUND;
 
-      BUTTON_MENU.font = bake(Assets.Fonts.PIXELMIX, 36);
+      BUTTON_MENU.font = bake(Assets.Fonts.PIXELMIX, 30);
       BUTTON_MENU.fontColor = Colors.BORDER;
       BUTTON_MENU.overFontColor = Colors.FOREGROUND;
       BUTTON_MENU.checkedFontColor = Colors.FOREGROUND;

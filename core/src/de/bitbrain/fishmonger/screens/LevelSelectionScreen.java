@@ -15,12 +15,15 @@ import de.bitbrain.braingdx.tweens.ActorTween;
 import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
+import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.progress.PlayerProgress;
 import de.bitbrain.fishmonger.ui.ButtonMenu;
 import de.bitbrain.fishmonger.ui.Styles;
 import de.bitbrain.fishmonger.ui.Toast;
 
 import static de.bitbrain.fishmonger.i18n.Bundle.get;
+import static de.bitbrain.fishmonger.i18n.Messages.PLAYER_BALANCE;
 
 public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
 
@@ -41,8 +44,12 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       Table layout = new Table();
       layout.setFillParent(true);
 
-      Label logo = new Label("Fishmongers", Styles.LABEL_LOGO);
-      layout.add(logo).padBottom(100f).padTop(50f);
+      Label logo = new Label("Fishmonger", Styles.LABEL_LOGO);
+      layout.add(logo).padBottom(50f).padTop(20f);
+      layout.row();
+
+      Label earnings = new Label(Bundle.get(PLAYER_BALANCE, PlayerProgress.getTotalMoney()), Styles.LABEL_EARNINGS);
+      layout.add(earnings).padBottom(50f).padTop(20f);
       layout.row();
 
       Tween.to(logo, ActorTween.ALPHA, 1f)
@@ -85,7 +92,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
 
       Label credits = new Label("a game by k0stnix and bitbrain", Styles.LABEL_CREDITS);
       layout.row();
-      layout.add(credits).padTop(50f);
+      layout.add(credits).padTop(70f);
 
       Toast.getInstance().init(context.getStage());
 
