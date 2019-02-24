@@ -14,6 +14,57 @@ import de.bitbrain.fishmonger.model.FishType;
 
 public class Animations {
 
+   public static AnimationDrawable gierAnimationDrawable() {
+      final Texture texture = SharedAssetManager.getInstance().get(Assets.Textures.PLAYER);
+      AnimationSpriteSheet avatarSheet = new AnimationSpriteSheet(texture, 16);
+      return new AnimationDrawable(avatarSheet, AnimationConfig.builder()
+            .registerFrames(AnimationDrawable.DEFAULT_FRAME_ID, AnimationFrames.builder()
+                  .resetIndex(0)
+                  .duration(0.2f)
+                  .origin(0, 4)
+                  .direction(AnimationFrames.Direction.HORIZONTAL)
+                  .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                  .frames(8)
+                  .build()).build());
+   }
+
+   public static AnimationConfig gierAnimationConfig() {
+      return AnimationConfig.builder()
+            .registerFrames(Orientation.DOWN, AnimationFrames.builder()
+                  .resetIndex(0)
+                  .duration(0.2f)
+                  .origin(0, 4)
+                  .direction(AnimationFrames.Direction.HORIZONTAL)
+                  .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                  .frames(8)
+                  .build())
+            .registerFrames(Orientation.UP, AnimationFrames.builder()
+                  .resetIndex(0)
+                  .duration(0.2f)
+                  .origin(0, 5)
+                  .direction(AnimationFrames.Direction.HORIZONTAL)
+                  .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                  .frames(8)
+                  .build())
+            .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
+                  .resetIndex(0)
+                  .duration(0.2f)
+                  .origin(0, 6)
+                  .direction(AnimationFrames.Direction.HORIZONTAL)
+                  .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                  .frames(8)
+                  .build())
+            .registerFrames(Orientation.LEFT, AnimationFrames.builder()
+                  .resetIndex(0)
+                  .duration(0.2f)
+                  .origin(0, 7)
+                  .direction(AnimationFrames.Direction.HORIZONTAL)
+                  .playMode(Animation.PlayMode.LOOP_PINGPONG)
+                  .frames(8)
+                  .build())
+            .build();
+   }
+
    public static void setupPlayerAnimations(GameContext context) {
       final Texture playerTexture = SharedAssetManager.getInstance().get(Assets.Textures.PLAYER);
       AnimationSpriteSheet playerSheet = new AnimationSpriteSheet(playerTexture, 16);
@@ -59,40 +110,7 @@ public class Animations {
          }
       }, new PlayerAnimationEnabler()).offset(0f, 4f));
       context.getRenderManager().register("GIER", new AnimationRenderer(playerSheet,
-            AnimationConfig.builder()
-                  .registerFrames(Orientation.DOWN, AnimationFrames.builder()
-                        .resetIndex(0)
-                        .duration(0.2f)
-                        .origin(0, 4)
-                        .direction(AnimationFrames.Direction.HORIZONTAL)
-                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
-                        .frames(8)
-                        .build())
-                  .registerFrames(Orientation.UP, AnimationFrames.builder()
-                        .resetIndex(0)
-                        .duration(0.2f)
-                        .origin(0, 5)
-                        .direction(AnimationFrames.Direction.HORIZONTAL)
-                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
-                        .frames(8)
-                        .build())
-                  .registerFrames(Orientation.RIGHT, AnimationFrames.builder()
-                        .resetIndex(0)
-                        .duration(0.2f)
-                        .origin(0, 6)
-                        .direction(AnimationFrames.Direction.HORIZONTAL)
-                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
-                        .frames(8)
-                        .build())
-                  .registerFrames(Orientation.LEFT, AnimationFrames.builder()
-                        .resetIndex(0)
-                        .duration(0.2f)
-                        .origin(0, 7)
-                        .direction(AnimationFrames.Direction.HORIZONTAL)
-                        .playMode(Animation.PlayMode.LOOP_PINGPONG)
-                        .frames(8)
-                        .build())
-                  .build()
+            gierAnimationConfig()
             , new AnimationTypeResolver<GameObject>() {
          @Override
          public Object getAnimationType(GameObject object) {

@@ -1,19 +1,20 @@
 package de.bitbrain.fishmonger.screens;
 
-import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.screens.AbstractScreen;
-import de.bitbrain.braingdx.tweens.GameCameraTween;
-import de.bitbrain.braingdx.tweens.SharedTweenManager;
+import de.bitbrain.fishmonger.Colors;
+import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.ui.ButtonMenu;
+import de.bitbrain.fishmonger.ui.Styles;
 import de.bitbrain.fishmonger.ui.Toast;
 
 import static de.bitbrain.fishmonger.i18n.Bundle.get;
@@ -29,11 +30,17 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
    @Override
    protected void onCreate(GameContext context) {
       setupUI(context);
+      setBackgroundColor(Colors.BACKGROUND);
    }
 
    void setupUI(final GameContext context) {
       Table layout = new Table();
       layout.setFillParent(true);
+
+      Label logo = new Label("Fishmongers", Styles.LABEL_LOGO);
+      layout.add(logo).padBottom(100f).padTop(50f);
+      layout.row();
+
       buttonMenu = new ButtonMenu(context.getTweenManager());
       buttonMenu.add(get(Messages.LEVEL_1_NAME), new ClickListener() {
          @Override
@@ -66,6 +73,19 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
 
       context.getStage().addActor(layout);
 
+      Label credits = new Label("a game by k0stnix and bitbrain", Styles.LABEL_CREDITS);
+      layout.row();
+      layout.add(credits).padTop(50f);
+
       Toast.getInstance().init(context.getStage());
+
+      Image imageA = new Image(Animations.gierAnimationDrawable());
+      imageA.setSize(300f, 300f);
+      imageA.setPosition(Gdx.graphics.getWidth() / 2f - 150f - Gdx.graphics.getWidth() / 3f, Gdx.graphics.getHeight() / 2f - 150);
+      context.getStage().addActor(imageA);
+      Image imageB = new Image(Animations.gierAnimationDrawable());
+      imageB.setSize(300f, 300f);
+      imageB.setPosition(Gdx.graphics.getWidth() / 2f - 150f + Gdx.graphics.getWidth() / 3f, Gdx.graphics.getHeight() / 2f - 150);
+      context.getStage().addActor(imageB);
    }
 }

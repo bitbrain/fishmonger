@@ -18,6 +18,8 @@ public class Styles {
    public static final ImageButton.ImageButtonStyle INVENTORY_ICON = new ImageButton.ImageButtonStyle();
    public static final Label.LabelStyle INGAME_CASH = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_TOAST = new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_CREDITS =  new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_LOGO =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
    public static final TextButton.TextButtonStyle BUTTON_MENU = new TextButton.TextButtonStyle();
@@ -31,6 +33,12 @@ public class Styles {
 
       LABEL_TOAST.font = bake(Assets.Fonts.PIXELMIX, 40, true);
       LABEL_TOAST.fontColor = Colors.FOREGROUND;
+
+      LABEL_CREDITS.font = bake(Assets.Fonts.PIXELMIX, 14, true);
+      LABEL_CREDITS.fontColor = Colors.FOREGROUND;
+
+      LABEL_LOGO.font = bake(Assets.Fonts.PIXELMIX, 50, true);
+      LABEL_LOGO.fontColor = Colors.FOREGROUND;
 
       LABEL_DIALOG.font = bake(Assets.Fonts.PIXELMIX, 26);
       LABEL_DIALOG.fontColor = Colors.BORDER;

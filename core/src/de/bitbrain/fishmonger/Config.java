@@ -14,6 +14,6 @@ public interface Config {
 
    float MENU_BUTTON_WIDTH = 500f;
    float MENU_BUTTON_HEIGHT = 120f;
-   float MENU_BUTTON_PADDING = 30f;
+   float MENU_BUTTON_PADDING = 20f;
    float MENU_BUTTON_ALPHA = 1f;
 }
