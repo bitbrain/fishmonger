@@ -16,15 +16,15 @@
   <object id="5" name="PLAYER" type="PLAYER" x="75.75" y="29.5">
    <point/>
   </object>
-  <object id="8" name="GIER" type="GIER" x="203" y="23.75">
+  <object id="8" name="GIER" type="GIER" x="75" y="13.25">
    <properties>
     <property name="collision" type="bool" value="true"/>
    </properties>
    <point/>
   </object>
-  <object id="9" name="SPAWN" type="SPAWN" x="53.5" y="50.75" width="31.75" height="21.875">
+  <object id="9" name="SPAWN" type="SPAWN" x="45" y="52.5" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="3"/>
+    <property name="capacity" type="int" value="5"/>
    </properties>
   </object>
   <object id="12" name="SPAWN" type="SPAWN" x="118.625" y="83.8125" width="31.75" height="21.875">
