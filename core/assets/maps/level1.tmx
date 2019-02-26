@@ -13,10 +13,10 @@
   </data>
  </layer>
  <objectgroup name="objects">
-  <object id="5" name="PLAYER" type="PLAYER" x="75.75" y="29.5">
+  <object id="5" name="PLAYER" type="PLAYER" x="84" y="28.5">
    <point/>
   </object>
-  <object id="8" name="GIER" type="GIER" x="75" y="13.25">
+  <object id="8" name="GIER" type="GIER" x="36.25" y="29">
    <properties>
     <property name="collision" type="bool" value="true"/>
    </properties>

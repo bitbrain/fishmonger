@@ -14,6 +14,7 @@ import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
+import de.bitbrain.fishmonger.model.inventory.Item;
 
 import static de.bitbrain.braingdx.behavior.movement.Orientation.*;
 
@@ -23,6 +24,8 @@ public class RodRenderLayer implements RenderLayer {
    private final GameObject player;
    private ShapeRenderer shapeRenderer;
    private final Sprite hook;
+
+   private Item latestItem;
 
    private boolean enabled = false;
 
@@ -41,6 +44,7 @@ public class RodRenderLayer implements RenderLayer {
       @Override
       public void onEvent(FishingRodEvents.ThrowRodEvent event) {
          enabled = true;
+         latestItem = null;
          Orientation orientation = (Orientation) player.getAttribute(Orientation.class);
          currentRodLocation.x = player.getLeft() + player.getOffsetX() + player.getWidth() / 2f + player.getWidth() * orientation.getXFactor();
          currentRodLocation.y = player.getTop() + player.getOffsetY() + player.getHeight() / 2f + player.getHeight() * orientation.getYFactor();
@@ -55,11 +59,20 @@ public class RodRenderLayer implements RenderLayer {
       }
    };
 
+   private final GameEventListener<FishingRodEvents.FishCatchedEvent> catchedEvent = new GameEventListener<FishingRodEvents.FishCatchedEvent>() {
+
+      @Override
+      public void onEvent(FishingRodEvents.FishCatchedEvent event) {
+         RodRenderLayer.this.latestItem = event.getItem();
+      }
+   };
+
    public RodRenderLayer(GameEventManager eventManager, GameObject player) {
       this.player = player;
       eventManager.register(rodLocationListener, FishingRodEvents.MoveToLocationEvent.class);
       eventManager.register(throwRodListener, FishingRodEvents.ThrowRodEvent.class);
       eventManager.register(pullBackListener, FishingRodEvents.PullBackEvent.class);
+      eventManager.register(catchedEvent, FishingRodEvents.FishCatchedEvent.class);
 
       this.hook = new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.HOOK, Texture.class));
    }
@@ -111,6 +124,14 @@ public class RodRenderLayer implements RenderLayer {
       hook.setBounds(hookX, hookY, 8, 8);
       batch.begin();
       hook.draw(batch);
+
+      // Draw Item (if applicable)
+      if (startX != currentRodLocation.x || startY != currentRodLocation.y) {
+         if (latestItem != null) {
+            batch.draw(latestItem.getIcon(), currentRodLocation.x - 8, currentRodLocation.y - 8, 16, 16);
+         }
+      }
+
       batch.end();
    }
 }
