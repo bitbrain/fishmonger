@@ -18,6 +18,7 @@ public interface Assets {
       String MACKEREL =  "textures/mackerel.png";
       String GIANT_PIRANHA =  "textures/giant-piranha.png";
       String EEL = "textures/eel.png";
+      String STRIDER = "textures/strider.png";
 
       String HELP = "textures/help.png";
       String QUESTION = "textures/question.png";

@@ -40,6 +40,9 @@ public enum Messages {
    FISH_MACKEREL_NAME("fish.mackerel.name"),
    FISH_MACKEREL_NAME_PLURAL("fish.mackerel.name.plural"),
    FISH_MACKEREL_DESCRIPTION("fish.mackerel.description"),
+   FISH_STRIDER_NAME("fish.strider.name"),
+   FISH_STRIDER_NAME_PLURAL("fish.strider.name.plural"),
+   FISH_STRIDER_DESCRIPTION("fish.strider.description"),
 
    FISH_CAUGHT("fish.caught"),
    TIME_EXPIRED("time.expired"),
