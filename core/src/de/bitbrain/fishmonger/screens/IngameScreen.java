@@ -23,6 +23,7 @@ import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
 import de.bitbrain.fishmonger.catching.FishingRod;
+import de.bitbrain.fishmonger.catching.FishingRodType;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
 import de.bitbrain.fishmonger.event.handler.InventoryClearedHandler;
@@ -34,6 +35,7 @@ import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
+import de.bitbrain.fishmonger.progress.PlayerProgress;
 import de.bitbrain.fishmonger.rendering.RodRenderLayer;
 import de.bitbrain.fishmonger.ui.*;
 
@@ -97,7 +99,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       setupEvents(context);
       setupShaders(context);
 
-      this.rod = new FishingRod(player, inventory, context, dialogManager);
+      this.rod = new FishingRod(PlayerProgress.getFishingRodType(), player, inventory, context, dialogManager);
 
       setupInput(context);
    }

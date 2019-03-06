@@ -15,7 +15,6 @@ import de.bitbrain.braingdx.tweens.GameObjectTween;
 import de.bitbrain.braingdx.tweens.SharedTweenManager;
 import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.world.GameObject;
-import de.bitbrain.fishmonger.Config;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
@@ -40,10 +39,12 @@ public class FishingRod {
    private boolean pullingBack = false;
    private final Inventory inventory;
    private final DialogManager dialogManager;
+   private final FishingRodType type;
 
    private int currentLength;
 
-   public FishingRod(GameObject player, Inventory inventory, GameContext context, DialogManager dialogManager) {
+   public FishingRod(FishingRodType type, GameObject player, Inventory inventory, GameContext context, DialogManager dialogManager) {
+      this.type = type;
       this.player = player;
       this.context = context;
       this.inventory = inventory;
@@ -52,17 +53,17 @@ public class FishingRod {
 
    public void update(float delta) {
       throwTimer.update(delta);
-      if (!pullingBack && throwing && throwTimer.reached(Config.FISHING_ROD_THROW_INTERVAL)) {
+      if (!pullingBack && throwing && throwTimer.reached(type.getThrowInterval())) {
          throwTimer.reset();
          currentLength++;
          checkCurrentLocationForFish();
-         if (currentLength > Config.FISHING_ROD_RANGE) {
+         if (currentLength > type.getRange()) {
             pullBack();
             Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.THROW_FAIL, Sound.class);
             sound.play();
          }
       }
-      if (pullingBack && throwTimer.reached(Config.FISHING_ROD_PULL_INTERVAL)) {
+      if (pullingBack && throwTimer.reached(type.getPullInterval())) {
          throwTimer.reset();
          currentLength--;
          Orientation orientation = (Orientation)player.getAttribute(Orientation.class);

@@ -63,7 +63,12 @@ public enum Messages {
    ANGRY_RICHARD("angry.richard"),
 
    HELP_BONUS_1("help.bonus.1"),
-   HELP_BONUS_2("help.bonus.2");
+   HELP_BONUS_2("help.bonus.2"),
+
+   SHOP_ITEM_RARITY_COMMON("shop.item.rarity.common"),
+   SHOP_ITEM_RARITY_RARE("shop.item.rarity.rare"),
+   SHOP_ITEM_RARITY_EPIC("shop.item.rarity.epic"),
+   SHOP_ITEM_RARITY_LEGENDARY("shop.item.rarity.legendary");
 
    private final String key;
 
