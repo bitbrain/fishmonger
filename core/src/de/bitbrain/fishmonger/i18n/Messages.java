@@ -76,7 +76,11 @@ public enum Messages {
    SHOP_ITEM_RARITY_LEGENDARY("shop.item.rarity.legendary"),
 
    SHOP_ITEM_ROD_DEFAULT("shop.item.rod.default"),
-   SHOP_ITEM_ROD_RARE("shop.item.rod.rare");
+   SHOP_ITEM_ROD_RARE("shop.item.rod.rare"),
+   SHOP_ITEM_ROD_EPIC("shop.item.rod.epic"),
+
+   SHOP_BOUGHT("shop.bought"),
+   SHOP_BUY("shop.buy");
 
    private final String key;
 

@@ -23,6 +23,13 @@ public enum HookType {
          Config.FISHING_ROD_PULL_INTERVAL / 2,
          Assets.Textures.HOOK_RARE,
          Rarity.RARE
+   ),
+   EPIC(Messages.SHOP_ITEM_ROD_EPIC,
+         Config.FISHING_ROD_RANGE * 3,
+         Config.FISHING_ROD_THROW_INTERVAL / 4,
+         Config.FISHING_ROD_PULL_INTERVAL / 4,
+         Assets.Textures.HOOK_EPIC,
+         Rarity.EPIC
    );
 
    private final Messages name;

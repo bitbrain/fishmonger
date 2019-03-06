@@ -13,7 +13,12 @@ public class PlayerProgress {
       int totalMoney = getTotalMoney();
       preferences.putInteger(Config.TOTAL_MONEY, totalMoney + money);
       preferences.flush();
+   }
 
+   public static void removeMoney(int money) {
+      int totalMoney = getTotalMoney();
+      preferences.putInteger(Config.TOTAL_MONEY, totalMoney - money);
+      preferences.flush();
    }
 
    public static int getTotalMoney() {
@@ -24,6 +29,9 @@ public class PlayerProgress {
    }
 
    public static void setInventorySlots(int slots) {
+      if (preferences == null) {
+         preferences = Gdx.app.getPreferences(Config.PLAYER_PREFERENCES_PATH);
+      }
       preferences.putInteger(Config.INVENTORY_SLOTS, slots);
       preferences.flush();
    }
@@ -36,6 +44,9 @@ public class PlayerProgress {
    }
 
    public static void setHookType(HookType hookType) {
+      if (preferences == null) {
+         preferences = Gdx.app.getPreferences(Config.PLAYER_PREFERENCES_PATH);
+      }
       preferences.putString(Config.HOOK_TYPE, hookType.toString());
       preferences.flush();
    }

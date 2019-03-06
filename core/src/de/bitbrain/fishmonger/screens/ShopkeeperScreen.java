@@ -22,6 +22,7 @@ import de.bitbrain.fishmonger.catching.HookType;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
+import de.bitbrain.fishmonger.progress.PlayerProgress;
 import de.bitbrain.fishmonger.shop.ShopItemFactory;
 import de.bitbrain.fishmonger.shop.ShopItem;
 import de.bitbrain.fishmonger.ui.DialogManager;
@@ -78,6 +79,10 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
       if (exiting) {
          return;
       }
+      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+         PlayerProgress.addMoney(1000000);
+         shopkeeperUI.refresh();
+      }
       if (dialogUI.hasFinishedDialoging() && !fadedIn) {
          fadedIn = true;
          Tween.to(shopkeeperUI, ActorTween.ALPHA, 0.5f)
@@ -109,8 +114,14 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
       List<ShopItem> items = new ArrayList<ShopItem>();
 
       for (HookType hookType : HookType.values()) {
-         items.add(itemFactory.createHookItem(hookType));
+         if (hookType != HookType.DEFAULT) {
+            items.add(itemFactory.createHookItem(hookType));
+         }
       }
+
+      items.add(itemFactory.createInventoryItem(4));
+      items.add(itemFactory.createInventoryItem(6));
+      items.add(itemFactory.createInventoryItem(8));
 
       shopkeeperUI = new ShopkeeperUI(items);
       shopkeeperUI.getColor().a = 0f;

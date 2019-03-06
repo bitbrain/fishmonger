@@ -1,11 +1,15 @@
 package de.bitbrain.fishmonger.ui.shopkeeper;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
+import de.bitbrain.fishmonger.i18n.Bundle;
+import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.progress.PlayerProgress;
 import de.bitbrain.fishmonger.shop.ShopItem;
 import de.bitbrain.fishmonger.ui.Styles;
 
@@ -16,18 +20,24 @@ import java.util.Map;
 public class ShopkeeperUI extends Table {
 
    private static final float PADDING = 30f;
+   private final Label credits;
 
    private Map<ShopItem, TextButton> buttons = new HashMap<ShopItem, TextButton>();
 
    public ShopkeeperUI(List<ShopItem> items) {
       setFillParent(true);
+
+      Label logo = new Label("Shop", Styles.LABEL_LOGO);
+      add(logo).padBottom(PADDING);
+      row();
+
       for (final ShopItem item : items) {
          ImageButton icon = new ImageButton(Styles.INVENTORY_ICON);
          Image image = new Image(new SpriteDrawable(new Sprite(item.getIcon())));
          image.setScale(5f);
          image.setRotation(90f);
          icon.getImageCell().padRight(-46f).padBottom(-33).setActor(image);
-         add(icon).padTop(PADDING).padRight(PADDING);
+         add(icon).padTop(PADDING);
 
 
          add(new Label(item.getName() + " (" + item.getRarity().getName() + ")", Styles.LABEL_SHOPPINGLIST)).width(500f).padTop(PADDING);
@@ -36,27 +46,39 @@ public class ShopkeeperUI extends Table {
          cost.setAlignment(Align.right);
          add(cost).width(250f).padTop(PADDING);
 
-         String caption = item.isObtained() ? "Bought" : "Buy";
-         TextButton button = new TextButton(caption, Styles.BUTTON_MENU);
+         TextButton button = new TextButton("", Styles.BUTTON_MENU);
          buttons.put(item, button);
          button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-               item.getBuyRunnable().run();
-               ShopkeeperUI.this.refresh();
+               if (!item.isObtained() && PlayerProgress.getTotalMoney() >= item.getPrice()) {
+                  item.getBuyRunnable().run();
+                  PlayerProgress.removeMoney(item.getPrice());
+                  ShopkeeperUI.this.refresh();
+               }
             }
          });
-         button.setDisabled(item.isObtained());
-         add(button).padTop(PADDING).padLeft(PADDING);
+         add(button).width(220f).padTop(PADDING).padLeft(PADDING);
          row();
       }
+      credits = new Label( PlayerProgress.getTotalMoney() + "$", Styles.LABEL_LOGO);
+      credits.setAlignment(Align.left);
+      add();
+      add(credits).left().padTop(PADDING * 2);
+      refresh();
    }
 
-   private void refresh() {
+   public void refresh() {
       for (Map.Entry<ShopItem, TextButton> entry : buttons.entrySet()) {
-         String caption = entry.getKey().isObtained() ? "Bought" : "Buy";
-         entry.getValue().setText(caption);
-         entry.getValue().setDisabled(entry.getKey().isObtained());
+         boolean hasMoney = PlayerProgress.getTotalMoney() >= entry.getKey().getPrice();
+         if (hasMoney) {
+            String caption = entry.getKey().isObtained() ? Bundle.get(Messages.SHOP_BOUGHT) : Bundle.get(Messages.SHOP_BUY);
+            entry.getValue().setText(caption);
+         } else {
+            entry.getValue().setText("no cash");
+         }
+         entry.getValue().setDisabled(entry.getKey().isObtained() || !hasMoney);
       }
+      credits.setText(PlayerProgress.getTotalMoney() + "$");
    }
 }

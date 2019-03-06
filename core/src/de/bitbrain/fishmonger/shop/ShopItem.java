@@ -1,22 +1,21 @@
 package de.bitbrain.fishmonger.shop;
 
 import com.badlogic.gdx.graphics.Texture;
-import de.bitbrain.braingdx.assets.SharedAssetManager;
 
 public class ShopItem {
 
    private final String name;
    private final String description;
-   private final boolean obtained;
+   private final Obtainer obtainer;
    private final Rarity rarity;
    private final Texture icon;
    private final int price;
    private final Runnable buyRunnable;
 
-   public ShopItem(String name, String description, boolean obtained, Rarity rarity, Texture icon, int price, Runnable buyRunnable) {
+   public ShopItem(String name, Obtainer obtainer, Rarity rarity, Texture icon, int price, Runnable buyRunnable) {
       this.name = name;
-      this.description = description;
-      this.obtained = obtained;
+      this.description = null;
+      this.obtainer = obtainer;
       this.rarity = rarity;
       this.icon = icon;
       this.price = price;
@@ -27,12 +26,8 @@ public class ShopItem {
       return name;
    }
 
-   public String getDescription() {
-      return description;
-   }
-
    public boolean isObtained() {
-      return obtained;
+      return obtainer.isObtained();
    }
 
    public Rarity getRarity() {
@@ -56,7 +51,6 @@ public class ShopItem {
       return "ShopItem{" +
             "name='" + name + '\'' +
             ", description='" + description + '\'' +
-            ", obtained=" + obtained +
             ", rarity=" + rarity +
             ", icon='" + icon + '\'' +
             ", price=" + price +
