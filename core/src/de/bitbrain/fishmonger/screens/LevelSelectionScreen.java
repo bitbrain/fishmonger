@@ -120,6 +120,8 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       imageB.setPosition(Gdx.graphics.getWidth() / 2f - 150f + Gdx.graphics.getWidth() / 3f, Gdx.graphics.getHeight() / 2f - 150);
       context.getStage().addActor(imageB);
 
+      float additionalButtonSize = 98f;
+
       ImageButton helpButton = new ImageButton(Styles.BUTTON_HELP);
       helpButton.addListener(new ClickListener() {
          @Override
@@ -130,8 +132,22 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
             }
          }
       });
-      helpButton.setSize(72f, 72f);
-      helpButton.setPosition(Gdx.graphics.getWidth() - 32f - 72f, 32f);
+      helpButton.setSize(additionalButtonSize, additionalButtonSize);
+      helpButton.setPosition(Gdx.graphics.getWidth() - 32f - additionalButtonSize, 32f);
       context.getStage().addActor(helpButton);
+
+      ImageButton shopButton = new ImageButton(Styles.BUTTON_SHOP);
+      shopButton.addListener(new ClickListener() {
+         @Override
+         public void clicked(InputEvent event, float x, float y) {
+            if (!exiting) {
+               context.getScreenTransitions().out(new ShopkeeperScreen(getGame()), 0.2f);
+               exiting = true;
+            }
+         }
+      });
+      shopButton.setSize(additionalButtonSize, additionalButtonSize);
+      shopButton.setPosition(32f, 32f);
+      context.getStage().addActor(shopButton);
    }
 }

@@ -28,6 +28,9 @@ public enum Messages {
    FISH_DELIVERY_18("fish.delivery.18"),
    FISH_DELIVERY_19("fish.delivery.19"),
 
+   SHOPKEEPER_GREETING("shopkeeper.greeting"),
+   SHOPKEEPER_TITLE("shopkeeper.title"),
+
    FISH_EEL_NAME("fish.eel.name"),
    FISH_EEL_NAME_PLURAL("fish.eel.name.plural"),
    FISH_EEL_DESCRIPTION("fish.eel.description"),

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="16" height="16" tilewidth="8" tileheight="8" infinite="0" nextobjectid="3">
+ <tileset firstgid="1" source="tileset.tsx"/>
+ <layer name="Tile Layer 1" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJztkL0KgDAMhOsvGOugTrWT+vZ9SlO4QC1Im93hozRwd8l5Y4z/eXEr5zkN02Z0ivyJWZiBCeBU+EQ9wSNqLd74nyv2vhI9AcdszF7IjTkjINxAhVxhRcaBnXtQq8/3CNAGhb7B/ZI7Jv1rupe+B3hYZQfSA0HrCt1/eYnHV/YDfEQcWQ==
+  </data>
+ </layer>
+ <layer name="Tile Layer 2" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFtAYmdNKDDGwo1E8Ne02wiI0EgC3uBmsYAADr/gHB
+  </data>
+ </layer>
+ <objectgroup name="Object Layer 1">
+  <object id="1" name="PLAYER" type="PLAYER" x="67.4545" y="68.9773">
+   <point/>
+  </object>
+  <object id="2" name="GIER" type="GIER" x="67" y="53.7273">
+   <properties>
+    <property name="collision" type="bool" value="true"/>
+   </properties>
+   <point/>
+  </object>
+ </objectgroup>
+ <layer name="Tile Layer 3" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFhIAOnfQMNjAc/EAOGEn+BgByfwCx
+  </data>
+ </layer>
+</map>

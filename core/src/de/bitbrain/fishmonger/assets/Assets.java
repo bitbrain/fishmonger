@@ -21,6 +21,7 @@ public interface Assets {
       String STRIDER = "textures/strider.png";
 
       String HELP = "textures/help.png";
+      String MONEY = "textures/money.png";
       String QUESTION = "textures/question.png";
    }
 
@@ -54,5 +55,6 @@ public interface Assets {
       String LEVEL_4 = "maps/level4.tmx";
 
       String GAME_OVER = "maps/gameover.tmx";
+      String SHOP = "maps/shop.tmx";
    }
 }

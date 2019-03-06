@@ -30,6 +30,7 @@ public class Styles {
    public static final Label.LabelStyle LABEL_EARNINGS = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_TIME = new Label.LabelStyle();
    public static ImageButton.ImageButtonStyle BUTTON_HELP = new ImageButton.ImageButtonStyle();
+   public static ImageButton.ImageButtonStyle BUTTON_SHOP = new ImageButton.ImageButtonStyle();
 
    public static void load() {
       INVENTORY_ICON.up = new NinePatchDrawable(
@@ -80,6 +81,12 @@ public class Styles {
       BUTTON_HELP.over = new NinePatchDrawable(GraphicsFactory.createNinePatch(ninePatchTexture, 22));
       BUTTON_HELP.checked = BUTTON_HELP.over;
       BUTTON_HELP.up = new NinePatchDrawable(GraphicsFactory.createNinePatch(defaultPatchTexture, 22));
+
+      sprite = new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.MONEY, Texture.class));
+      BUTTON_SHOP.imageUp = new SpriteDrawable(sprite);
+      BUTTON_SHOP.over = new NinePatchDrawable(GraphicsFactory.createNinePatch(ninePatchTexture, 22));
+      BUTTON_SHOP.checked = BUTTON_SHOP.over;
+      BUTTON_SHOP.up = new NinePatchDrawable(GraphicsFactory.createNinePatch(defaultPatchTexture, 22));
    }
 
    private static BitmapFont bake(String fontPath, int size, boolean border) {
