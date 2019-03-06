@@ -22,6 +22,7 @@ public class Styles {
    public static final Label.LabelStyle INGAME_CASH = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_TOAST = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_CREDITS =  new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_ROD =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_LOGO =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG =  new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
@@ -56,6 +57,9 @@ public class Styles {
 
       LABEL_DIALOG_TITLE.font = bake(Assets.Fonts.PIXELMIX, 30);
       LABEL_DIALOG_TITLE.fontColor = Colors.FOREGROUND;
+
+      LABEL_ROD.font = bake(Assets.Fonts.PIXELMIX, 14, true);
+      LABEL_ROD.fontColor = Colors.FOREGROUND;
 
       BUTTON_MENU.font = bake(Assets.Fonts.PIXELMIX, 30);
       BUTTON_MENU.fontColor = Colors.BORDER;

@@ -51,6 +51,10 @@ public class FishingRod {
       this.dialogManager = dialogManager;
    }
 
+   public boolean isUsable() {
+      return !pullingBack && !throwing && !inventory.isFull();
+   }
+
    public void update(float delta) {
       throwTimer.update(delta);
       if (!pullingBack && throwing && throwTimer.reached(type.getThrowInterval())) {

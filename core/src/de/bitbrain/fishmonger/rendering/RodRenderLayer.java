@@ -15,6 +15,7 @@ import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
 import de.bitbrain.fishmonger.model.inventory.Item;
+import de.bitbrain.fishmonger.progress.PlayerProgress;
 
 import static de.bitbrain.braingdx.behavior.movement.Orientation.*;
 
@@ -74,7 +75,8 @@ public class RodRenderLayer implements RenderLayer {
       eventManager.register(pullBackListener, FishingRodEvents.PullBackEvent.class);
       eventManager.register(catchedEvent, FishingRodEvents.FishCatchedEvent.class);
 
-      this.hook = new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.HOOK, Texture.class));
+      Texture texture = PlayerProgress.getFishingRodType().getTexture();
+      this.hook = new Sprite(texture);
    }
 
    @Override

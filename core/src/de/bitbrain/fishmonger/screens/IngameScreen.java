@@ -95,12 +95,12 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
 
       setupWorld(context);
       setupRenderer(context);
-      setupUI(context);
       setupEvents(context);
       setupShaders(context);
 
       this.rod = new FishingRod(PlayerProgress.getFishingRodType(), player, inventory, context, dialogManager);
 
+      setupUI(context);
       setupInput(context);
    }
 
@@ -217,6 +217,10 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       dialogUI.setWidth(width);
       dialogUI.setX(Gdx.graphics.getWidth() / 2f - width / 2f);
       context.getStage().addActor(dialogUI);
+
+      HookUI hookUI = new HookUI(rod);
+      hookUI.setPosition(Gdx.graphics.getWidth() - 32f - hookUI.getWidth(), 24f);
+      context.getStage().addActor(hookUI);
    }
 
    private void setupEvents(GameContext context) {

@@ -68,7 +68,9 @@ public enum Messages {
    SHOP_ITEM_RARITY_COMMON("shop.item.rarity.common"),
    SHOP_ITEM_RARITY_RARE("shop.item.rarity.rare"),
    SHOP_ITEM_RARITY_EPIC("shop.item.rarity.epic"),
-   SHOP_ITEM_RARITY_LEGENDARY("shop.item.rarity.legendary");
+   SHOP_ITEM_RARITY_LEGENDARY("shop.item.rarity.legendary"),
+
+   SHOP_ITEM_ROD_DEFAULT("shop.item.rod.default");
 
    private final String key;
 
