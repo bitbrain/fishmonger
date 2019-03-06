@@ -1,9 +1,9 @@
 package de.bitbrain.fishmonger.model.inventory;
 
 import de.bitbrain.braingdx.event.GameEventManager;
-import de.bitbrain.fishmonger.Config;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
+import de.bitbrain.fishmonger.progress.PlayerProgress;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Inventory {
    }
 
    public boolean isFull() {
-      return items.size() == Config.NUMBER_OF_INVENTORY_SLOTS;
+      return items.size() == PlayerProgress.getInventorySlots();
    }
 
    public boolean addItem(Item item) {

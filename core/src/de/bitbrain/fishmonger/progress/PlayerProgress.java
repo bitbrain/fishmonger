@@ -21,4 +21,16 @@ public class PlayerProgress {
       }
       return preferences.getInteger(Config.TOTAL_MONEY, 0);
    }
+
+   public static void setInventorySlots(int slots) {
+      preferences.putInteger(Config.INVENTORY_SLOTS, slots);
+      preferences.flush();
+   }
+
+   public static int getInventorySlots() {
+      if (preferences == null) {
+         preferences = Gdx.app.getPreferences(Config.PLAYER_PREFERENCES_PATH);
+      }
+      return preferences.getInteger(Config.INVENTORY_SLOTS, Config.NUMBER_OF_INVENTORY_SLOTS);
+   }
 }

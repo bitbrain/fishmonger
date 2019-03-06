@@ -206,7 +206,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       Toast.getInstance().init(context.getStage());
 
       TimerUI timerUI = new TimerUI(timer);
-      timerUI.setBounds(Gdx.graphics.getWidth() - 35f - 400f, Gdx.graphics.getHeight() - 100f, 400f, 60f);
+      timerUI.setBounds(Gdx.graphics.getWidth() - 400f, Gdx.graphics.getHeight() - 100f, 365f, 65f);
       context.getStage().addActor(timerUI);
 
       DialogUI dialogUI = new DialogUI(dialogManager);

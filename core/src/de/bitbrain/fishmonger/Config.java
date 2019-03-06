@@ -4,6 +4,7 @@ public interface Config {
 
    String PLAYER_PREFERENCES_PATH = "fishmonger.player.config";
    String TOTAL_MONEY = "money.total";
+   String INVENTORY_SLOTS = "inventory.slots";
 
    int NUMBER_OF_INVENTORY_SLOTS = 3;
    int BONUS_REQUIRED_ITEMS = 4;
