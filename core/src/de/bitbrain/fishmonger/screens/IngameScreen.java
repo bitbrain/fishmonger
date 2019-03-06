@@ -58,6 +58,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    private String levelAssetId;
    private Music music;
    private RasteredMovementBehavior movement;
+   private IngameControllerInput controllerInput;
 
    public IngameScreen(BrainGdxGame game, String levelAssetId) {
       super(game);
@@ -107,6 +108,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       if (gameOver) {
          return;
       }
+      controllerInput.update(delta);
       rod.update(delta);
       timer.update(delta);
       if (timer.reached(Config.GAME_DURATION_IN_SECONDS)) {
@@ -122,8 +124,9 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    }
 
    private void setupInput(GameContext context) {
+      controllerInput = new IngameControllerInput(movement, rod, context, this);
       context.getInput().addProcessor(new IngameKeyboardInput(movement, rod, context, this));
-      Controllers.addListener(new IngameControllerInput());
+      Controllers.addListener(controllerInput);
    }
 
    private void setupWorld(GameContext context) {
