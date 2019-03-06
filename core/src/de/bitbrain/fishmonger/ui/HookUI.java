@@ -1,6 +1,5 @@
 package de.bitbrain.fishmonger.ui;
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -8,9 +7,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
-import com.badlogic.gdx.utils.Align;
 import de.bitbrain.fishmonger.catching.FishingRod;
-import de.bitbrain.fishmonger.catching.FishingRodType;
+import de.bitbrain.fishmonger.catching.HookType;
 import de.bitbrain.fishmonger.progress.PlayerProgress;
 
 public class HookUI extends Actor {
@@ -23,7 +21,7 @@ public class HookUI extends Actor {
 
    public HookUI(FishingRod rod) {
       this.rod = rod;
-      FishingRodType type = PlayerProgress.getFishingRodType();
+      HookType type = PlayerProgress.getFishingRodType();
       name = new Label(type.getName(), Styles.LABEL_ROD);
       icon = new ImageButton(Styles.INVENTORY_ICON);
       Image image = new Image(new SpriteDrawable(new Sprite(type.getTexture())));

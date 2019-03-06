@@ -7,13 +7,19 @@ import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
 
-public enum FishingRodType {
+public enum HookType {
    DEFAULT(
          Messages.SHOP_ITEM_ROD_DEFAULT,
          Config.FISHING_ROD_RANGE,
          Config.FISHING_ROD_THROW_INTERVAL,
          Config.FISHING_ROD_PULL_INTERVAL,
          Assets.Textures.HOOK
+   ),
+   RARE(Messages.SHOP_ITEM_ROD_RARE,
+         Config.FISHING_ROD_RANGE * 2,
+         Config.FISHING_ROD_THROW_INTERVAL / 2,
+         Config.FISHING_ROD_PULL_INTERVAL / 2,
+         Assets.Textures.HOOK_RARE
    );
 
    private final Messages name;
@@ -22,7 +28,7 @@ public enum FishingRodType {
    private final float pullInterval;
    private final String assetId;
 
-   FishingRodType(Messages name, int range, float throwInterval, float pullInterval, String assetId) {
+   HookType(Messages name, int range, float throwInterval, float pullInterval, String assetId) {
       this.name = name;
       this.range = range;
       this.throwInterval = throwInterval;

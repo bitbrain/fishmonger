@@ -1,7 +1,6 @@
 package de.bitbrain.fishmonger.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.controllers.Controllers;
@@ -23,7 +22,6 @@ import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
 import de.bitbrain.fishmonger.catching.FishingRod;
-import de.bitbrain.fishmonger.catching.FishingRodType;
 import de.bitbrain.fishmonger.event.InventoryClearedEvent;
 import de.bitbrain.fishmonger.event.ItemAddedToInventoryEvent;
 import de.bitbrain.fishmonger.event.handler.InventoryClearedHandler;

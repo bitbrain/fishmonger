@@ -13,6 +13,7 @@ public interface Assets {
       String PANEL_DARK = "textures/panel-dark.9.png";
 
       String HOOK = "textures/hook.png";
+      String HOOK_RARE = "textures/hook-rare.png";
 
       String PIRANHA = "textures/piranha.png";
       String MACKEREL =  "textures/mackerel.png";

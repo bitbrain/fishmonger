@@ -3,7 +3,7 @@ package de.bitbrain.fishmonger.progress;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import de.bitbrain.fishmonger.Config;
-import de.bitbrain.fishmonger.catching.FishingRodType;
+import de.bitbrain.fishmonger.catching.HookType;
 
 public class PlayerProgress {
 
@@ -35,15 +35,15 @@ public class PlayerProgress {
       return preferences.getInteger(Config.INVENTORY_SLOTS, Config.NUMBER_OF_INVENTORY_SLOTS);
    }
 
-   public static void setFishingRodType(FishingRodType fishingRodType) {
-      preferences.putString(Config.FISHING_ROD_TYPE, fishingRodType.toString());
+   public static void setFishingRodType(HookType hookType) {
+      preferences.putString(Config.FISHING_ROD_TYPE, hookType.toString());
       preferences.flush();
    }
 
-   public static FishingRodType getFishingRodType() {
+   public static HookType getFishingRodType() {
       if (preferences == null) {
          preferences = Gdx.app.getPreferences(Config.PLAYER_PREFERENCES_PATH);
       }
-      return FishingRodType.valueOf(preferences.getString(Config.FISHING_ROD_TYPE, FishingRodType.DEFAULT.toString()));
+      return HookType.valueOf(preferences.getString(Config.FISHING_ROD_TYPE, HookType.DEFAULT.toString()));
    }
 }

@@ -39,11 +39,11 @@ public class FishingRod {
    private boolean pullingBack = false;
    private final Inventory inventory;
    private final DialogManager dialogManager;
-   private final FishingRodType type;
+   private final HookType type;
 
    private int currentLength;
 
-   public FishingRod(FishingRodType type, GameObject player, Inventory inventory, GameContext context, DialogManager dialogManager) {
+   public FishingRod(HookType type, GameObject player, Inventory inventory, GameContext context, DialogManager dialogManager) {
       this.type = type;
       this.player = player;
       this.context = context;
