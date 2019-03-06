@@ -3,6 +3,7 @@ package de.bitbrain.fishmonger.screens;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
@@ -18,6 +19,10 @@ import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.input.ingame.IngameControllerInput;
+import de.bitbrain.fishmonger.input.ingame.IngameKeyboardInput;
+import de.bitbrain.fishmonger.input.levelselection.LevelSelectionControllerInput;
+import de.bitbrain.fishmonger.input.levelselection.LevelSelectionKeyboardInput;
 import de.bitbrain.fishmonger.progress.PlayerProgress;
 import de.bitbrain.fishmonger.ui.ButtonMenu;
 import de.bitbrain.fishmonger.ui.Styles;
@@ -31,6 +36,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
    private ButtonMenu buttonMenu;
 
    private boolean exiting = false;
+   private GameContext context;
 
    public LevelSelectionScreen(BrainGdxGame game) {
       super(game);
@@ -38,9 +44,36 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
 
    @Override
    protected void onCreate(GameContext context) {
+      this.context = context;
       setupUI(context);
+      setupInput(context);
       setBackgroundColor(Colors.BACKGROUND);
       context.getScreenTransitions().in(0.4f);
+   }
+
+   @Override
+   public void dispose() {
+      super.dispose();
+      Controllers.clearListeners();
+   }
+
+   public void helpScreen() {
+      if (!exiting) {
+         context.getScreenTransitions().out(new HelpScreen(getGame()), 0.2f);
+         exiting = true;
+      }
+   }
+
+   public void shopScreen() {
+      if (!exiting) {
+         context.getScreenTransitions().out(new ShopkeeperScreen(getGame()), 0.2f);
+         exiting = true;
+      }
+   }
+
+   private void setupInput(GameContext context) {
+      context.getInput().addProcessor(new LevelSelectionKeyboardInput(buttonMenu, this));
+      Controllers.addListener(new LevelSelectionControllerInput(buttonMenu, this));
    }
 
    void setupUI(final GameContext context) {
@@ -126,10 +159,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       helpButton.addListener(new ClickListener() {
          @Override
          public void clicked(InputEvent event, float x, float y) {
-            if (!exiting) {
-               context.getScreenTransitions().out(new HelpScreen(getGame()), 0.2f);
-               exiting = true;
-            }
+            helpScreen();
          }
       });
       helpButton.setSize(additionalButtonSize, additionalButtonSize);
@@ -140,10 +170,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       shopButton.addListener(new ClickListener() {
          @Override
          public void clicked(InputEvent event, float x, float y) {
-            if (!exiting) {
-               context.getScreenTransitions().out(new ShopkeeperScreen(getGame()), 0.2f);
-               exiting = true;
-            }
+            shopScreen();
          }
       });
       shopButton.setSize(additionalButtonSize, additionalButtonSize);
