@@ -28,6 +28,7 @@ public class Styles {
    public static final Label.LabelStyle LABEL_DIALOG_TITLE = new Label.LabelStyle();
    public static final TextButton.TextButtonStyle BUTTON_MENU = new TextButton.TextButtonStyle();
    public static final Label.LabelStyle LABEL_EARNINGS = new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_TIME = new Label.LabelStyle();
    public static ImageButton.ImageButtonStyle BUTTON_HELP = new ImageButton.ImageButtonStyle();
 
    public static void load() {
@@ -60,6 +61,9 @@ public class Styles {
 
       LABEL_ROD.font = bake(Assets.Fonts.PIXELMIX, 14, true);
       LABEL_ROD.fontColor = Colors.FOREGROUND;
+
+      LABEL_TIME.font = bake(Assets.Fonts.PIXELMIX, 26, false);
+      LABEL_TIME.fontColor = Colors.BORDER;
 
       BUTTON_MENU.font = bake(Assets.Fonts.PIXELMIX, 30);
       BUTTON_MENU.fontColor = Colors.BORDER;

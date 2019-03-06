@@ -47,6 +47,8 @@ public enum Messages {
    FISH_CAUGHT("fish.caught"),
    TIME_EXPIRED("time.expired"),
    INVENTORY_FULL("inventory.full"),
+   TIME_CAPTION("time.caption"),
+   TIME_CAPTION_PLURAL("time.caption.plural"),
 
    LEVEL_1_NAME("level.1.name"),
    LEVEL_2_NAME("level.2.name"),

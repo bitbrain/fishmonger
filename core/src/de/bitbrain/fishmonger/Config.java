@@ -15,10 +15,10 @@ public interface Config {
    float SOLD_RANGE = 32f;
 
    int FISHING_ROD_RANGE = 3;
-   float FISHING_ROD_THROW_INTERVAL = 0.2f;
-   float FISHING_ROD_PULL_INTERVAL = 0.1f;
+   float FISHING_ROD_THROW_INTERVAL = 0.3f;
+   float FISHING_ROD_PULL_INTERVAL = 0.15f;
 
-   float GAME_DURATION_IN_SECONDS = 80f;
+   int GAME_DURATION_IN_SECONDS = 80;
 
    float MENU_BUTTON_WIDTH = 400f;
    float MENU_BUTTON_HEIGHT = 90f;
