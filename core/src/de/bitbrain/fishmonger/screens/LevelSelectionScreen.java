@@ -4,11 +4,9 @@ import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.ui.Image;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
+import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
@@ -80,19 +78,13 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       Table layout = new Table();
       layout.setFillParent(true);
 
-      Label logo = new Label("Fishmonger", Styles.LABEL_LOGO);
-      layout.add(logo).padBottom(50f).padTop(20f);
+
+      layout.add(createAnimatedLogo("fishmonger")).padBottom(90f).padTop(150f);
       layout.row();
 
       Label earnings = new Label(Bundle.get(PLAYER_BALANCE, PlayerProgress.getTotalMoney()), Styles.LABEL_EARNINGS);
-      layout.add(earnings).padBottom(50f).padTop(20f);
-      layout.row();
-
-      Tween.to(logo, ActorTween.ALPHA, 1f)
-            .target(0.7f)
-            .repeatYoyo(Tween.INFINITY, 0f)
-            .ease(TweenEquations.easeInOutSine)
-            .start(context.getTweenManager());
+      earnings.setPosition(Gdx.graphics.getWidth() - 35f - earnings.getPrefWidth(), Gdx.graphics.getHeight() - 45f - earnings.getPrefHeight());
+      context.getStage().addActor(earnings);
 
       buttonMenu = new ButtonMenu(context.getTweenManager());
       buttonMenu.add(get(Messages.LEVEL_1_NAME), new ClickListener() {
@@ -103,7 +95,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
                exiting = true;
             }
          }
-      });
+      }).left();
       buttonMenu.add(get(Messages.LEVEL_2_NAME), new ClickListener() {
          @Override
          public void clicked(InputEvent event, float x, float y) {
@@ -112,7 +104,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
                exiting = true;
             }
          }
-      });
+      }).left();
       buttonMenu.add(get(Messages.LEVEL_3_NAME), new ClickListener() {
          @Override
          public void clicked(InputEvent event, float x, float y) {
@@ -121,7 +113,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
                exiting = true;
             }
          }
-      });
+      }).left();
       buttonMenu.add(get(Messages.LEVEL_4_NAME), new ClickListener() {
          @Override
          public void clicked(InputEvent event, float x, float y) {
@@ -130,7 +122,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
                exiting = true;
             }
          }
-      });
+      }).left();
 
       buttonMenu.checkNext();
 
@@ -176,5 +168,30 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
       shopButton.setSize(additionalButtonSize, additionalButtonSize);
       shopButton.setPosition(32f, 32f);
       context.getStage().addActor(shopButton);
+   }
+
+   private Actor createAnimatedLogo(String text) {
+      HorizontalGroup logoGroup = new HorizontalGroup();
+      for (int i = 0; i < text.length(); ++i) {
+         Label character = new Label(text.charAt(i) + "", Styles.LABEL_LOGO);
+
+         Tween.to(character, ActorTween.ALPHA, 0.5f)
+               .delay(0.3f * i)
+               .target(0.7f)
+               .repeatYoyo(Tween.INFINITY, 0f)
+               .ease(TweenEquations.easeInOutSine)
+               .start(context.getTweenManager());
+
+         Tween.to(character, ActorTween.SCALE, 0.5f)
+               .delay(0.3f * i)
+               .target(0.8f)
+               .repeatYoyo(Tween.INFINITY, 0f)
+               .ease(TweenEquations.easeInOutSine)
+               .start(context.getTweenManager());
+
+         logoGroup.addActor(character);
+      }
+
+      return logoGroup;
    }
 }

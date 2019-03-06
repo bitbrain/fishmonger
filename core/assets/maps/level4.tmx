@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
 <map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="64" height="64" tilewidth="8" tileheight="8" infinite="0" nextobjectid="26">
+ <properties>
+  <property name="duration" type="int" value="120"/>
+ </properties>
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="base" width="64" height="64">
   <data encoding="base64" compression="zlib">

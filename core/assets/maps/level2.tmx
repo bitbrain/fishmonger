@@ -1,17 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.2" tiledversion="1.2.2" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" nextlayerid="5" nextobjectid="23">
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="32" height="32" tilewidth="8" tileheight="8" infinite="0" nextobjectid="23">
+ <properties>
+  <property name="duration" type="int" value="80"/>
+ </properties>
  <tileset firstgid="1" source="tileset.tsx"/>
- <layer id="1" name="base" width="32" height="32">
+ <layer name="base" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJylVz1TAkEMXRVuhs8ZsFIq5VcKlVppJx12QAVWaCUd/jJ3Z5IhPpPsHle8WQi7eS8fl+W6IYRuRJtWRF370LCXInceeTUdmq2JrqYx1Ykn4TviE3BQfjvU8F2SN8ZHxBNgH/Gl2PaFWnK5lPabiFfCQtGigXVoOSuNm7mvI6YRk4gXoUWDp29fIy+SewKYCj0I1sc63kDTlmLeObxtQg84kV/ToNlkzm6Nmmt16Cm+miBpG5GGVoZb8mOsVu5LcpFsHYeTcyNrX5prbZ+08Zr4K0eDlXv0k9aLiEuBK2e/jD9xeD2I/JqvxH0Pfu5Ig5YHyb8T8Xu9Z9Vd+uEzrWDnToJ70LtHZBxW/TvEmTT0xcpnvd7pGPxDYc/1APtgXs4Bzg6tD/EZ0Gqh1QD7OO0bhNNMS/w4NzEH3DdyBpTOXqzjmGpZ0ZmxcU7W0bqTtNit3pffRw4vnnsMf++krRF/4p9FzJX8efPG457W4Jf/OZ4VP96MtewPEe9n8C8pDyV8ckUbxr6K+FFqn56pY8RG0ZDrBZwXVu0lt3UPWhq8PHg1kPwp7zj/5Qzgz5qGWQHmVG9p49pz7Pj8W/MYNZRgGf73mox9oPB7SBrWhE1NPStxdk2x94Mdd8n70hF8epB9tqPYq4b8aB+Qb9zXD6c7qqJ98q72gL6s+7Kkfrn/e7n3kBJ9+Ns576m/ojO0sw==
   </data>
  </layer>
- <layer id="2" name="underplayer" width="32" height="32">
+ <layer name="underplayer" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJztlTEOACAIA3mUo/9/l3FzEGOA0Gq4yc2SnijCQQPc2QF3ThCzFri+T2S7wOYeYydFLhYnvR7/4h1ijqacPbzWx2t52WD7hwoM6zsqJ3LY7S70PtO6j8gV7VUXPddtXmum6FkG7pkGIQ==
   </data>
  </layer>
- <objectgroup id="3" name="objects">
+ <objectgroup name="objects">
   <object id="5" name="PLAYER" type="PLAYER" x="177.084" y="37.1663">
    <point/>
   </object>
@@ -52,7 +56,7 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="4" name="overplayer" width="32" height="32">
+ <layer name="overplayer" width="32" height="32">
   <data encoding="base64" compression="zlib">
    eJzt0jEKACAMBMF7UP7/Pgs7QZGIGridKmVCVupCPpxuxdrrFmgP1WSapON/YjIDu+gGI5rwdfP3FbvK7lTxlhMNrh4CaQ==
   </data>

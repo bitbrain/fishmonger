@@ -49,13 +49,13 @@ public class Styles {
       LABEL_CREDITS.font = bake(Assets.Fonts.PIXELMIX, 14, true, 4f);
       LABEL_CREDITS.fontColor = Colors.FOREGROUND;
 
-      LABEL_EARNINGS.font = bake(Assets.Fonts.PIXELMIX, 20, false);
+      LABEL_EARNINGS.font = bake(Assets.Fonts.PIXELMIX, 18, true, 4f);
       LABEL_EARNINGS.fontColor = Colors.FOREGROUND;
 
       LABEL_SHOPPINGLIST.font = bake(Assets.Fonts.PIXELMIX, 30, true, 6);
       LABEL_SHOPPINGLIST.fontColor = Colors.FOREGROUND;
 
-      LABEL_LOGO.font = bake(Assets.Fonts.PIXELMIX, 50, true);
+      LABEL_LOGO.font = bake(Assets.Fonts.PIXELMIX, 70, true, 12f);
       LABEL_LOGO.fontColor = Colors.FOREGROUND;
 
       LABEL_DIALOG.font = bake(Assets.Fonts.PIXELMIX, 26);

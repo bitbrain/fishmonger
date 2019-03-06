@@ -59,6 +59,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    private Music music;
    private RasteredMovementBehavior movement;
    private IngameControllerInput controllerInput;
+   private float gameDuration;
 
    public IngameScreen(BrainGdxGame game, String levelAssetId) {
       super(game);
@@ -111,7 +112,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       controllerInput.update(delta);
       rod.update(delta);
       timer.update(delta);
-      if (timer.reached(Config.GAME_DURATION_IN_SECONDS)) {
+      if (timer.reached(gameDuration)) {
          player.setActive(false);
          setGameOver();
          context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory, deliveredItems), 1f);
@@ -131,6 +132,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
 
    private void setupWorld(GameContext context) {
       TiledMap level = SharedAssetManager.getInstance().get(levelAssetId, TiledMap.class);
+      gameDuration = level.getProperties().get("duration", 60, Integer.class);
       context.getTiledMapManager().load(level, context.getGameCamera().getInternalCamera(), TiledMapType.ORTHOGONAL);
       context.getGameWorld().setBounds(new SimpleWorldBounds(
             context.getTiledMapManager().getAPI().getWorldWidth(),
@@ -208,7 +210,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
 
       Toast.getInstance().init(context.getStage());
 
-      TimerUI timerUI = new TimerUI(timer);
+      TimerUI timerUI = new TimerUI(timer, gameDuration);
       timerUI.setBounds(Gdx.graphics.getWidth() - 400f, Gdx.graphics.getHeight() - 100f, 365f, 65f);
       context.getStage().addActor(timerUI);
 

@@ -19,17 +19,19 @@ public class TimerUI extends Actor {
    private final Texture texture;
    private final DeltaTimer timer;
    private final Label time;
+   private final float duration;
 
-   public TimerUI(DeltaTimer timer) {
+   public TimerUI(DeltaTimer timer, float duration) {
       this.timer = timer;
+      this.duration = duration;
       texture = GraphicsFactory.createTexture(2, 2, Color.WHITE);
-      time = new Label(Config.GAME_DURATION_IN_SECONDS + " seconds", Styles.LABEL_TIME);
+      time = new Label(duration + " seconds", Styles.LABEL_TIME);
    }
 
    @Override
    public void draw(Batch batch, float parentAlpha) {
 
-      float percentage =  1f - timer.getTicks() / Config.GAME_DURATION_IN_SECONDS;
+      float percentage =  1f - timer.getTicks() / duration;
 
       if (percentage < 0) {
          percentage = 0f;
@@ -48,7 +50,7 @@ public class TimerUI extends Actor {
       }
 
       // Set caption
-      int remainingTimeInSeconds = (int)(Config.GAME_DURATION_IN_SECONDS * percentage);
+      int remainingTimeInSeconds = (int)(duration * percentage);
 
       if (remainingTimeInSeconds == 1) {
          time.setText(Bundle.get(Messages.TIME_CAPTION));
