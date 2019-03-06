@@ -2,6 +2,7 @@ package de.bitbrain.fishmonger.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -16,6 +17,8 @@ import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.input.help.HelpControllerInput;
+import de.bitbrain.fishmonger.input.help.HelpKeyboardInput;
 import de.bitbrain.fishmonger.ui.Styles;
 
 public class HelpScreen extends AbstractScreen<BrainGdxGame> {
@@ -33,17 +36,26 @@ public class HelpScreen extends AbstractScreen<BrainGdxGame> {
       context.getScreenTransitions().in(0.2f);
       this.context = context;
       setupUI(context);
+      setupInput(context);
    }
 
    @Override
-   protected void onUpdate(float delta) {
+   public void dispose() {
+      super.dispose();
+      Controllers.clearListeners();
+   }
+
+   public void exit() {
       if (exiting) {
          return;
       }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY) || Gdx.input.isTouched()) {
-         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.3f);
-         exiting = true;
-      }
+      context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.3f);
+      exiting = true;
+   }
+
+   private void setupInput(GameContext context) {
+      context.getInput().addProcessor(new HelpKeyboardInput(this));
+      Controllers.addListener(new HelpControllerInput(this));
    }
 
    private void setupUI(GameContext context) {
