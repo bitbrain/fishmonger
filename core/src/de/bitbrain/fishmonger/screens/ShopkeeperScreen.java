@@ -146,7 +146,7 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
          }
          if ("SPAWN".equals(o.getType())) {
             int capacity = ((MapProperties)o.getAttribute(MapProperties.class)).get("capacity", 1, Integer.class);
-            Spawner spawner = new Spawner(o.getLeft(), o.getTop(), o.getWidth(), o.getHeight(), capacity);
+            Spawner spawner = new Spawner(o.getLeft(), o.getTop(), o.getWidth(), o.getHeight(), capacity, 4);
             spawners.add(spawner);
          }
       }

@@ -9,16 +9,30 @@ import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.behaviour.FishBehaviour;
 import de.bitbrain.fishmonger.model.FishType;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Spawner {
 
    private final Vector2 origin = new Vector2();
    private final Vector2 bounds = new Vector2();
    private final int capacity;
+   private final Set<FishType> types;
 
-   public Spawner(float x, float y, float width, float height, int capacity) {
+   public Spawner(float x, float y, float width, float height, int capacity, int tier, int minimumTier) {
       this.origin.set(x, y);
       this.bounds.set(width, height);
       this.capacity = capacity;
+      this.types = new HashSet<FishType>();
+      for (FishType type : FishType.values()) {
+         if (type.getTier() <= tier && type.getTier() >= minimumTier) {
+            types.add(type);
+         }
+      }
+   }
+
+   public Spawner(float x, float y, float width, float height, int capacity, int tier) {
+      this(x, y, width, height, capacity, tier, 1);
    }
 
    public void spawn(GameContext context, GameObject player) {
@@ -59,8 +73,11 @@ public class Spawner {
    }
 
    private FishType computeType() {
+      if (types.size() == 1) {
+         return types.iterator().next();
+      }
       while (true) {
-         for (FishType t : FishType.values()) {
+         for (FishType t : types) {
             if (Math.random() < t.getProbability()) {
               return t;
             }

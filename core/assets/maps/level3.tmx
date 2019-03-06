@@ -28,46 +28,57 @@
   <object id="9" name="SPAWN" type="SPAWN" x="374.5" y="213.667" width="58.75" height="18.2083">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="1"/>
    </properties>
   </object>
   <object id="12" name="SPAWN" type="SPAWN" x="283.875" y="117.813" width="23.75" height="56.5417">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="1"/>
    </properties>
   </object>
   <object id="13" name="SPAWN" type="SPAWN" x="306.291" y="74.6457" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="1"/>
    </properties>
   </object>
   <object id="14" name="SPAWN" type="SPAWN" x="165.625" y="100.729" width="85.0833" height="25.5417">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="2"/>
    </properties>
   </object>
   <object id="15" name="SPAWN" type="SPAWN" x="92.458" y="192.729" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="3"/>
+    <property name="capacity" type="int" value="4"/>
+    <property name="minimum_tier" type="int" value="3"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
   <object id="16" name="SPAWN" type="SPAWN" x="147.125" y="194.063" width="94.4167" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="2"/>
    </properties>
   </object>
   <object id="17" name="SPAWN" type="SPAWN" x="255.458" y="208.063" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="2"/>
    </properties>
   </object>
   <object id="18" name="SPAWN" type="SPAWN" x="411.709" y="106.146" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="1"/>
    </properties>
   </object>
   <object id="19" name="SPAWN" type="SPAWN" x="92.792" y="150.563" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="3"/>
+    <property name="capacity" type="int" value="4"/>
+    <property name="minimum_tier" type="int" value="3"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
  </objectgroup>

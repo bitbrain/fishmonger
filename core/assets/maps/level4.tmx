@@ -28,51 +28,63 @@
   <object id="9" name="SPAWN" type="SPAWN" x="484.06" y="290.416" width="23.0833" height="47.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="3"/>
    </properties>
   </object>
   <object id="12" name="SPAWN" type="SPAWN" x="331.459" y="190.396" width="14.4167" height="56.5417">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="3"/>
    </properties>
   </object>
   <object id="13" name="SPAWN" type="SPAWN" x="462.625" y="81.7293" width="31.75" height="38.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="3"/>
    </properties>
   </object>
   <object id="14" name="SPAWN" type="SPAWN" x="344.792" y="30.396" width="44.4166" height="49.2084">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="3"/>
    </properties>
   </object>
   <object id="15" name="SPAWN" type="SPAWN" x="105.791" y="209.063" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
   <object id="16" name="SPAWN" type="SPAWN" x="462.784" y="171.957" width="15.75" height="39.2083">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="3"/>
    </properties>
   </object>
   <object id="17" name="SPAWN" type="SPAWN" x="219.458" y="328.729" width="60.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
   <object id="18" name="SPAWN" type="SPAWN" x="225.625" y="126.063" width="40.75" height="34.375">
    <properties>
-    <property name="capacity" type="int" value="1"/>
+    <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="1"/>
    </properties>
   </object>
   <object id="19" name="SPAWN" type="SPAWN" x="283.626" y="241.729" width="32.75" height="29.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="minimum_tier" type="int" value="4"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
   <object id="20" name="SPAWN" type="SPAWN" x="60.125" y="450.729" width="60.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="5"/>
+    <property name="minimum_tier" type="int" value="3"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
   <object id="21" name="SPAWN" type="SPAWN" x="253.959" y="390.396" width="25.4167" height="24.5417">
@@ -82,12 +94,15 @@
   </object>
   <object id="22" name="SPAWN" type="SPAWN" x="403.792" y="473.229" width="102.417" height="32.0417">
    <properties>
-    <property name="capacity" type="int" value="2"/>
+    <property name="capacity" type="int" value="7"/>
+    <property name="minimum_tier" type="int" value="4"/>
+    <property name="tier" type="int" value="4"/>
    </properties>
   </object>
   <object id="23" name="SPAWN" type="SPAWN" x="168.791" y="235.23" width="56.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="2"/>
+    <property name="tier" type="int" value="3"/>
    </properties>
   </object>
   <object id="24" name="SPAWN" type="SPAWN" x="28.7913" y="253.063" width="31.75" height="53.875">
@@ -98,6 +113,7 @@
   <object id="25" name="SPAWN" type="SPAWN" x="16.1246" y="172.063" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
+    <property name="tier" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>

@@ -147,7 +147,9 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
          }
          if ("SPAWN".equals(o.getType())) {
             int capacity = ((MapProperties)o.getAttribute(MapProperties.class)).get("capacity", 1, Integer.class);
-            Spawner spawner = new Spawner(o.getLeft(), o.getTop(), o.getWidth(), o.getHeight(), capacity);
+            int tier = ((MapProperties)o.getAttribute(MapProperties.class)).get("tier", 1, Integer.class);
+            int minimumTier = ((MapProperties)o.getAttribute(MapProperties.class)).get("minimum_tier", 1, Integer.class);
+            Spawner spawner = new Spawner(o.getLeft(), o.getTop(), o.getWidth(), o.getHeight(), capacity, tier, minimumTier);
             spawners.add(spawner);
          }
       }
