@@ -79,10 +79,6 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
       if (exiting) {
          return;
       }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
-         PlayerProgress.addMoney(1000000);
-         shopkeeperUI.refresh();
-      }
       if (dialogUI.hasFinishedDialoging() && !fadedIn) {
          fadedIn = true;
          Tween.to(shopkeeperUI, ActorTween.ALPHA, 0.5f)
