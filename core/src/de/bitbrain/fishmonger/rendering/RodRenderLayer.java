@@ -5,14 +5,12 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.Vector2;
-import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.event.GameEventListener;
 import de.bitbrain.braingdx.event.GameEventManager;
 import de.bitbrain.braingdx.graphics.pipeline.RenderLayer;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.fishmonger.Colors;
-import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.event.FishingRodEvents;
 import de.bitbrain.fishmonger.model.inventory.Item;
 import de.bitbrain.fishmonger.progress.PlayerProgress;
@@ -75,7 +73,7 @@ public class RodRenderLayer implements RenderLayer {
       eventManager.register(pullBackListener, FishingRodEvents.PullBackEvent.class);
       eventManager.register(catchedEvent, FishingRodEvents.FishCatchedEvent.class);
 
-      Texture texture = PlayerProgress.getFishingRodType().getTexture();
+      Texture texture = PlayerProgress.getHookType().getTexture();
       this.hook = new Sprite(texture);
    }
 

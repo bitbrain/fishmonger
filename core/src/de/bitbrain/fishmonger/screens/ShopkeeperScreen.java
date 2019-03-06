@@ -1,5 +1,6 @@
 package de.bitbrain.fishmonger.screens;
 
+import aurelienribon.tweenengine.Tween;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
@@ -11,16 +12,22 @@ import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.screens.AbstractScreen;
 import de.bitbrain.braingdx.tmx.TiledMapType;
+import de.bitbrain.braingdx.tweens.ActorTween;
+import de.bitbrain.braingdx.tweens.SharedTweenManager;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
+import de.bitbrain.fishmonger.catching.HookType;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
+import de.bitbrain.fishmonger.shop.ShopItemFactory;
+import de.bitbrain.fishmonger.shop.ShopItem;
 import de.bitbrain.fishmonger.ui.DialogManager;
 import de.bitbrain.fishmonger.ui.DialogUI;
 import de.bitbrain.fishmonger.ui.Toast;
+import de.bitbrain.fishmonger.ui.shopkeeper.ShopkeeperUI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,10 +37,13 @@ import static de.bitbrain.fishmonger.Colors.BACKGROUND;
 public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
 
    private boolean exiting = false;
+   private boolean fadedIn = false;
    private GameContext context;
    private DialogManager dialogManager;
    private Music music;
    private DialogUI dialogUI;
+   private ShopItemFactory itemFactory;
+   private ShopkeeperUI shopkeeperUI;
 
    public ShopkeeperScreen(BrainGdxGame game) {
       super(game);
@@ -52,6 +62,7 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
 
       this.context = context;
       this.dialogManager = new DialogManager();
+      this.itemFactory = new ShopItemFactory();
 
       prepareDialog();
 
@@ -66,6 +77,12 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
    protected void onUpdate(float delta) {
       if (exiting) {
          return;
+      }
+      if (dialogUI.hasFinishedDialoging() && !fadedIn) {
+         fadedIn = true;
+         Tween.to(shopkeeperUI, ActorTween.ALPHA, 0.5f)
+               .target(1f)
+               .start(SharedTweenManager.getInstance());
       }
       if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
          context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.3f);
@@ -88,6 +105,16 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
       dialogUI.setX(Gdx.graphics.getWidth() / 2f - width / 2f);
       context.getStage().addActor(dialogUI);
       Toast.getInstance().init(context.getStage());
+
+      List<ShopItem> items = new ArrayList<ShopItem>();
+
+      for (HookType hookType : HookType.values()) {
+         items.add(itemFactory.createHookItem(hookType));
+      }
+
+      shopkeeperUI = new ShopkeeperUI(items);
+      shopkeeperUI.getColor().a = 0f;
+      context.getStage().addActor(shopkeeperUI);
    }
 
    private void setupRenderer(GameContext context) {

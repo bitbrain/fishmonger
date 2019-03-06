@@ -35,15 +35,15 @@ public class PlayerProgress {
       return preferences.getInteger(Config.INVENTORY_SLOTS, Config.NUMBER_OF_INVENTORY_SLOTS);
    }
 
-   public static void setFishingRodType(HookType hookType) {
-      preferences.putString(Config.FISHING_ROD_TYPE, hookType.toString());
+   public static void setHookType(HookType hookType) {
+      preferences.putString(Config.HOOK_TYPE, hookType.toString());
       preferences.flush();
    }
 
-   public static HookType getFishingRodType() {
+   public static HookType getHookType() {
       if (preferences == null) {
          preferences = Gdx.app.getPreferences(Config.PLAYER_PREFERENCES_PATH);
       }
-      return HookType.valueOf(preferences.getString(Config.FISHING_ROD_TYPE, HookType.DEFAULT.toString()));
+      return HookType.valueOf(preferences.getString(Config.HOOK_TYPE, HookType.DEFAULT.toString()));
    }
 }

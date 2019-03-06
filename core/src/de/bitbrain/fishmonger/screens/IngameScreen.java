@@ -96,7 +96,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       setupEvents(context);
       setupShaders(context);
 
-      this.rod = new FishingRod(PlayerProgress.getFishingRodType(), player, inventory, context, dialogManager);
+      this.rod = new FishingRod(PlayerProgress.getHookType(), player, inventory, context, dialogManager);
 
       setupUI(context);
       setupInput(context);

@@ -21,7 +21,7 @@ public class HookUI extends Actor {
 
    public HookUI(FishingRod rod) {
       this.rod = rod;
-      HookType type = PlayerProgress.getFishingRodType();
+      HookType type = PlayerProgress.getHookType();
       name = new Label(type.getName(), Styles.LABEL_ROD);
       icon = new ImageButton(Styles.INVENTORY_ICON);
       Image image = new Image(new SpriteDrawable(new Sprite(type.getTexture())));
@@ -43,7 +43,7 @@ public class HookUI extends Actor {
    @Override
    public void draw(Batch batch, float parentAlpha) {
       icon.setStyle(rod.isUsable() ? Styles.INVENTORY_ICON : Styles.INVENTORY_ICON_OCCUPIED);
-      icon.setPosition(getX(), getY() + name.getPrefHeight() + 24f);
+      icon.setPosition(getX(), getY() + name.getPrefHeight() + 16f);
       icon.setSize(SIZE, SIZE);
       name.setPosition(getX() - (name.getPrefWidth() - SIZE), getY());
       icon.draw(batch, parentAlpha);

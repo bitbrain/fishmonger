@@ -29,6 +29,7 @@ public class Styles {
    public static final TextButton.TextButtonStyle BUTTON_MENU = new TextButton.TextButtonStyle();
    public static final Label.LabelStyle LABEL_EARNINGS = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_TIME = new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_SHOPPINGLIST = new Label.LabelStyle();
    public static ImageButton.ImageButtonStyle BUTTON_HELP = new ImageButton.ImageButtonStyle();
    public static ImageButton.ImageButtonStyle BUTTON_SHOP = new ImageButton.ImageButtonStyle();
 
@@ -45,11 +46,14 @@ public class Styles {
       LABEL_TOAST.font = bake(Assets.Fonts.PIXELMIX, 40, true);
       LABEL_TOAST.fontColor = Colors.FOREGROUND;
 
-      LABEL_CREDITS.font = bake(Assets.Fonts.PIXELMIX, 14, true);
+      LABEL_CREDITS.font = bake(Assets.Fonts.PIXELMIX, 14, true, 4f);
       LABEL_CREDITS.fontColor = Colors.FOREGROUND;
 
       LABEL_EARNINGS.font = bake(Assets.Fonts.PIXELMIX, 20, false);
       LABEL_EARNINGS.fontColor = Colors.FOREGROUND;
+
+      LABEL_SHOPPINGLIST.font = bake(Assets.Fonts.PIXELMIX, 30, true, 6);
+      LABEL_SHOPPINGLIST.fontColor = Colors.FOREGROUND;
 
       LABEL_LOGO.font = bake(Assets.Fonts.PIXELMIX, 50, true);
       LABEL_LOGO.fontColor = Colors.FOREGROUND;
@@ -60,10 +64,10 @@ public class Styles {
       LABEL_DIALOG_TITLE.font = bake(Assets.Fonts.PIXELMIX, 30);
       LABEL_DIALOG_TITLE.fontColor = Colors.FOREGROUND;
 
-      LABEL_ROD.font = bake(Assets.Fonts.PIXELMIX, 14, true);
+      LABEL_ROD.font = bake(Assets.Fonts.PIXELMIX, 20, true, 4f);
       LABEL_ROD.fontColor = Colors.FOREGROUND;
 
-      LABEL_TIME.font = bake(Assets.Fonts.PIXELMIX, 26, false);
+      LABEL_TIME.font = bake(Assets.Fonts.PIXELMIX, 28, false);
       LABEL_TIME.fontColor = Colors.BORDER;
 
       BUTTON_MENU.font = bake(Assets.Fonts.PIXELMIX, 30);
@@ -90,6 +94,10 @@ public class Styles {
    }
 
    private static BitmapFont bake(String fontPath, int size, boolean border) {
+      return bake(fontPath, size, border, 10f);
+   }
+
+   private static BitmapFont bake(String fontPath, int size, boolean border, float borderWidth) {
       FreeTypeFontGenerator generator = SharedAssetManager.getInstance().get(fontPath, FreeTypeFontGenerator.class);
       FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
       param.color = Color.WHITE;
@@ -97,7 +105,7 @@ public class Styles {
       param.mono = true;
       if (border) {
          param.borderStraight = true;
-         param.borderWidth = 10f;
+         param.borderWidth = borderWidth;
          param.borderColor = Colors.BORDER;
       }
       return generator.generateFont(param);
