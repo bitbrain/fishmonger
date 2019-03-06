@@ -15,6 +15,7 @@ public interface Assets {
       String HOOK = "textures/hook.png";
       String HOOK_RARE = "textures/hook-rare.png";
       String HOOK_EPIC = "textures/hook-epic.png";
+      String BAG = "textures/bag.png";
 
       String PIRANHA = "textures/piranha.png";
       String MACKEREL =  "textures/mackerel.png";

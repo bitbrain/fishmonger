@@ -25,6 +25,6 @@ public class ShopItemFactory {
             PlayerProgress.setInventorySlots(slots);
          }
       };
-      return new ShopItem(slots + " slot bag", new SlotObtainer(slots), Rarity.RARE, SharedAssetManager.getInstance().get(Assets.Textures.EEL, Texture.class), 1000 * slots * slots, runnable);
+      return new ShopItem(slots + " slot bag", new SlotObtainer(slots), Rarity.RARE, SharedAssetManager.getInstance().get(Assets.Textures.BAG, Texture.class), 1000 * slots * slots, runnable);
    }
 }
