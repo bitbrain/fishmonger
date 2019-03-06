@@ -7,21 +7,18 @@ import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
 import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.behavior.movement.RasteredMovementBehavior;
 import de.bitbrain.braingdx.graphics.pipeline.layers.RenderPipeIds;
-import de.bitbrain.braingdx.input.OrientationMovementController;
 import de.bitbrain.braingdx.screens.AbstractScreen;
 import de.bitbrain.braingdx.tmx.TiledMapType;
 import de.bitbrain.braingdx.util.DeltaTimer;
 import de.bitbrain.braingdx.world.GameObject;
 import de.bitbrain.braingdx.world.SimpleWorldBounds;
 import de.bitbrain.fishmonger.Config;
-import de.bitbrain.fishmonger.FishMongerGame;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.behaviour.SellToGierBehavior;
@@ -60,6 +57,7 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
    private DialogManager dialogManager;
    private String levelAssetId;
    private Music music;
+   private RasteredMovementBehavior movement;
 
    public IngameScreen(BrainGdxGame game, String levelAssetId) {
       super(game);
@@ -71,6 +69,10 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       super.dispose();
       Controllers.clearListeners();
       music.stop();
+   }
+
+   public void setGameOver() {
+      this.gameOver = true;
    }
 
    @Override
@@ -90,14 +92,14 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       this.dialogManager = new DialogManager();
 
       setupWorld(context);
-      setupInput(context);
       setupRenderer(context);
       setupUI(context);
       setupEvents(context);
       setupShaders(context);
 
-
       this.rod = new FishingRod(player, inventory, context, dialogManager);
+
+      setupInput(context);
    }
 
    @Override
@@ -109,25 +111,18 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       timer.update(delta);
       if (timer.reached(Config.GAME_DURATION_IN_SECONDS)) {
          player.setActive(false);
-         gameOver = true;
+         setGameOver();
          context.getScreenTransitions().out(new GameOverScreen(getGame(), money, inventory, deliveredItems), 1f);
          Toast.getInstance().doToast(Bundle.get(Messages.TIME_EXPIRED));
          Sound sound = SharedAssetManager.getInstance().get(Assets.Sounds.GAME_OVER, Sound.class);
          sound.play();
          return;
       }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-         gameOver = true;
-         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 1f);
-      }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isTouched()) {
-         rod.throwRod();
-      }
       super.onUpdate(delta);
    }
 
    private void setupInput(GameContext context) {
-      context.getInput().addProcessor(new IngameKeyboardInput());
+      context.getInput().addProcessor(new IngameKeyboardInput(movement, rod, context, this));
       Controllers.addListener(new IngameControllerInput());
    }
 
@@ -181,11 +176,10 @@ public class IngameScreen extends AbstractScreen<BrainGdxGame> {
       context.getGameCamera().setTargetTrackingSpeed(0.1f);
       player.setOrigin(player.getWidth() / 2f, player.getHeight() / 2f);
 
-      OrientationMovementController controller = new OrientationMovementController();
-      final RasteredMovementBehavior behavior = new RasteredMovementBehavior(controller, context.getTiledMapManager().getAPI())
+      movement = new RasteredMovementBehavior(context.getTiledMapManager().getAPI())
             .interval(0.15f)
             .rasterSize(context.getTiledMapManager().getAPI().getCellWidth(), context.getTiledMapManager().getAPI().getCellHeight());
-      context.getBehaviorManager().apply(behavior, player);
+      context.getBehaviorManager().apply(movement, player);
       context.getBehaviorManager().apply(new SellToGierBehavior(inventory, deliveredItems, dialogManager), player);
    }
 

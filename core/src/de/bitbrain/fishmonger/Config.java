@@ -5,7 +5,8 @@ public interface Config {
    String PLAYER_PREFERENCES_PATH = "fishmonger.player.config";
    String TOTAL_MONEY = "money.total";
 
-   int NUMBER_OF_INVENTORY_SLOTS = 4;
+   int NUMBER_OF_INVENTORY_SLOTS = 3;
+   int BONUS_REQUIRED_ITEMS = 4;
    int BONUS_DIFFERENCE_MULTIPLICATOR = 4;
    int BONUS_SAME_MULTIPLICATOR = 2;
    float MINIMUM_SELL_RANGE = 22f;
@@ -13,7 +14,7 @@ public interface Config {
 
    float FISHING_ROD_RANGE = 6;
    float FISHING_ROD_THROW_INTERVAL = 0.1f;
-   float FISHING_ROD_PULL_INTERVAL = 0.03f;
+   float FISHING_ROD_PULL_INTERVAL = 0.05f;
 
    float GAME_DURATION_IN_SECONDS = 80f;
 

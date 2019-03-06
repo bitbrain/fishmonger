@@ -29,7 +29,7 @@ public class DesktopLauncher {
 			application.getClass().getMethod("setDockIconImage", java.awt.Image.class)
 					.invoke(application, new ImageIcon(icon.file().getAbsolutePath()).getImage());
 		} catch (Exception e) {
-
+			// noOp
 		}
 	}
 }

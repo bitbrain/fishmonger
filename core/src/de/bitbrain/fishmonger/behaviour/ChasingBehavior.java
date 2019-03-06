@@ -2,8 +2,6 @@ package de.bitbrain.fishmonger.behaviour;
 
 import de.bitbrain.braingdx.ai.pathfinding.Path;
 import de.bitbrain.braingdx.behavior.BehaviorAdapter;
-import de.bitbrain.braingdx.behavior.movement.Movement;
-import de.bitbrain.braingdx.behavior.movement.MovementController;
 import de.bitbrain.braingdx.behavior.movement.Orientation;
 import de.bitbrain.braingdx.behavior.movement.RasteredMovementBehavior;
 import de.bitbrain.braingdx.event.GameEventListener;
@@ -39,40 +37,6 @@ public class ChasingBehavior extends BehaviorAdapter {
         }
     };
 
-
-    private final MovementController<Orientation> chasingController = new MovementController<Orientation>() {
-        @Override
-        public void update(Movement movement, float delta) {
-            if (path == null || path.getLength() <= minLength) {
-                if (listener != null && path != null && previousLength > path.getLength()) {
-                    listener.onArriveTarget();
-                }
-                return;
-            }
-            previousLength = path.getLength();
-            if (!movement.isMoving()) {
-                int indexX = IndexCalculator.calculateIndex(source.getLeft(), tiledMapManager.getAPI().getCellWidth());
-                int indexY = IndexCalculator.calculateIndex(source.getTop(), tiledMapManager.getAPI().getCellHeight());
-                int pathX = getPath().getX(getPath().getLength() - 2);
-                int pathY = getPath().getY(getPath().getLength() - 2);
-                float deltaX = pathX - indexX;
-                float deltaY = pathY - indexY;
-                if (deltaX > 0) {
-                    movement.move(Orientation.RIGHT);
-                } else if (deltaX < 0) {
-                    movement.move(Orientation.LEFT);
-                } else if (deltaY > 0) {
-                    movement.move(Orientation.UP);
-                } else if (deltaY < 0) {
-                    movement.move(Orientation.DOWN);
-                }
-                if (deltaX != 0 || deltaY != 0) {
-                    getPath().remove(getPath().getLength() - 1);
-                }
-            }
-        }
-    };
-
     protected final TiledMapManager tiledMapManager;
     private GameObject target;
     protected final GameObject source;
@@ -81,6 +45,33 @@ public class ChasingBehavior extends BehaviorAdapter {
     public void update(GameObject source, float delta) {
         if (source.equals(this.source)) {
             behavior.update(source, delta);
+            if (path == null || path.getLength() <= minLength) {
+                if (listener != null && path != null && previousLength > path.getLength()) {
+                    listener.onArriveTarget();
+                }
+                return;
+            }
+            previousLength = path.getLength();
+            if (!getMovement().isMoving()) {
+                int indexX = IndexCalculator.calculateIndex(source.getLeft(), tiledMapManager.getAPI().getCellWidth());
+                int indexY = IndexCalculator.calculateIndex(source.getTop(), tiledMapManager.getAPI().getCellHeight());
+                int pathX = getPath().getX(getPath().getLength() - 2);
+                int pathY = getPath().getY(getPath().getLength() - 2);
+                float deltaX = pathX - indexX;
+                float deltaY = pathY - indexY;
+                if (deltaX > 0) {
+                    getMovement().move(Orientation.RIGHT);
+                } else if (deltaX < 0) {
+                    getMovement().move(Orientation.LEFT);
+                } else if (deltaY > 0) {
+                    getMovement().move(Orientation.UP);
+                } else if (deltaY < 0) {
+                    getMovement().move(Orientation.DOWN);
+                }
+                if (deltaX != 0 || deltaY != 0) {
+                    getPath().remove(getPath().getLength() - 1);
+                }
+            }
         }
     }
 
@@ -105,7 +96,7 @@ public class ChasingBehavior extends BehaviorAdapter {
         this.tiledMapManager = tiledMapManager;
         this.source = source;
         this.target = target;
-        behavior = new RasteredMovementBehavior(chasingController, tiledMapManager.getAPI())
+        behavior = new RasteredMovementBehavior(tiledMapManager.getAPI())
                 .interval(0.25f)
                 .rasterSize(tiledMapManager.getAPI().getCellWidth(), tiledMapManager.getAPI().getCellHeight());
     }
