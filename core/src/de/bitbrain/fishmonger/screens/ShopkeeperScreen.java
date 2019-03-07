@@ -124,9 +124,9 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
          }
       }
 
-      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_MEDIUM, 4, Rarity.RARE));
-      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_LARGE, 6, Rarity.EPIC));
-      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_LEGENDARY, 8, Rarity.LEGENDARY));
+      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_MEDIUM, 4, Rarity.RARE, Assets.Textures.BAG_SMALL));
+      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_LARGE, 6, Rarity.EPIC, Assets.Textures.BAG_LARGE));
+      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_LEGENDARY, 8, Rarity.LEGENDARY, Assets.Textures.BAG_LEGENDARY));
 
       ButtonMenu.ButtonMenuStyle style = new ButtonMenu.ButtonMenuStyle();
       style.buttonWidth = 250f;

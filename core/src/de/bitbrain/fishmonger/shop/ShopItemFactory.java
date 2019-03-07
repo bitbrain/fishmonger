@@ -20,7 +20,7 @@ public class ShopItemFactory {
       return new ShopItem(type.getName(), new HookObtainer(type), type.getRarity(), type.getTexture(), 15000 * (type.ordinal() * type.ordinal() * type.ordinal()), runnable);
    }
 
-   public ShopItem createInventoryItem(Messages message, final int slots, Rarity rarity) {
+   public ShopItem createInventoryItem(Messages message, final int slots, Rarity rarity, String asset) {
       Runnable runnable = new Runnable() {
          @Override
          public void run() {
@@ -31,7 +31,7 @@ public class ShopItemFactory {
             Bundle.get(message) + " (" + slots + " " + Bundle.get(Messages.SHOP_ITEM_BAG_SLOTS) + ")",
             new SlotObtainer(slots),
             rarity,
-            SharedAssetManager.getInstance().get(Assets.Textures.BAG, Texture.class),
+            SharedAssetManager.getInstance().get(asset, Texture.class),
             1000 * slots * slots,
             runnable
       );
