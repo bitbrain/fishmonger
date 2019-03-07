@@ -239,7 +239,7 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
 
          Tween.to(character, ActorTween.ALPHA, 0.5f)
                .delay(0.3f * i)
-               .target(0.7f)
+               .target(0.9f)
                .repeatYoyo(Tween.INFINITY, 0f)
                .ease(TweenEquations.easeInOutSine)
                .start(context.getTweenManager());
@@ -250,7 +250,6 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
                .repeatYoyo(Tween.INFINITY, 0f)
                .ease(TweenEquations.easeInOutSine)
                .start(context.getTweenManager());
-
          logoGroup.addActor(character);
       }
 
