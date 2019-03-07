@@ -67,6 +67,7 @@ public enum Messages {
 
    ANGRY_RICHARD("angry.richard"),
 
+   HELP("help.name"),
    HELP_BONUS_1("help.bonus.1"),
    HELP_BONUS_2("help.bonus.2"),
 
@@ -84,6 +85,7 @@ public enum Messages {
    SHOP_ITEM_BAG_LARGE("shop.item.bag.large"),
    SHOP_ITEM_BAG_LEGENDARY("shop.item.bag.legendary"),
 
+   SHOP("shop.name"),
    SHOP_BOUGHT("shop.bought"),
    SHOP_BUY("shop.buy"),
    SHOP_NO_MONEY("shop.no-money");

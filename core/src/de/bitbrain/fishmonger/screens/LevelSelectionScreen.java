@@ -3,15 +3,22 @@ package de.bitbrain.fishmonger.screens;
 import aurelienribon.tweenengine.Tween;
 import aurelienribon.tweenengine.TweenEquations;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.controllers.mappings.Xbox;
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import de.bitbrain.braingdx.BrainGdxGame;
 import de.bitbrain.braingdx.GameContext;
+import de.bitbrain.braingdx.assets.SharedAssetManager;
 import de.bitbrain.braingdx.screens.AbstractScreen;
 import de.bitbrain.braingdx.tweens.ActorTween;
+import de.bitbrain.braingdx.tweens.SharedTweenManager;
 import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
@@ -155,8 +162,10 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
          }
       });
       helpButton.setSize(additionalButtonSize, additionalButtonSize);
-      helpButton.setPosition(Gdx.graphics.getWidth() - 32f - additionalButtonSize, 32f);
+      helpButton.setPosition(Gdx.graphics.getWidth() - 64f - additionalButtonSize, 32f);
       context.getStage().addActor(helpButton);
+
+      decorateWithArrowTooltip(getHelpText(), helpButton, context);
 
       ImageButton shopButton = new ImageButton(Styles.BUTTON_SHOP);
       shopButton.addListener(new ClickListener() {
@@ -166,8 +175,61 @@ public class LevelSelectionScreen extends AbstractScreen<BrainGdxGame> {
          }
       });
       shopButton.setSize(additionalButtonSize, additionalButtonSize);
-      shopButton.setPosition(32f, 32f);
+      shopButton.setPosition(64f, 32f);
       context.getStage().addActor(shopButton);
+
+      decorateWithArrowTooltip(getShopText(), shopButton, context);
+   }
+
+   private String getHelpText() {
+      String description = Bundle.get(Messages.HELP);
+      String key = "E";
+      for (Controller controller : Controllers.getControllers()) {
+         if (Xbox.isXboxController(controller)) {
+            key = "START";
+            break;
+         }
+      }
+      return description + " (" + key + ")";
+   }
+
+   private String getShopText() {
+      String description = Bundle.get(Messages.SHOP);
+      String key = "Q";
+      for (Controller controller : Controllers.getControllers()) {
+         if (Xbox.isXboxController(controller)) {
+            key = "BACK";
+            break;
+         }
+      }
+      return description + " (" + key + ")";
+   }
+
+   private void decorateWithArrowTooltip(String text, Actor target, GameContext context) {
+      decorateWithArrowTooltip(new Label(text, Styles.LABEL_CREDITS), target, context);
+   }
+
+   private void decorateWithArrowTooltip(Actor descriptor, Actor target, GameContext context) {
+      VerticalGroup tooltip = new VerticalGroup();
+
+      tooltip.addActor(descriptor);
+
+      Image arrow = new Image(new SpriteDrawable(new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.ARROW, Texture.class))));
+      arrow.setSize(32f, 32f);
+
+      tooltip.addActor(arrow);
+
+      float initialOffsetX = target.getX() + target.getWidth() / 2f - tooltip.getWidth() / 2f;
+      float initialOffsetY = target.getY() + target.getHeight() + tooltip.getHeight() + 25f + 32f;
+      tooltip.setPosition(initialOffsetX, initialOffsetY);
+
+      Tween.to(tooltip, ActorTween.POPUP, 1f)
+            .target(initialOffsetY + 20)
+            .ease(TweenEquations.easeInBounce)
+            .repeatYoyo(Tween.INFINITY, 0f)
+            .start(SharedTweenManager.getInstance());
+
+      context.getStage().addActor(tooltip);
    }
 
    private Actor createAnimatedLogo(String text) {

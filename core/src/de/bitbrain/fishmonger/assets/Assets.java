@@ -30,6 +30,7 @@ public interface Assets {
       String HELP_XBOX = "textures/help-xbox.png";
       String MONEY = "textures/money.png";
       String QUESTION = "textures/question.png";
+      String ARROW = "textures/arrow.png";
    }
 
    interface Sounds {
