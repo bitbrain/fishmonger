@@ -79,6 +79,8 @@ public class Styles {
       Texture defaultPatchTexture = SharedAssetManager.getInstance().get(Assets.Textures.PANEL, Texture.class);
       BUTTON_MENU.checked = BUTTON_MENU.over;
       BUTTON_MENU.up = new NinePatchDrawable(GraphicsFactory.createNinePatch(defaultPatchTexture, 22));
+      BUTTON_MENU.disabled = new NinePatchDrawable(GraphicsFactory.createNinePatch(ninePatchTexture, 22));
+      BUTTON_MENU.disabledFontColor = Colors.BORDER.cpy();
 
       Sprite sprite = new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.QUESTION, Texture.class));
       BUTTON_HELP.imageUp = new SpriteDrawable(sprite);

@@ -1,12 +1,15 @@
 package de.bitbrain.fishmonger.ui.shopkeeper;
 
-import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.*;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.Drawable;
 import com.badlogic.gdx.scenes.scene2d.utils.SpriteDrawable;
 import com.badlogic.gdx.utils.Align;
+import de.bitbrain.braingdx.graphics.GraphicsFactory;
+import de.bitbrain.fishmonger.Colors;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
 import de.bitbrain.fishmonger.progress.PlayerProgress;
@@ -26,6 +29,10 @@ public class ShopkeeperUI extends Table {
 
    public ShopkeeperUI(List<ShopItem> items) {
       setFillParent(true);
+      Color bgColor = Colors.BACKGROUND.cpy();
+      bgColor.a = 0.3f;
+      Drawable backgroundImage = new SpriteDrawable(new Sprite(GraphicsFactory.createTexture(2, 2, bgColor)));
+      setBackground(backgroundImage);
 
       Label logo = new Label("Shop", Styles.LABEL_LOGO);
       add(logo).padBottom(PADDING);
@@ -71,11 +78,11 @@ public class ShopkeeperUI extends Table {
    public void refresh() {
       for (Map.Entry<ShopItem, TextButton> entry : buttons.entrySet()) {
          boolean hasMoney = PlayerProgress.getTotalMoney() >= entry.getKey().getPrice();
-         if (hasMoney) {
+         if (hasMoney || entry.getKey().isObtained()) {
             String caption = entry.getKey().isObtained() ? Bundle.get(Messages.SHOP_BOUGHT) : Bundle.get(Messages.SHOP_BUY);
             entry.getValue().setText(caption);
          } else {
-            entry.getValue().setText("no cash");
+            entry.getValue().setText(Bundle.get(Messages.SHOP_NO_MONEY));
          }
          entry.getValue().setDisabled(entry.getKey().isObtained() || !hasMoney);
       }

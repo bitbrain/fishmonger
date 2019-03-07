@@ -80,7 +80,8 @@ public enum Messages {
    SHOP_ITEM_ROD_EPIC("shop.item.rod.epic"),
 
    SHOP_BOUGHT("shop.bought"),
-   SHOP_BUY("shop.buy");
+   SHOP_BUY("shop.buy"),
+   SHOP_NO_MONEY("shop.no-money");
 
    private final String key;
 
