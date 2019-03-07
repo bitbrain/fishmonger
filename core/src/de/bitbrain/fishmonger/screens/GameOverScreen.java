@@ -3,6 +3,7 @@ package de.bitbrain.fishmonger.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import de.bitbrain.braingdx.BrainGdxGame;
@@ -17,6 +18,8 @@ import de.bitbrain.fishmonger.animation.Animations;
 import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.input.gameover.GameOverControllerInput;
+import de.bitbrain.fishmonger.input.gameover.GameOverKeyboardInput;
 import de.bitbrain.fishmonger.model.Money;
 import de.bitbrain.fishmonger.model.inventory.Inventory;
 import de.bitbrain.fishmonger.model.inventory.Item;
@@ -52,6 +55,12 @@ public class GameOverScreen extends AbstractScreen {
    }
 
    @Override
+   public void dispose() {
+      super.dispose();
+      Controllers.clearListeners();
+   }
+
+   @Override
    protected void onCreate(GameContext context) {
       music = SharedAssetManager.getInstance().get(Assets.Musics.RICHARD_GIER, Music.class);
       music.setLooping(true);
@@ -70,6 +79,19 @@ public class GameOverScreen extends AbstractScreen {
       dialogManager.nextDialog();
    }
 
+   public void exit() {
+      if (exiting) {
+         return;
+      }
+      context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.5f);
+      exiting = true;
+      this.music.stop();
+      Music music = SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class);
+      music.setLooping(true);
+      music.setVolume(0.4f);
+      music.play();
+   }
+
    @Override
    protected void onUpdate(float delta) {
       if (dialog) {
@@ -80,15 +102,14 @@ public class GameOverScreen extends AbstractScreen {
          return;
       }
       super.onUpdate(delta);
-      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE) || (!dialog && dialogUI.hasFinishedDialoging())) {
-         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.5f);
-         exiting = true;
-         this.music.stop();
-         Music music = SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class);
-         music.setLooping(true);
-         music.setVolume(0.4f);
-         music.play();
+      if (!dialog && dialogUI.hasFinishedDialoging()) {
+         exit();
       }
+   }
+
+   private void setupInput(GameContext context) {
+      context.getInput().addProcessor(new GameOverKeyboardInput(this));
+      Controllers.addListener(new GameOverControllerInput(this));
    }
 
    private void setupWorld(GameContext context) {
