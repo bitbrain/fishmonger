@@ -179,12 +179,17 @@ public class ButtonMenu extends Table {
    private int getNextIndex() {
       int index = currentCheckIndex;
       boolean inc = false;
+      int count = -1;
       while (!inc || !isValidCheck(index)) {
+         if (count > buttons.size()) {
+            return -1;
+         }
          inc = true;
          index++;
          if (index >= buttons.size()) {
             index = 0;
          }
+         count++;
       }
       return index;
    }
@@ -192,12 +197,17 @@ public class ButtonMenu extends Table {
    private int getPreviusIndex() {
       int index = currentCheckIndex;
       boolean dec = false;
+      int count = -1;
       while (!dec || !isValidCheck(index)) {
+         if (count > buttons.size()) {
+            return -1;
+         }
          dec = true;
          index--;
          if (index < 0) {
             index = buttons.size() - 1;
          }
+         count++;
       }
       return index;
    }
