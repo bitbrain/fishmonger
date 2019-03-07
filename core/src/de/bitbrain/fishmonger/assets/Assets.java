@@ -27,6 +27,7 @@ public interface Assets {
       String STRIDER = "textures/strider.png";
 
       String HELP = "textures/help.png";
+      String HELP_XBOX = "textures/help-xbox.png";
       String MONEY = "textures/money.png";
       String QUESTION = "textures/question.png";
    }

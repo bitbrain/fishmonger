@@ -2,7 +2,9 @@ package de.bitbrain.fishmonger.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.controllers.Controller;
 import com.badlogic.gdx.controllers.Controllers;
+import com.badlogic.gdx.controllers.mappings.Xbox;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -62,7 +64,8 @@ public class HelpScreen extends AbstractScreen<BrainGdxGame> {
       Table layout = new Table();
       layout.setFillParent(true);
 
-      Image image = new Image(new SpriteDrawable(new Sprite(SharedAssetManager.getInstance().get(Assets.Textures.HELP, Texture.class))));
+
+      Image image = new Image(new SpriteDrawable(new Sprite(SharedAssetManager.getInstance().get(resolveHelpTexture(), Texture.class))));
 
       layout.center().add(image).width(512 * 3f).height(256 * 3f);
 
@@ -75,5 +78,14 @@ public class HelpScreen extends AbstractScreen<BrainGdxGame> {
       layout.add(help2).padTop(30f);
 
       context.getStage().addActor(layout);
+   }
+
+   private String resolveHelpTexture() {
+      for (Controller controller : Controllers.getControllers()) {
+         if (Xbox.isXboxController(controller)) {
+            return Assets.Textures.HELP_XBOX;
+         }
+      }
+      return Assets.Textures.HELP;
    }
 }
