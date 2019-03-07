@@ -77,7 +77,12 @@ public enum Messages {
 
    SHOP_ITEM_ROD_DEFAULT("shop.item.rod.default"),
    SHOP_ITEM_ROD_RARE("shop.item.rod.rare"),
-   SHOP_ITEM_ROD_EPIC("shop.item.rod.epic"),
+   SHOP_ITEM_ROD_LEGENDARY("shop.item.rod.legendary"),
+
+   SHOP_ITEM_BAG_SLOTS("shop.item.bag.slots"),
+   SHOP_ITEM_BAG_MEDIUM("shop.item.bag.medium"),
+   SHOP_ITEM_BAG_LARGE("shop.item.bag.large"),
+   SHOP_ITEM_BAG_LEGENDARY("shop.item.bag.legendary"),
 
    SHOP_BOUGHT("shop.bought"),
    SHOP_BUY("shop.buy"),

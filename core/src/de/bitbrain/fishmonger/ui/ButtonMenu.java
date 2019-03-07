@@ -21,32 +21,42 @@ import java.util.List;
 
 public class ButtonMenu extends Table {
 
+   public static class ButtonMenuStyle {
+      public float buttonWidth = Config.MENU_BUTTON_WIDTH;
+      public float buttonHeight = Config.MENU_BUTTON_HEIGHT;
+      public boolean checkMode = false;
+      public float padding = Config.MENU_BUTTON_PADDING;
+      public boolean vertical = true;
+      public float buttonAlpha = Config.MENU_BUTTON_ALPHA;
+   }
+
    private TweenManager tweenManager;
 
    private List<Button> buttons = new ArrayList<Button>();
 
    private int currentCheckIndex = -1;
 
-   private boolean checkMode;
+   private final ButtonMenuStyle style;
 
    public ButtonMenu(TweenManager tweenManager) {
-      this(tweenManager, false);
+      this(tweenManager, new ButtonMenuStyle());
    }
 
-   public ButtonMenu(TweenManager tweenManager, boolean checkMode) {
+   public ButtonMenu(TweenManager tweenManager, ButtonMenuStyle style) {
       this.tweenManager = tweenManager;
-      this.checkMode = checkMode;
+      this.style = style;
+
       setTouchable(Touchable.childrenOnly);
    }
 
-   public Button add(String caption, final ClickListener listener) {
+   public Cell<TextButton> add(String caption, final ClickListener listener) {
       final TextButton button = new TextButton(caption, Styles.BUTTON_MENU) {
 
          @Override
          public void setChecked(boolean isChecked) {
             if (!isChecked) {
                tweenManager.killTarget(this);
-               Tween.to(this.getColor(), ColorTween.A, 1.0f).target(Config.MENU_BUTTON_ALPHA).ease(TweenEquations.easeOutCubic).start(tweenManager);
+               Tween.to(this.getColor(), ColorTween.A, 1.0f).target(style.buttonAlpha).ease(TweenEquations.easeOutCubic).start(tweenManager);
             } else {
                tweenManager.killTarget(this);
                Tween.to(this.getColor(), ColorTween.A, 1.0f).target(1f).ease(TweenEquations.easeOutCubic).start(tweenManager);
@@ -55,7 +65,7 @@ public class ButtonMenu extends Table {
             super.setChecked(isChecked);
          }
       };
-      button.setColor(new Color(1f, 1f, 1f, Config.MENU_BUTTON_ALPHA));
+      button.setColor(new Color(1f, 1f, 1f, style.buttonAlpha));
       button.addCaptureListener(new ClickListener() {
          @Override
          public void clicked(InputEvent event, float x, float y) {
@@ -79,10 +89,16 @@ public class ButtonMenu extends Table {
          }
       });
 
-      Cell<TextButton> cell = center().add(button).width(Config.MENU_BUTTON_WIDTH).height(Config.MENU_BUTTON_HEIGHT);
-      row();
+      Cell<TextButton> cell = center().add(button).width(style.buttonWidth).height(style.buttonHeight);
+      if (style.vertical) {
+         row();
+      }
       if (!buttons.isEmpty()) {
-         cell.padTop(Config.MENU_BUTTON_PADDING);
+         if (style.vertical) {
+            cell.padTop(style.padding);
+         } else {
+            cell.padLeft(style.padding);
+         }
       }
       button.addCaptureListener(new ClickListener() {
          @Override
@@ -111,14 +127,14 @@ public class ButtonMenu extends Table {
                if (event.getRelatedActor() == null || (!event.getRelatedActor().equals(button) &&
                      event.getRelatedActor() instanceof TextButton)) {
                   tweenManager.killTarget(button);
-                  Tween.to(button.getColor(), ColorTween.A, 1.0f).target(Config.MENU_BUTTON_ALPHA).ease(TweenEquations.easeOutCubic).start(tweenManager);
+                  Tween.to(button.getColor(), ColorTween.A, 1.0f).target(style.buttonAlpha).ease(TweenEquations.easeOutCubic).start(tweenManager);
                }
             }
          }
       });
       buttons.add(button);
       validateCheckState();
-      return button;
+      return cell;
    }
 
    public void checkNext() {
@@ -143,7 +159,7 @@ public class ButtonMenu extends Table {
    }
 
    private void validateCheckState() {
-      if (checkMode && buttons.size() == 1) {
+      if (style.checkMode && buttons.size() == 1) {
          setChecked(0);
       }
    }

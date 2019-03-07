@@ -59,7 +59,7 @@ public class InventoryUI extends Table {
          ImageButton button = new ImageButton(Styles.INVENTORY_ICON);
          Cell<ImageButton> cell = top().add(button).width(size).height(size).padTop(32f);
          if (i > 0f) {
-            cell.padLeft(15f);
+            cell.padLeft(5f);
          }
          slots.add(button);
       }

@@ -30,6 +30,7 @@ public class Styles {
    public static final Label.LabelStyle LABEL_EARNINGS = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_TIME = new Label.LabelStyle();
    public static final Label.LabelStyle LABEL_SHOPPINGLIST = new Label.LabelStyle();
+   public static final Label.LabelStyle LABEL_SHOPPINGLIST_RARITY = new Label.LabelStyle();
    public static ImageButton.ImageButtonStyle BUTTON_HELP = new ImageButton.ImageButtonStyle();
    public static ImageButton.ImageButtonStyle BUTTON_SHOP = new ImageButton.ImageButtonStyle();
 
@@ -52,8 +53,11 @@ public class Styles {
       LABEL_EARNINGS.font = bake(Assets.Fonts.PIXELMIX, 18, true, 4f);
       LABEL_EARNINGS.fontColor = Colors.FOREGROUND;
 
-      LABEL_SHOPPINGLIST.font = bake(Assets.Fonts.PIXELMIX, 30, true, 6);
+      LABEL_SHOPPINGLIST.font = bake(Assets.Fonts.PIXELMIX, 26, true, 5);
       LABEL_SHOPPINGLIST.fontColor = Colors.FOREGROUND;
+
+      LABEL_SHOPPINGLIST_RARITY.font = bake(Assets.Fonts.PIXELMIX, 26, true, 5, Colors.FOREGROUND);
+      LABEL_SHOPPINGLIST_RARITY.fontColor = Colors.FOREGROUND;
 
       LABEL_LOGO.font = bake(Assets.Fonts.PIXELMIX, 70, true, 12f);
       LABEL_LOGO.fontColor = Colors.FOREGROUND;
@@ -96,10 +100,14 @@ public class Styles {
    }
 
    private static BitmapFont bake(String fontPath, int size, boolean border) {
-      return bake(fontPath, size, border, 10f);
+      return bake(fontPath, size, border, 10f, Colors.BORDER);
    }
 
    private static BitmapFont bake(String fontPath, int size, boolean border, float borderWidth) {
+      return bake(fontPath, size, border, borderWidth, Colors.BORDER);
+   }
+
+   private static BitmapFont bake(String fontPath, int size, boolean border, float borderWidth, Color borderColor) {
       FreeTypeFontGenerator generator = SharedAssetManager.getInstance().get(fontPath, FreeTypeFontGenerator.class);
       FreeTypeFontGenerator.FreeTypeFontParameter param = new FreeTypeFontGenerator.FreeTypeFontParameter();
       param.color = Color.WHITE;
@@ -108,7 +116,8 @@ public class Styles {
       if (border) {
          param.borderStraight = true;
          param.borderWidth = borderWidth;
-         param.borderColor = Colors.BORDER;
+         param.borderColor = borderColor;
+         param.borderGamma = 2f;
       }
       return generator.generateFont(param);
    }

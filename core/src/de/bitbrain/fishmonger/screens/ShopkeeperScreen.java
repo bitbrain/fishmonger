@@ -2,8 +2,8 @@ package de.bitbrain.fishmonger.screens;
 
 import aurelienribon.tweenengine.Tween;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.controllers.Controllers;
 import com.badlogic.gdx.maps.MapProperties;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import de.bitbrain.braingdx.BrainGdxGame;
@@ -21,10 +21,13 @@ import de.bitbrain.fishmonger.assets.Assets;
 import de.bitbrain.fishmonger.catching.HookType;
 import de.bitbrain.fishmonger.i18n.Bundle;
 import de.bitbrain.fishmonger.i18n.Messages;
+import de.bitbrain.fishmonger.input.shopkeeper.ShopkeeperControllerInput;
+import de.bitbrain.fishmonger.input.shopkeeper.ShopkeeperKeyboardInput;
 import de.bitbrain.fishmonger.model.spawn.Spawner;
-import de.bitbrain.fishmonger.progress.PlayerProgress;
+import de.bitbrain.fishmonger.shop.Rarity;
 import de.bitbrain.fishmonger.shop.ShopItemFactory;
 import de.bitbrain.fishmonger.shop.ShopItem;
+import de.bitbrain.fishmonger.ui.ButtonMenu;
 import de.bitbrain.fishmonger.ui.DialogManager;
 import de.bitbrain.fishmonger.ui.DialogUI;
 import de.bitbrain.fishmonger.ui.Toast;
@@ -51,6 +54,12 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
    }
 
    @Override
+   public void dispose() {
+      super.dispose();
+      Controllers.clearListeners();
+   }
+
+   @Override
    protected void onCreate(GameContext context) {
       SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class).stop();
       music = SharedAssetManager.getInstance().get(Assets.Musics.RICHARD_GIER, Music.class);
@@ -70,6 +79,7 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
       setupWorld(context);
       setupRenderer(context);
       setupUI(context);
+      setupInput(context);
 
       dialogManager.nextDialog();
    }
@@ -85,18 +95,17 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
                .target(1f)
                .start(SharedTweenManager.getInstance());
       }
-      if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-         context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.3f);
-         exiting = true;
-         this.music.stop();
-         Music music = SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class);
-         music.setLooping(true);
-         music.setVolume(0.4f);
-         music.play();
-      }
    }
 
-
+   public void exit() {
+      context.getScreenTransitions().out(new LevelSelectionScreen(getGame()), 0.3f);
+      exiting = true;
+      this.music.stop();
+      Music music = SharedAssetManager.getInstance().get(Assets.Musics.MAIN_MENU, Music.class);
+      music.setLooping(true);
+      music.setVolume(0.4f);
+      music.play();
+   }
 
    private void setupUI(GameContext context) {
       dialogUI = new DialogUI(dialogManager);
@@ -115,13 +124,21 @@ public class ShopkeeperScreen extends AbstractScreen<BrainGdxGame> {
          }
       }
 
-      items.add(itemFactory.createInventoryItem(4));
-      items.add(itemFactory.createInventoryItem(6));
-      items.add(itemFactory.createInventoryItem(8));
+      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_MEDIUM, 4, Rarity.RARE));
+      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_LARGE, 6, Rarity.EPIC));
+      items.add(itemFactory.createInventoryItem(Messages.SHOP_ITEM_BAG_LEGENDARY, 8, Rarity.LEGENDARY));
 
-      shopkeeperUI = new ShopkeeperUI(items);
+      ButtonMenu.ButtonMenuStyle style = new ButtonMenu.ButtonMenuStyle();
+      style.buttonWidth = 250f;
+      style.buttonHeight = 60f;
+      shopkeeperUI = new ShopkeeperUI(items, style);
       shopkeeperUI.getColor().a = 0f;
       context.getStage().addActor(shopkeeperUI);
+   }
+
+   private void setupInput(GameContext context) {
+      Controllers.addListener(new ShopkeeperControllerInput(shopkeeperUI, this));
+      context.getInput().addProcessor(new ShopkeeperKeyboardInput(shopkeeperUI, this));
    }
 
    private void setupRenderer(GameContext context) {
