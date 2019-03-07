@@ -7,12 +7,12 @@
  <tileset firstgid="1" source="tileset.tsx"/>
  <layer name="base" width="32" height="18">
   <data encoding="base64" compression="zlib">
-   eJydVrtSAzEMFOC7mRy2ZwIVoUryldABFaSCDjr4BKho+TLkQTuzVuw8KHYsn6y3LF8SkaQYDKNiUkRay/dg57Am408kE2g/EJ8Ric52FvLJ0VODDiYHXcHxBuNn2wcXQ5ban0xyE62RfOv5kp39SPElpwu6E9Gj6YjkV3D2B6LL92/FZwPsG+oUSA514X0ge8XOleLCYUH8YudLce/wTOc4X5zr6Gz6+Mp6rlgrrg2FnpMvL84m9g90biF1fbkOqNfo6paM5+2zH2V9VDwZNrTf0Fn2A7EiDyPZR8xcN9jf5YPf+xWYye7+454C7z/2e984D9znqAPmDfwpvXfZ0NOy08tBiz+Tel5h5b6PFvsheT4mB6iDn3m475yTXu/tix10S/ZEsZJ6rvo5zbU/ps7rDs3n5lZ/vuN8J3nWLxVnB8S8L0e9e4B+928Az0D24UZx6/Amf/PmdY8PJe+nhpXUfc5vF7+R+L40uTvZnrPAO+lvYSV1r/McSFK/h8gBz2L0xkcHP+Q33+2B9Pl/hEz60Y/8j+HfCP+2chz8lmXZziF0RyfvZ16hfwFKeTzn
+   eJyFlrtOwzAUhk1xKjUklgoTZSp5SmACJuhUNlY2OsIEI0+GLc4vvp7G6fDLduxzv6UPIfQZjWGe0WZ0WMv3aO+09nbfgibi3OCe6LBP9lb0vdu3I/todOIV3V1j98nO0dmQwr4+CXQt1g661XRJTn4H+3rHS7x77OfGo4Ne0clvsC/fvzI+HL6dbopTBJ3iwnOEPOpWdLnMOM9Y4b7I+sx4cHjP2EEG+fi4Mya0T76S3IuMIWNp54IXyNzi/Ig3xMrZm0zPuYtbD5uL3CuHwdanjGfDBufNCE3BwuTtYJ9iQJvlrzOTNYzw8t+Hysr7pflA9Sr7mV/yQXNEvnCSMcs4nfDTmA7sEyn89xvZTt+P2SnZ12bDGnrUfODjQF8z7zuzvWaDt0UxJd0U7SLs56DqXXvGvuZ3gfXAOpmiXYTDumc8FPspG2q56Pc1+ey56o3s9eswnlPHdDn2RjmjXuvnEXsgdbjJuB3Bnd3XaoA1MjPZjDtzjjNSuimv78Nhny14DX/9NuGth2Qq15VvrAHNQ/mAvVi58VbBD/TmDGvAz/8jJPDXnOc/hp8RfrZyNrOPpnDoQ/HuHL3veWX/C3KLQjg=
   </data>
  </layer>
  <layer name="underplayer" width="32" height="18">
   <data encoding="base64" compression="zlib">
-   eJxjYBh8wAZKm5Chh1bq8QFS3IlPPanmUAtQMyyQAcw/tDJ/FIwCSgA98xs+u+iZP0bzInZA7bRAj/imVfpFN5eW+YTYsEBWh+4efGbgcjtMDwDSuwWp
+   eJxjYBh8wAZKm5Chh1bq8QFS3IlPPanmUAtQMyyQAcw/tDJ/FIxcQI28Qq4Z5KRrfHbRM3+M5kXsgNplLz3im1b1Bbq5tKyXiA0LZHXo7sFnBi63w/QAAFjoBk0=
   </data>
  </layer>
  <objectgroup name="objects">
@@ -25,35 +25,35 @@
    </properties>
    <point/>
   </object>
-  <object id="9" name="SPAWN" type="SPAWN" x="45" y="52.5" width="31.75" height="21.875">
+  <object id="9" name="SPAWN" type="SPAWN" x="35.7273" y="48.5" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="5"/>
+    <property name="capacity" type="int" value="3"/>
     <property name="minimum_tier" type="int" value="1"/>
     <property name="tier" type="int" value="1"/>
    </properties>
   </object>
-  <object id="12" name="SPAWN" type="SPAWN" x="118.625" y="83.8125" width="31.75" height="21.875">
+  <object id="12" name="SPAWN" type="SPAWN" x="129.716" y="96.5398" width="31.75" height="21.875">
    <properties>
     <property name="capacity" type="int" value="3"/>
     <property name="tier" type="int" value="2"/>
    </properties>
   </object>
-  <object id="13" name="SPAWN" type="SPAWN" x="114.125" y="49.0625" width="31.75" height="21.875">
+  <object id="13" name="SPAWN" type="SPAWN" x="140.307" y="58.6989" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="6"/>
+    <property name="capacity" type="int" value="3"/>
     <property name="tier" type="int" value="1"/>
    </properties>
   </object>
-  <object id="14" name="SPAWN" type="SPAWN" x="57.375" y="84.5625" width="31.75" height="21.875">
+  <object id="14" name="SPAWN" type="SPAWN" x="35.5568" y="88.5625" width="31.75" height="21.875">
    <properties>
-    <property name="capacity" type="int" value="6"/>
+    <property name="capacity" type="int" value="3"/>
     <property name="tier" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>
  <layer name="overplayer" width="32" height="18">
   <data encoding="base64" compression="zlib">
-   eJxjYMANdPDIDSZAqjtxqR8q/iUWDDf/jILhBeiZPkfzwuAG1I4fesQ3rexAN3ewpV1S3DPY3I4OAEI2Amk=
+   eJxjYMANdPDIDSZAqjtxqR8q/iUWDDf/jILBA6iRtsg1gxx9o3lhcANqxw894ptWdqCbO9jSLinuGWxuRwcA0bUCwQ==
   </data>
  </layer>
 </map>

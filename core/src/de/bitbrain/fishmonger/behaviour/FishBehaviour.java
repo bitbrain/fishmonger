@@ -10,8 +10,10 @@ import de.bitbrain.braingdx.world.GameObjectUtils;
 
 public class FishBehaviour extends ChasingBehavior {
 
-   private float INTERVAL = 12f;
-   private float FLEE_TIME = 2f;
+   private float INTERVAL_MIN = 1f;
+   private float INTERVAL_MAX = 2f;
+   private float FLEE_TIME_MIN = 1f;
+   private float FLEE_TIME_MAX = 3f;
 
    private GameObject pointer;
    private GameObject player;
@@ -19,11 +21,15 @@ public class FishBehaviour extends ChasingBehavior {
    private final DeltaTimer fleeTimer = new DeltaTimer();
    private Vector2 opposite = new Vector2();
 
+   private float currentInterval, currentFleeInterval;
+
    public FishBehaviour(GameObject source, GameObject pointer, GameObject player, TiledMapManager tiledMapManager, GameEventManager eventManager) {
       super(source, pointer, tiledMapManager, eventManager);
       this.pointer = pointer;
       this.player = player;
-      fleeTimer.update(FLEE_TIME);
+      recomputeIntervals();
+      timer.update(currentInterval);
+      fleeTimer.update(currentFleeInterval);
    }
 
    @Override
@@ -31,11 +37,14 @@ public class FishBehaviour extends ChasingBehavior {
       super.update(s, delta);
       timer.update(delta);
       fleeTimer.update(delta);
-      if (player != null && fleeTimer.reached(FLEE_TIME) && GameObjectUtils.distanceBetween(this.source, player) < 18f) {
+      if (player != null && fleeTimer.reached(currentFleeInterval) && GameObjectUtils.distanceBetween(this.source, player) < 32f) {
+         recomputeIntervals();
          fleeTimer.reset();
          timer.reset();
-         opposite.x = this.source.getLeft() - player.getLeft();
-         opposite.y = this.source.getTop() - player.getTop();
+         opposite.x = this.player.getLeft() - source.getLeft();
+         opposite.y = this.player.getTop() - source.getTop();
+         opposite.scl(4f);
+         opposite.rotate(180f);
          float targetX = source.getLeft() + opposite.x;
          float targetY = source.getTop() + opposite.y;
          if (targetX < 0f) {
@@ -52,10 +61,14 @@ public class FishBehaviour extends ChasingBehavior {
          }
          pointer.setPosition(targetX, targetY);
       }
-      if (fleeTimer.reached(FLEE_TIME) && timer.reached(INTERVAL)) {
+      if (player != null && source.getLastTop() != source.getTop() && source.getLastLeft() != source.getLeft()) {
+         timer.update(currentInterval);
+      }
+      if (timer.reached(currentInterval)) {
+         recomputeIntervals();
          TiledMapAPI api = tiledMapManager.getAPI();
          timer.reset();
-         float targetX = (float)(api.getWorldWidth() * 2f * Math.random());
+         float targetX = (float)(api.getWorldWidth() * Math.random());
          float targetY = (float)(api.getWorldHeight()  * Math.random());
          if (targetX < 0f) {
             targetX = 0f;
@@ -71,7 +84,10 @@ public class FishBehaviour extends ChasingBehavior {
          }
          pointer.setPosition(targetX, targetY);
       }
+   }
 
-
+   private void recomputeIntervals() {
+      currentInterval = (float) (INTERVAL_MIN + Math.random() * (INTERVAL_MAX - INTERVAL_MIN));
+      currentFleeInterval = (float) (FLEE_TIME_MIN + Math.random() * (FLEE_TIME_MAX - FLEE_TIME_MIN));
    }
 }

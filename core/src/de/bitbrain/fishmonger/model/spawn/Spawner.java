@@ -68,7 +68,7 @@ public class Spawner {
 
          FishBehaviour behavior = new FishBehaviour(fish, pointer, player, context.getTiledMapManager(), context.getEventManager());
          behavior.setMinLength(2);
-         context.getBehaviorManager().apply(behavior);
+         context.getBehaviorManager().apply(behavior, fish);
       }
    }
 
