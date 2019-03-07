@@ -75,6 +75,7 @@ public class GameOverScreen extends AbstractScreen {
       setupWorld(context);
       setupRenderer(context);
       setupUI(context);
+      setupInput(context);
 
       dialogManager.nextDialog();
    }
