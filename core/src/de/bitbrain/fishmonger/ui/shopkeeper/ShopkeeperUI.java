@@ -38,7 +38,7 @@ public class ShopkeeperUI extends ButtonMenu {
       super(SharedTweenManager.getInstance(), style);
       setFillParent(true);
       Color bgColor = Colors.BACKGROUND.cpy();
-      bgColor.a = 0.3f;
+      bgColor.a = 0.45f;
       Drawable backgroundImage = new SpriteDrawable(new Sprite(GraphicsFactory.createTexture(2, 2, bgColor)));
       setBackground(backgroundImage);
       add();

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE tileset SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
-<tileset name="tileset" tilewidth="8" tileheight="8" spacing="2" margin="2" tilecount="414" columns="8">
+<tileset name="tileset" tilewidth="8" tileheight="8" spacing="2" margin="2" tilecount="328" columns="8">
  <image source="tileset.png" width="82" height="412"/>
  <terraintypes>
   <terrain name="GRASS" tile="9"/>
