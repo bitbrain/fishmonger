@@ -13,7 +13,7 @@ public class FishBehaviour extends ChasingBehavior {
    private float INTERVAL_MIN = 1f;
    private float INTERVAL_MAX = 2f;
    private float FLEE_TIME_MIN = 1f;
-   private float FLEE_TIME_MAX = 3f;
+   private float FLEE_TIME_MAX = 2f;
 
    private GameObject pointer;
    private GameObject player;
@@ -61,15 +61,14 @@ public class FishBehaviour extends ChasingBehavior {
          }
          pointer.setPosition(targetX, targetY);
       }
-      if (player != null && source.getLastTop() != source.getTop() && source.getLastLeft() != source.getLeft()) {
-         timer.update(currentInterval);
-      }
       if (timer.reached(currentInterval)) {
          recomputeIntervals();
          TiledMapAPI api = tiledMapManager.getAPI();
          timer.reset();
-         float targetX = (float)(api.getWorldWidth() * Math.random());
-         float targetY = (float)(api.getWorldHeight()  * Math.random());
+
+         float targetX = (float) (api.getWorldWidth() * Math.random());
+         float targetY = (float) (api.getWorldHeight() * Math.random());
+
          if (targetX < 0f) {
             targetX = 0f;
          }

@@ -196,7 +196,7 @@ public class Animations {
       }, new Enabler<GameObject>() {
          @Override
          public boolean isEnabledFor(GameObject target) {
-            return target.getOffsetX() > 0 || target.getOffsetY() > 0;
+            return true;
          }
       }));
    }
